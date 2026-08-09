@@ -1,0 +1,74 @@
+[
+  {
+    "id": "PUNE",
+    "name": "Pune",
+    "state": "Maharashtra",
+    "lat": 18.5204,
+    "lon": 73.8567,
+    "population": 11200000
+  },
+  {
+    "id": "MUMBAI",
+    "name": "Mumbai",
+    "state": "Maharashtra",
+    "lat": 19.076,
+    "lon": 72.8777,
+    "population": 13500000
+  },
+  {
+    "id": "NAGPUR",
+    "name": "Nagpur",
+    "state": "Maharashtra",
+    "lat": 21.1458,
+    "lon": 79.0882,
+    "population": 5400000
+  },
+  {
+    "id": "KOLKATA",
+    "name": "Kolkata",
+    "state": "West Bengal",
+    "lat": 22.5726,
+    "lon": 88.3639,
+    "population": 4800000
+  },
+  {
+    "id": "NORTH_24_PARGANAS",
+    "name": "North 24 Parganas",
+    "state": "West Bengal",
+    "lat": 22.8676,
+    "lon": 88.6445,
+    "population": 12000000
+  },
+  {
+    "id": "HOWRAH",
+    "name": "Howrah",
+    "state": "West Bengal",
+    "lat": 22.5958,
+    "lon": 88.2636,
+    "population": 4900000
+  },
+  {
+    "id": "BENGALURU_URBAN",
+    "name": "Bengaluru Urban",
+    "state": "Karnataka",
+    "lat": 12.9716,
+    "lon": 77.5946,
+    "population": 9621551
+  },
+  {
+    "id": "MYSURU",
+    "name": "Mysuru",
+    "state": "Karnataka",
+    "lat": 12.2958,
+    "lon": 76.6394,
+    "population": 3000000
+  },
+  {
+    "id": "DHARWAD",
+    "name": "Dharwad",
+    "state": "Karnataka",
+    "lat": 15.4589,
+    "lon": 75.0078,
+    "population": 1847000
+  }
+]

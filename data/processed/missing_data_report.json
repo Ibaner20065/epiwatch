@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-08-09T04:14:47.025720",
+  "total_records": 11232,
+  "by_district": {
+    "BENGALURU_URBAN": {
+      "total_weeks": 1248,
+      "weeks_with_cases": 1248,
+      "missing_cases_pct": 0.0
+    },
+    "DHARWAD": {
+      "total_weeks": 1248,
+      "weeks_with_cases": 1248,
+      "missing_cases_pct": 0.0
+    },
+    "HOWRAH": {
+      "total_weeks": 1248,
+      "weeks_with_cases": 1248,
+      "missing_cases_pct": 0.0
+    },
+    "KOLKATA": {
+      "total_weeks": 1248,
+      "weeks_with_cases": 1248,
+      "missing_cases_pct": 0.0
+    },
+    "MUMBAI": {
+      "total_weeks": 1248,
+      "weeks_with_cases": 1248,
+      "missing_cases_pct": 0.0
+    },
+    "MYSURU": {
+      "total_weeks": 1248,
+      "weeks_with_cases": 1248,
+      "missing_cases_pct": 0.0
+    },
+    "NAGPUR": {
+      "total_weeks": 1248,
+      "weeks_with_cases": 1248,
+      "missing_cases_pct": 0.0
+    },
+    "NORTH_24_PARGANAS": {
+      "total_weeks": 1248,
+      "weeks_with_cases": 1248,
+      "missing_cases_pct": 0.0
+    },
+    "PUNE": {
+      "total_weeks": 1248,
+      "weeks_with_cases": 1248,
+      "missing_cases_pct": 0.0
+    }
+  },
+  "by_disease": {
+    "add": {
+      "total_records": 3744,
+      "missing_cases_pct": 0.0
+    },
+    "dengue": {
+      "total_records": 3744,
+      "missing_cases_pct": 0.0
+    },
+    "malaria": {
+      "total_records": 3744,
+      "missing_cases_pct": 0.0
+    }
+  },
+  "climate_completeness": {
+    "t2m_max_avg": 0.0,
+    "t2m_min_avg": 0.0,
+    "rainfall_total": 0.0,
+    "rh2m_avg": 0.0
+  }
+}

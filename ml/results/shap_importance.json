@@ -1,0 +1,218 @@
+{
+  "BENGALURU_URBAN_add": {
+    "rainfall_mm": 0.0947,
+    "temp_max_c": 0.2192,
+    "humidity_pct": 0.1451,
+    "rainfall_lag2": 0.1977,
+    "temp_max_lag1": 0.204,
+    "humidity_lag1": 0.1392
+  },
+  "BENGALURU_URBAN_dengue": {
+    "rainfall_mm": 0.141,
+    "temp_max_c": 0.1363,
+    "humidity_pct": 0.2247,
+    "rainfall_lag2": 0.0766,
+    "temp_max_lag1": 0.2392,
+    "humidity_lag1": 0.1822
+  },
+  "BENGALURU_URBAN_malaria": {
+    "rainfall_mm": 0.1549,
+    "temp_max_c": 0.1515,
+    "humidity_pct": 0.1876,
+    "rainfall_lag2": 0.2299,
+    "temp_max_lag1": 0.1463,
+    "humidity_lag1": 0.1298
+  },
+  "DHARWAD_add": {
+    "rainfall_mm": 0.1444,
+    "temp_max_c": 0.1858,
+    "humidity_pct": 0.1501,
+    "rainfall_lag2": 0.1767,
+    "temp_max_lag1": 0.1577,
+    "humidity_lag1": 0.1853
+  },
+  "DHARWAD_dengue": {
+    "rainfall_mm": 0.1619,
+    "temp_max_c": 0.1071,
+    "humidity_pct": 0.2336,
+    "rainfall_lag2": 0.1712,
+    "temp_max_lag1": 0.2284,
+    "humidity_lag1": 0.0977
+  },
+  "DHARWAD_malaria": {
+    "rainfall_mm": 0.1821,
+    "temp_max_c": 0.1119,
+    "humidity_pct": 0.2236,
+    "rainfall_lag2": 0.1901,
+    "temp_max_lag1": 0.108,
+    "humidity_lag1": 0.1842
+  },
+  "HOWRAH_add": {
+    "rainfall_mm": 0.097,
+    "temp_max_c": 0.1148,
+    "humidity_pct": 0.1965,
+    "rainfall_lag2": 0.1733,
+    "temp_max_lag1": 0.291,
+    "humidity_lag1": 0.1274
+  },
+  "HOWRAH_dengue": {
+    "rainfall_mm": 0.4119,
+    "temp_max_c": 0.0922,
+    "humidity_pct": 0.1413,
+    "rainfall_lag2": 0.132,
+    "temp_max_lag1": 0.0737,
+    "humidity_lag1": 0.1489
+  },
+  "HOWRAH_malaria": {
+    "rainfall_mm": 0.2,
+    "temp_max_c": 0.1401,
+    "humidity_pct": 0.2632,
+    "rainfall_lag2": 0.1363,
+    "temp_max_lag1": 0.142,
+    "humidity_lag1": 0.1183
+  },
+  "KOLKATA_add": {
+    "rainfall_mm": 0.1974,
+    "temp_max_c": 0.2393,
+    "humidity_pct": 0.1229,
+    "rainfall_lag2": 0.1832,
+    "temp_max_lag1": 0.1016,
+    "humidity_lag1": 0.1555
+  },
+  "KOLKATA_dengue": {
+    "rainfall_mm": 0.0927,
+    "temp_max_c": 0.1321,
+    "humidity_pct": 0.1906,
+    "rainfall_lag2": 0.3111,
+    "temp_max_lag1": 0.1372,
+    "humidity_lag1": 0.1363
+  },
+  "KOLKATA_malaria": {
+    "rainfall_mm": 0.2353,
+    "temp_max_c": 0.0866,
+    "humidity_pct": 0.1429,
+    "rainfall_lag2": 0.1625,
+    "temp_max_lag1": 0.1389,
+    "humidity_lag1": 0.2338
+  },
+  "MUMBAI_add": {
+    "rainfall_mm": 0.0657,
+    "temp_max_c": 0.0941,
+    "humidity_pct": 0.1089,
+    "rainfall_lag2": 0.16,
+    "temp_max_lag1": 0.3431,
+    "humidity_lag1": 0.2282
+  },
+  "MUMBAI_dengue": {
+    "rainfall_mm": 0.088,
+    "temp_max_c": 0.1298,
+    "humidity_pct": 0.0923,
+    "rainfall_lag2": 0.3675,
+    "temp_max_lag1": 0.0772,
+    "humidity_lag1": 0.2452
+  },
+  "MUMBAI_malaria": {
+    "rainfall_mm": 0.1114,
+    "temp_max_c": 0.3058,
+    "humidity_pct": 0.1,
+    "rainfall_lag2": 0.2661,
+    "temp_max_lag1": 0.0844,
+    "humidity_lag1": 0.1323
+  },
+  "MYSURU_add": {
+    "rainfall_mm": 0.1338,
+    "temp_max_c": 0.2117,
+    "humidity_pct": 0.1626,
+    "rainfall_lag2": 0.1398,
+    "temp_max_lag1": 0.1605,
+    "humidity_lag1": 0.1915
+  },
+  "MYSURU_dengue": {
+    "rainfall_mm": 0.1319,
+    "temp_max_c": 0.1368,
+    "humidity_pct": 0.1974,
+    "rainfall_lag2": 0.1404,
+    "temp_max_lag1": 0.2067,
+    "humidity_lag1": 0.1869
+  },
+  "MYSURU_malaria": {
+    "rainfall_mm": 0.1444,
+    "temp_max_c": 0.0896,
+    "humidity_pct": 0.171,
+    "rainfall_lag2": 0.25,
+    "temp_max_lag1": 0.1608,
+    "humidity_lag1": 0.1842
+  },
+  "NAGPUR_add": {
+    "rainfall_mm": 0.1282,
+    "temp_max_c": 0.0967,
+    "humidity_pct": 0.1207,
+    "rainfall_lag2": 0.2179,
+    "temp_max_lag1": 0.1367,
+    "humidity_lag1": 0.2999
+  },
+  "NAGPUR_dengue": {
+    "rainfall_mm": 0.1984,
+    "temp_max_c": 0.1524,
+    "humidity_pct": 0.1164,
+    "rainfall_lag2": 0.3441,
+    "temp_max_lag1": 0.0854,
+    "humidity_lag1": 0.1034
+  },
+  "NAGPUR_malaria": {
+    "rainfall_mm": 0.1765,
+    "temp_max_c": 0.1138,
+    "humidity_pct": 0.1216,
+    "rainfall_lag2": 0.1531,
+    "temp_max_lag1": 0.1974,
+    "humidity_lag1": 0.2377
+  },
+  "NORTH_24_PARGANAS_add": {
+    "rainfall_mm": 0.1491,
+    "temp_max_c": 0.2961,
+    "humidity_pct": 0.1207,
+    "rainfall_lag2": 0.1539,
+    "temp_max_lag1": 0.0838,
+    "humidity_lag1": 0.1965
+  },
+  "NORTH_24_PARGANAS_dengue": {
+    "rainfall_mm": 0.1142,
+    "temp_max_c": 0.0643,
+    "humidity_pct": 0.1056,
+    "rainfall_lag2": 0.1458,
+    "temp_max_lag1": 0.3883,
+    "humidity_lag1": 0.1818
+  },
+  "NORTH_24_PARGANAS_malaria": {
+    "rainfall_mm": 0.1313,
+    "temp_max_c": 0.1653,
+    "humidity_pct": 0.2058,
+    "rainfall_lag2": 0.1847,
+    "temp_max_lag1": 0.1509,
+    "humidity_lag1": 0.1621
+  },
+  "PUNE_add": {
+    "rainfall_mm": 0.1564,
+    "temp_max_c": 0.0913,
+    "humidity_pct": 0.1956,
+    "rainfall_lag2": 0.2285,
+    "temp_max_lag1": 0.1989,
+    "humidity_lag1": 0.1293
+  },
+  "PUNE_dengue": {
+    "rainfall_mm": 0.1446,
+    "temp_max_c": 0.2424,
+    "humidity_pct": 0.0857,
+    "rainfall_lag2": 0.1975,
+    "temp_max_lag1": 0.1177,
+    "humidity_lag1": 0.2121
+  },
+  "PUNE_malaria": {
+    "rainfall_mm": 0.2048,
+    "temp_max_c": 0.1269,
+    "humidity_pct": 0.1277,
+    "rainfall_lag2": 0.1896,
+    "temp_max_lag1": 0.1721,
+    "humidity_lag1": 0.1789
+  }
+}

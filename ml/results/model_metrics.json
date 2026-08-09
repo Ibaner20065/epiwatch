@@ -1,0 +1,164 @@
+{
+  "BENGALURU_URBAN_add": {
+    "mae": 5.52,
+    "rmse": 7.51,
+    "district": "Bengaluru Urban",
+    "disease": "add"
+  },
+  "BENGALURU_URBAN_dengue": {
+    "mae": 4.39,
+    "rmse": 6.5,
+    "district": "Bengaluru Urban",
+    "disease": "dengue"
+  },
+  "BENGALURU_URBAN_malaria": {
+    "mae": 2.81,
+    "rmse": 4.19,
+    "district": "Bengaluru Urban",
+    "disease": "malaria"
+  },
+  "DHARWAD_add": {
+    "mae": 1.13,
+    "rmse": 1.47,
+    "district": "Dharwad",
+    "disease": "add"
+  },
+  "DHARWAD_dengue": {
+    "mae": 0.85,
+    "rmse": 1.14,
+    "district": "Dharwad",
+    "disease": "dengue"
+  },
+  "DHARWAD_malaria": {
+    "mae": 0.57,
+    "rmse": 0.73,
+    "district": "Dharwad",
+    "disease": "malaria"
+  },
+  "HOWRAH_add": {
+    "mae": 2.72,
+    "rmse": 4.07,
+    "district": "Howrah",
+    "disease": "add"
+  },
+  "HOWRAH_dengue": {
+    "mae": 2.1,
+    "rmse": 2.92,
+    "district": "Howrah",
+    "disease": "dengue"
+  },
+  "HOWRAH_malaria": {
+    "mae": 1.07,
+    "rmse": 1.59,
+    "district": "Howrah",
+    "disease": "malaria"
+  },
+  "KOLKATA_add": {
+    "mae": 3.11,
+    "rmse": 4.53,
+    "district": "Kolkata",
+    "disease": "add"
+  },
+  "KOLKATA_dengue": {
+    "mae": 2.07,
+    "rmse": 2.84,
+    "district": "Kolkata",
+    "disease": "dengue"
+  },
+  "KOLKATA_malaria": {
+    "mae": 1.81,
+    "rmse": 2.55,
+    "district": "Kolkata",
+    "disease": "malaria"
+  },
+  "MUMBAI_add": {
+    "mae": 5.66,
+    "rmse": 7.77,
+    "district": "Mumbai",
+    "disease": "add"
+  },
+  "MUMBAI_dengue": {
+    "mae": 3.94,
+    "rmse": 5.4,
+    "district": "Mumbai",
+    "disease": "dengue"
+  },
+  "MUMBAI_malaria": {
+    "mae": 2.7,
+    "rmse": 3.72,
+    "district": "Mumbai",
+    "disease": "malaria"
+  },
+  "MYSURU_add": {
+    "mae": 1.72,
+    "rmse": 2.31,
+    "district": "Mysuru",
+    "disease": "add"
+  },
+  "MYSURU_dengue": {
+    "mae": 1.32,
+    "rmse": 1.96,
+    "district": "Mysuru",
+    "disease": "dengue"
+  },
+  "MYSURU_malaria": {
+    "mae": 0.81,
+    "rmse": 1.09,
+    "district": "Mysuru",
+    "disease": "malaria"
+  },
+  "NAGPUR_add": {
+    "mae": 2.44,
+    "rmse": 3.47,
+    "district": "Nagpur",
+    "disease": "add"
+  },
+  "NAGPUR_dengue": {
+    "mae": 1.76,
+    "rmse": 2.47,
+    "district": "Nagpur",
+    "disease": "dengue"
+  },
+  "NAGPUR_malaria": {
+    "mae": 1.24,
+    "rmse": 1.65,
+    "district": "Nagpur",
+    "disease": "malaria"
+  },
+  "NORTH_24_PARGANAS_add": {
+    "mae": 4.17,
+    "rmse": 5.73,
+    "district": "North 24 Parganas",
+    "disease": "add"
+  },
+  "NORTH_24_PARGANAS_dengue": {
+    "mae": 3.36,
+    "rmse": 4.85,
+    "district": "North 24 Parganas",
+    "disease": "dengue"
+  },
+  "NORTH_24_PARGANAS_malaria": {
+    "mae": 1.91,
+    "rmse": 2.79,
+    "district": "North 24 Parganas",
+    "disease": "malaria"
+  },
+  "PUNE_add": {
+    "mae": 4.12,
+    "rmse": 5.7,
+    "district": "Pune",
+    "disease": "add"
+  },
+  "PUNE_dengue": {
+    "mae": 3.96,
+    "rmse": 6.23,
+    "district": "Pune",
+    "disease": "dengue"
+  },
+  "PUNE_malaria": {
+    "mae": 2.17,
+    "rmse": 2.9,
+    "district": "Pune",
+    "disease": "malaria"
+  }
+}

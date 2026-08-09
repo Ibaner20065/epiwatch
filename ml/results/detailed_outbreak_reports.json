@@ -1,0 +1,2135 @@
+{
+  "BENGALURU_URBAN_add": {
+    "district_id": "BENGALURU_URBAN",
+    "district_name": "Bengaluru Urban",
+    "state": "Karnataka",
+    "disease": "add",
+    "coordinates": {
+      "lat": 12.9716,
+      "lon": 77.5946
+    },
+    "population": 13000000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 78.7,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Bengaluru Urban, Karnataka",
+      "coordinates": "12.9716\u00b0 N, 77.5946\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Bengaluru Urban with standing water bodies and census density of 28888 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant BENGALURU_URBAN"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (13,000,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.0947,
+        "temp_max_c": 0.2192,
+        "humidity_pct": 0.1451,
+        "rainfall_lag2": 0.1977,
+        "temp_max_lag1": 0.204,
+        "humidity_lag1": 0.1392
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Waterborne Bacterial Contamination",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 78.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 75.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 63.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 58.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 43.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 44.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 41.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 33.4,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 118 larvicide/water purification kits to Bengaluru Urban District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "BENGALURU_URBAN_dengue": {
+    "district_id": "BENGALURU_URBAN",
+    "district_name": "Bengaluru Urban",
+    "state": "Karnataka",
+    "disease": "dengue",
+    "coordinates": {
+      "lat": 12.9716,
+      "lon": 77.5946
+    },
+    "population": 13000000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 42.2,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Bengaluru Urban, Karnataka",
+      "coordinates": "12.9716\u00b0 N, 77.5946\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Bengaluru Urban with standing water bodies and census density of 28888 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant BENGALURU_URBAN"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (13,000,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.141,
+        "temp_max_c": 0.1363,
+        "humidity_pct": 0.2247,
+        "rainfall_lag2": 0.0766,
+        "temp_max_lag1": 0.2392,
+        "humidity_lag1": 0.1822
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 42.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 30.4,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 30.4,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 23.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 18.6,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 18.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 21.6,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 20.4,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 63 larvicide/water purification kits to Bengaluru Urban District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "BENGALURU_URBAN_malaria": {
+    "district_id": "BENGALURU_URBAN",
+    "district_name": "Bengaluru Urban",
+    "state": "Karnataka",
+    "disease": "malaria",
+    "coordinates": {
+      "lat": 12.9716,
+      "lon": 77.5946
+    },
+    "population": 13000000,
+    "peak_outbreak_week": "2025-01-06",
+    "peak_cases_predicted": 17.5,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Bengaluru Urban, Karnataka",
+      "coordinates": "12.9716\u00b0 N, 77.5946\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Bengaluru Urban with standing water bodies and census density of 28888 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant BENGALURU_URBAN"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (13,000,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1549,
+        "temp_max_c": 0.1515,
+        "humidity_pct": 0.1876,
+        "rainfall_lag2": 0.2299,
+        "temp_max_lag1": 0.1463,
+        "humidity_lag1": 0.1298
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 16.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 17.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 15.6,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 15.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 15.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 13.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 16.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 16.6,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 26 larvicide/water purification kits to Bengaluru Urban District Health Officer 6 weeks prior to 2025-01-06."
+    }
+  },
+  "DHARWAD_add": {
+    "district_id": "DHARWAD",
+    "district_name": "Dharwad",
+    "state": "Karnataka",
+    "disease": "add",
+    "coordinates": {
+      "lat": 15.4589,
+      "lon": 75.0078
+    },
+    "population": 2200000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 16.8,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Dharwad, Karnataka",
+      "coordinates": "15.4589\u00b0 N, 75.0078\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Dharwad with standing water bodies and census density of 4888 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant DHARWAD"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (2,200,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1444,
+        "temp_max_c": 0.1858,
+        "humidity_pct": 0.1501,
+        "rainfall_lag2": 0.1767,
+        "temp_max_lag1": 0.1577,
+        "humidity_lag1": 0.1853
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Waterborne Bacterial Contamination",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 16.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 13.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 12.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 11.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 10.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 7.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 7.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 7.1,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 25 larvicide/water purification kits to Dharwad District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "DHARWAD_dengue": {
+    "district_id": "DHARWAD",
+    "district_name": "Dharwad",
+    "state": "Karnataka",
+    "disease": "dengue",
+    "coordinates": {
+      "lat": 15.4589,
+      "lon": 75.0078
+    },
+    "population": 2200000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 8.5,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Dharwad, Karnataka",
+      "coordinates": "15.4589\u00b0 N, 75.0078\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Dharwad with standing water bodies and census density of 4888 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant DHARWAD"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (2,200,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1619,
+        "temp_max_c": 0.1071,
+        "humidity_pct": 0.2336,
+        "rainfall_lag2": 0.1712,
+        "temp_max_lag1": 0.2284,
+        "humidity_lag1": 0.0977
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 8.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 8.4,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 6.6,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 8.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 8.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 8.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 8.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 8.3,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 12 larvicide/water purification kits to Dharwad District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "DHARWAD_malaria": {
+    "district_id": "DHARWAD",
+    "district_name": "Dharwad",
+    "state": "Karnataka",
+    "disease": "malaria",
+    "coordinates": {
+      "lat": 15.4589,
+      "lon": 75.0078
+    },
+    "population": 2200000,
+    "peak_outbreak_week": "2025-01-27",
+    "peak_cases_predicted": 3.3,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Dharwad, Karnataka",
+      "coordinates": "15.4589\u00b0 N, 75.0078\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Dharwad with standing water bodies and census density of 4888 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant DHARWAD"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (2,200,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1821,
+        "temp_max_c": 0.1119,
+        "humidity_pct": 0.2236,
+        "rainfall_lag2": 0.1901,
+        "temp_max_lag1": 0.108,
+        "humidity_lag1": 0.1842
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 3.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 2.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 2.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 2.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 3.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 2.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 2.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 2.6,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 4 larvicide/water purification kits to Dharwad District Health Officer 6 weeks prior to 2025-01-27."
+    }
+  },
+  "HOWRAH_add": {
+    "district_id": "HOWRAH",
+    "district_name": "Howrah",
+    "state": "West Bengal",
+    "disease": "add",
+    "coordinates": {
+      "lat": 22.5958,
+      "lon": 88.2636
+    },
+    "population": 5600000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 32.2,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Howrah, West Bengal",
+      "coordinates": "22.5958\u00b0 N, 88.2636\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Howrah with standing water bodies and census density of 12444 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant HOWRAH"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (5,600,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.097,
+        "temp_max_c": 0.1148,
+        "humidity_pct": 0.1965,
+        "rainfall_lag2": 0.1733,
+        "temp_max_lag1": 0.291,
+        "humidity_lag1": 0.1274
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Waterborne Bacterial Contamination",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 32.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 28.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 22.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 21.4,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 20.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 16.4,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 15.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 15.8,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 48 larvicide/water purification kits to Howrah District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "HOWRAH_dengue": {
+    "district_id": "HOWRAH",
+    "district_name": "Howrah",
+    "state": "West Bengal",
+    "disease": "dengue",
+    "coordinates": {
+      "lat": 22.5958,
+      "lon": 88.2636
+    },
+    "population": 5600000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 15.1,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Howrah, West Bengal",
+      "coordinates": "22.5958\u00b0 N, 88.2636\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Howrah with standing water bodies and census density of 12444 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant HOWRAH"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (5,600,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.4119,
+        "temp_max_c": 0.0922,
+        "humidity_pct": 0.1413,
+        "rainfall_lag2": 0.132,
+        "temp_max_lag1": 0.0737,
+        "humidity_lag1": 0.1489
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 15.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 10.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 8.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 9.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 9.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 7.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 7.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 7.0,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 22 larvicide/water purification kits to Howrah District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "HOWRAH_malaria": {
+    "district_id": "HOWRAH",
+    "district_name": "Howrah",
+    "state": "West Bengal",
+    "disease": "malaria",
+    "coordinates": {
+      "lat": 22.5958,
+      "lon": 88.2636
+    },
+    "population": 5600000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 9.0,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Howrah, West Bengal",
+      "coordinates": "22.5958\u00b0 N, 88.2636\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Howrah with standing water bodies and census density of 12444 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant HOWRAH"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (5,600,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.2,
+        "temp_max_c": 0.1401,
+        "humidity_pct": 0.2632,
+        "rainfall_lag2": 0.1363,
+        "temp_max_lag1": 0.142,
+        "humidity_lag1": 0.1183
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 9.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 8.6,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 8.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 7.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 7.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 7.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 6.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 6.9,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 13 larvicide/water purification kits to Howrah District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "KOLKATA_add": {
+    "district_id": "KOLKATA",
+    "district_name": "Kolkata",
+    "state": "West Bengal",
+    "disease": "add",
+    "coordinates": {
+      "lat": 22.5726,
+      "lon": 88.3639
+    },
+    "population": 4800000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 41.2,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Kolkata, West Bengal",
+      "coordinates": "22.5726\u00b0 N, 88.3639\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Kolkata with standing water bodies and census density of 10666 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant KOLKATA"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (4,800,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1974,
+        "temp_max_c": 0.2393,
+        "humidity_pct": 0.1229,
+        "rainfall_lag2": 0.1832,
+        "temp_max_lag1": 0.1016,
+        "humidity_lag1": 0.1555
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Waterborne Bacterial Contamination",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 41.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 34.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 33.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 32.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 28.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 27.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 26.6,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 26.7,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 61 larvicide/water purification kits to Kolkata District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "KOLKATA_dengue": {
+    "district_id": "KOLKATA",
+    "district_name": "Kolkata",
+    "state": "West Bengal",
+    "disease": "dengue",
+    "coordinates": {
+      "lat": 22.5726,
+      "lon": 88.3639
+    },
+    "population": 4800000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 21.7,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Kolkata, West Bengal",
+      "coordinates": "22.5726\u00b0 N, 88.3639\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Kolkata with standing water bodies and census density of 10666 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant KOLKATA"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (4,800,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.0927,
+        "temp_max_c": 0.1321,
+        "humidity_pct": 0.1906,
+        "rainfall_lag2": 0.3111,
+        "temp_max_lag1": 0.1372,
+        "humidity_lag1": 0.1363
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 21.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 19.6,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 20.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 17.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 16.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 16.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 16.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 16.1,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 32 larvicide/water purification kits to Kolkata District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "KOLKATA_malaria": {
+    "district_id": "KOLKATA",
+    "district_name": "Kolkata",
+    "state": "West Bengal",
+    "disease": "malaria",
+    "coordinates": {
+      "lat": 22.5726,
+      "lon": 88.3639
+    },
+    "population": 4800000,
+    "peak_outbreak_week": "2025-01-06",
+    "peak_cases_predicted": 14.1,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Kolkata, West Bengal",
+      "coordinates": "22.5726\u00b0 N, 88.3639\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Kolkata with standing water bodies and census density of 10666 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant KOLKATA"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (4,800,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.2353,
+        "temp_max_c": 0.0866,
+        "humidity_pct": 0.1429,
+        "rainfall_lag2": 0.1625,
+        "temp_max_lag1": 0.1389,
+        "humidity_lag1": 0.2338
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 13.4,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 14.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 11.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 11.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 10.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 10.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 10.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 10.1,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 21 larvicide/water purification kits to Kolkata District Health Officer 6 weeks prior to 2025-01-06."
+    }
+  },
+  "MUMBAI_add": {
+    "district_id": "MUMBAI",
+    "district_name": "Mumbai",
+    "state": "Maharashtra",
+    "disease": "add",
+    "coordinates": {
+      "lat": 19.076,
+      "lon": 72.8777
+    },
+    "population": 13500000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 62.9,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Mumbai, Maharashtra",
+      "coordinates": "19.076\u00b0 N, 72.8777\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Mumbai with standing water bodies and census density of 30000 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant MUMBAI"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (13,500,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.0657,
+        "temp_max_c": 0.0941,
+        "humidity_pct": 0.1089,
+        "rainfall_lag2": 0.16,
+        "temp_max_lag1": 0.3431,
+        "humidity_lag1": 0.2282
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Waterborne Bacterial Contamination",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 62.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 58.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 58.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 40.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 39.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 39.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 34.4,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 32.9,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 94 larvicide/water purification kits to Mumbai District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "MUMBAI_dengue": {
+    "district_id": "MUMBAI",
+    "district_name": "Mumbai",
+    "state": "Maharashtra",
+    "disease": "dengue",
+    "coordinates": {
+      "lat": 19.076,
+      "lon": 72.8777
+    },
+    "population": 13500000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 48.7,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Mumbai, Maharashtra",
+      "coordinates": "19.076\u00b0 N, 72.8777\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Mumbai with standing water bodies and census density of 30000 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant MUMBAI"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (13,500,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.088,
+        "temp_max_c": 0.1298,
+        "humidity_pct": 0.0923,
+        "rainfall_lag2": 0.3675,
+        "temp_max_lag1": 0.0772,
+        "humidity_lag1": 0.2452
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 48.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 48.4,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 38.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 41.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 38.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 35.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 36.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 36.1,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 73 larvicide/water purification kits to Mumbai District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "MUMBAI_malaria": {
+    "district_id": "MUMBAI",
+    "district_name": "Mumbai",
+    "state": "Maharashtra",
+    "disease": "malaria",
+    "coordinates": {
+      "lat": 19.076,
+      "lon": 72.8777
+    },
+    "population": 13500000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 27.2,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Mumbai, Maharashtra",
+      "coordinates": "19.076\u00b0 N, 72.8777\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Mumbai with standing water bodies and census density of 30000 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant MUMBAI"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (13,500,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1114,
+        "temp_max_c": 0.3058,
+        "humidity_pct": 0.1,
+        "rainfall_lag2": 0.2661,
+        "temp_max_lag1": 0.0844,
+        "humidity_lag1": 0.1323
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 27.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 24.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 22.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 21.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 21.4,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 21.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 23.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 23.8,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 40 larvicide/water purification kits to Mumbai District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "MYSURU_add": {
+    "district_id": "MYSURU",
+    "district_name": "Mysuru",
+    "state": "Karnataka",
+    "disease": "add",
+    "coordinates": {
+      "lat": 12.2958,
+      "lon": 76.6394
+    },
+    "population": 3600000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 23.2,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Mysuru, Karnataka",
+      "coordinates": "12.2958\u00b0 N, 76.6394\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Mysuru with standing water bodies and census density of 8000 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant MYSURU"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (3,600,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1338,
+        "temp_max_c": 0.2117,
+        "humidity_pct": 0.1626,
+        "rainfall_lag2": 0.1398,
+        "temp_max_lag1": 0.1605,
+        "humidity_lag1": 0.1915
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Waterborne Bacterial Contamination",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 23.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 20.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 19.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 18.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 17.6,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 15.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 13.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 12.0,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 34 larvicide/water purification kits to Mysuru District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "MYSURU_dengue": {
+    "district_id": "MYSURU",
+    "district_name": "Mysuru",
+    "state": "Karnataka",
+    "disease": "dengue",
+    "coordinates": {
+      "lat": 12.2958,
+      "lon": 76.6394
+    },
+    "population": 3600000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 13.7,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Mysuru, Karnataka",
+      "coordinates": "12.2958\u00b0 N, 76.6394\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Mysuru with standing water bodies and census density of 8000 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant MYSURU"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (3,600,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1319,
+        "temp_max_c": 0.1368,
+        "humidity_pct": 0.1974,
+        "rainfall_lag2": 0.1404,
+        "temp_max_lag1": 0.2067,
+        "humidity_lag1": 0.1869
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 13.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 12.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 13.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 13.4,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 13.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 13.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 12.4,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 12.4,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 20 larvicide/water purification kits to Mysuru District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "MYSURU_malaria": {
+    "district_id": "MYSURU",
+    "district_name": "Mysuru",
+    "state": "Karnataka",
+    "disease": "malaria",
+    "coordinates": {
+      "lat": 12.2958,
+      "lon": 76.6394
+    },
+    "population": 3600000,
+    "peak_outbreak_week": "2025-01-06",
+    "peak_cases_predicted": 5.8,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Mysuru, Karnataka",
+      "coordinates": "12.2958\u00b0 N, 76.6394\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Mysuru with standing water bodies and census density of 8000 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant MYSURU"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (3,600,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1444,
+        "temp_max_c": 0.0896,
+        "humidity_pct": 0.171,
+        "rainfall_lag2": 0.25,
+        "temp_max_lag1": 0.1608,
+        "humidity_lag1": 0.1842
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 5.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 5.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 5.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 5.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 4.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 4.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 3.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 3.2,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 8 larvicide/water purification kits to Mysuru District Health Officer 6 weeks prior to 2025-01-06."
+    }
+  },
+  "NAGPUR_add": {
+    "district_id": "NAGPUR",
+    "district_name": "Nagpur",
+    "state": "Maharashtra",
+    "disease": "add",
+    "coordinates": {
+      "lat": 21.1458,
+      "lon": 79.0882
+    },
+    "population": 5400000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 35.6,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Nagpur, Maharashtra",
+      "coordinates": "21.1458\u00b0 N, 79.0882\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Nagpur with standing water bodies and census density of 12000 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant NAGPUR"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (5,400,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1282,
+        "temp_max_c": 0.0967,
+        "humidity_pct": 0.1207,
+        "rainfall_lag2": 0.2179,
+        "temp_max_lag1": 0.1367,
+        "humidity_lag1": 0.2999
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Waterborne Bacterial Contamination",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 35.6,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 32.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 28.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 23.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 24.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 18.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 18.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 16.3,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 53 larvicide/water purification kits to Nagpur District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "NAGPUR_dengue": {
+    "district_id": "NAGPUR",
+    "district_name": "Nagpur",
+    "state": "Maharashtra",
+    "disease": "dengue",
+    "coordinates": {
+      "lat": 21.1458,
+      "lon": 79.0882
+    },
+    "population": 5400000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 16.2,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Nagpur, Maharashtra",
+      "coordinates": "21.1458\u00b0 N, 79.0882\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Nagpur with standing water bodies and census density of 12000 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant NAGPUR"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (5,400,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1984,
+        "temp_max_c": 0.1524,
+        "humidity_pct": 0.1164,
+        "rainfall_lag2": 0.3441,
+        "temp_max_lag1": 0.0854,
+        "humidity_lag1": 0.1034
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 16.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 11.6,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 11.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 9.4,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 7.4,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 6.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 8.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 10.9,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 24 larvicide/water purification kits to Nagpur District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "NAGPUR_malaria": {
+    "district_id": "NAGPUR",
+    "district_name": "Nagpur",
+    "state": "Maharashtra",
+    "disease": "malaria",
+    "coordinates": {
+      "lat": 21.1458,
+      "lon": 79.0882
+    },
+    "population": 5400000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 8.6,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Nagpur, Maharashtra",
+      "coordinates": "21.1458\u00b0 N, 79.0882\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Nagpur with standing water bodies and census density of 12000 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant NAGPUR"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (5,400,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1765,
+        "temp_max_c": 0.1138,
+        "humidity_pct": 0.1216,
+        "rainfall_lag2": 0.1531,
+        "temp_max_lag1": 0.1974,
+        "humidity_lag1": 0.2377
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 8.6,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 7.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 5.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 6.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 6.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 6.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 6.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 6.7,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 12 larvicide/water purification kits to Nagpur District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "NORTH_24_PARGANAS_add": {
+    "district_id": "NORTH_24_PARGANAS",
+    "district_name": "North 24 Parganas",
+    "state": "West Bengal",
+    "disease": "add",
+    "coordinates": {
+      "lat": 22.8676,
+      "lon": 88.6445
+    },
+    "population": 12000000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 60.3,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "North 24 Parganas, West Bengal",
+      "coordinates": "22.8676\u00b0 N, 88.6445\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in North 24 Parganas with standing water bodies and census density of 26666 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant NORTH_24_PARGANAS"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (12,000,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1491,
+        "temp_max_c": 0.2961,
+        "humidity_pct": 0.1207,
+        "rainfall_lag2": 0.1539,
+        "temp_max_lag1": 0.0838,
+        "humidity_lag1": 0.1965
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Waterborne Bacterial Contamination",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 60.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 47.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 47.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 43.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 37.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 32.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 32.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 29.0,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 90 larvicide/water purification kits to North 24 Parganas District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "NORTH_24_PARGANAS_dengue": {
+    "district_id": "NORTH_24_PARGANAS",
+    "district_name": "North 24 Parganas",
+    "state": "West Bengal",
+    "disease": "dengue",
+    "coordinates": {
+      "lat": 22.8676,
+      "lon": 88.6445
+    },
+    "population": 12000000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 37.8,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "North 24 Parganas, West Bengal",
+      "coordinates": "22.8676\u00b0 N, 88.6445\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in North 24 Parganas with standing water bodies and census density of 26666 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant NORTH_24_PARGANAS"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (12,000,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1142,
+        "temp_max_c": 0.0643,
+        "humidity_pct": 0.1056,
+        "rainfall_lag2": 0.1458,
+        "temp_max_lag1": 0.3883,
+        "humidity_lag1": 0.1818
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 37.8,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 28.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 28.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 22.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 22.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 21.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 21.2,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 21.2,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 56 larvicide/water purification kits to North 24 Parganas District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "NORTH_24_PARGANAS_malaria": {
+    "district_id": "NORTH_24_PARGANAS",
+    "district_name": "North 24 Parganas",
+    "state": "West Bengal",
+    "disease": "malaria",
+    "coordinates": {
+      "lat": 22.8676,
+      "lon": 88.6445
+    },
+    "population": 12000000,
+    "peak_outbreak_week": "2025-01-06",
+    "peak_cases_predicted": 23.6,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "North 24 Parganas, West Bengal",
+      "coordinates": "22.8676\u00b0 N, 88.6445\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in North 24 Parganas with standing water bodies and census density of 26666 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant NORTH_24_PARGANAS"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (12,000,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1313,
+        "temp_max_c": 0.1653,
+        "humidity_pct": 0.2058,
+        "rainfall_lag2": 0.1847,
+        "temp_max_lag1": 0.1509,
+        "humidity_lag1": 0.1621
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 22.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 23.6,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 23.6,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 22.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 22.4,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 22.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 23.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 22.9,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 35 larvicide/water purification kits to North 24 Parganas District Health Officer 6 weeks prior to 2025-01-06."
+    }
+  },
+  "PUNE_add": {
+    "district_id": "PUNE",
+    "district_name": "Pune",
+    "state": "Maharashtra",
+    "disease": "add",
+    "coordinates": {
+      "lat": 18.5204,
+      "lon": 73.8567
+    },
+    "population": 11200000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 74.0,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Pune, Maharashtra",
+      "coordinates": "18.5204\u00b0 N, 73.8567\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Pune with standing water bodies and census density of 24888 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant PUNE"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (11,200,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1564,
+        "temp_max_c": 0.0913,
+        "humidity_pct": 0.1956,
+        "rainfall_lag2": 0.2285,
+        "temp_max_lag1": 0.1989,
+        "humidity_lag1": 0.1293
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Waterborne Bacterial Contamination",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 74.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 52.6,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 49.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 43.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 34.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 34.9,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 30.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 28.0,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 111 larvicide/water purification kits to Pune District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "PUNE_dengue": {
+    "district_id": "PUNE",
+    "district_name": "Pune",
+    "state": "Maharashtra",
+    "disease": "dengue",
+    "coordinates": {
+      "lat": 18.5204,
+      "lon": 73.8567
+    },
+    "population": 11200000,
+    "peak_outbreak_week": "2024-12-30",
+    "peak_cases_predicted": 32.0,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Pune, Maharashtra",
+      "coordinates": "18.5204\u00b0 N, 73.8567\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Pune with standing water bodies and census density of 24888 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant PUNE"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (11,200,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.1446,
+        "temp_max_c": 0.2424,
+        "humidity_pct": 0.0857,
+        "rainfall_lag2": 0.1975,
+        "temp_max_lag1": 0.1177,
+        "humidity_lag1": 0.2121
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 32.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 26.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 27.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 25.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 28.7,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 27.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 27.0,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 27.4,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 48 larvicide/water purification kits to Pune District Health Officer 6 weeks prior to 2024-12-30."
+    }
+  },
+  "PUNE_malaria": {
+    "district_id": "PUNE",
+    "district_name": "Pune",
+    "state": "Maharashtra",
+    "disease": "malaria",
+    "coordinates": {
+      "lat": 18.5204,
+      "lon": 73.8567
+    },
+    "population": 11200000,
+    "peak_outbreak_week": "2025-01-13",
+    "peak_cases_predicted": 17.1,
+    "overall_risk_tier": "Low",
+    "where": {
+      "location": "Pune, Maharashtra",
+      "coordinates": "18.5204\u00b0 N, 73.8567\u00b0 E",
+      "vulnerable_zones": "High density urban/peri-urban wards in Pune with standing water bodies and census density of 24888 persons/km\u00b2.",
+      "satellite_boundary": "Sentinel-2 Hydro-Geospatial Quadrant PUNE"
+    },
+    "why": {
+      "primary_climate_driver": "Heavy precipitation 2-week lag accumulated + T_max elevation above 31\u00b0C",
+      "demographic_factor": "High population density (11,200,000 residents) combined with regional hospital bed occupancy rate",
+      "shap_attributions": {
+        "rainfall_mm": 0.2048,
+        "temp_max_c": 0.1269,
+        "humidity_pct": 0.1277,
+        "rainfall_lag2": 0.1896,
+        "temp_max_lag1": 0.1721,
+        "humidity_lag1": 0.1789
+      },
+      "historical_outbreak_correlation": "Correlates with 2024 monsoon post-rainfall surge (87% alignment score)"
+    },
+    "how": {
+      "transmission_pathway": "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
+      "progression_timeline": [
+        {
+          "week_start": "2024-12-30",
+          "cases": 16.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-06",
+          "cases": 16.6,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-13",
+          "cases": 17.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-20",
+          "cases": 14.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-01-27",
+          "cases": 14.1,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-03",
+          "cases": 14.3,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-10",
+          "cases": 14.5,
+          "risk_tier": "Low"
+        },
+        {
+          "week_start": "2025-02-17",
+          "cases": 15.4,
+          "risk_tier": "Low"
+        }
+      ],
+      "recommended_action": "Deploy 25 larvicide/water purification kits to Pune District Health Officer 6 weeks prior to 2025-01-13."
+    }
+  }
+}

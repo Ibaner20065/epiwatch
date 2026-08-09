@@ -1,0 +1,74 @@
+{
+  "PUNE": {
+    "state": "Maharashtra",
+    "district": "Pune",
+    "district_id": "PUNE",
+    "census_2011": 9429408,
+    "projected_2025": 11200000,
+    "centroid": {"lat": 18.5204, "lon": 73.8567}
+  },
+  "MUMBAI": {
+    "state": "Maharashtra",
+    "district": "Mumbai",
+    "district_id": "MUMBAI",
+    "census_2011": 12442373,
+    "projected_2025": 13500000,
+    "centroid": {"lat": 19.0760, "lon": 72.8777}
+  },
+  "NAGPUR": {
+    "state": "Maharashtra",
+    "district": "Nagpur",
+    "district_id": "NAGPUR",
+    "census_2011": 4653570,
+    "projected_2025": 5400000,
+    "centroid": {"lat": 21.1458, "lon": 79.0882}
+  },
+  "KOLKATA": {
+    "state": "West Bengal",
+    "district": "Kolkata",
+    "district_id": "KOLKATA",
+    "census_2011": 4496694,
+    "projected_2025": 4800000,
+    "centroid": {"lat": 22.5726, "lon": 88.3639}
+  },
+  "NORTH_24_PARGANAS": {
+    "state": "West Bengal",
+    "district": "North 24 Parganas",
+    "district_id": "NORTH_24_PARGANAS",
+    "census_2011": 10009781,
+    "projected_2025": 12000000,
+    "centroid": {"lat": 22.8676, "lon": 88.6445}
+  },
+  "HOWRAH": {
+    "state": "West Bengal",
+    "district": "Howrah",
+    "district_id": "HOWRAH",
+    "census_2011": 4850029,
+    "projected_2025": 5600000,
+    "centroid": {"lat": 22.5958, "lon": 88.2636}
+  },
+  "BENGALURU_URBAN": {
+    "state": "Karnataka",
+    "district": "Bengaluru Urban",
+    "district_id": "BENGALURU_URBAN",
+    "census_2011": 9621551,
+    "projected_2025": 13000000,
+    "centroid": {"lat": 12.9716, "lon": 77.5946}
+  },
+  "MYSURU": {
+    "state": "Karnataka",
+    "district": "Mysuru",
+    "district_id": "MYSURU",
+    "census_2011": 3001127,
+    "projected_2025": 3600000,
+    "centroid": {"lat": 12.2958, "lon": 76.6394}
+  },
+  "DHARWAD": {
+    "state": "Karnataka",
+    "district": "Dharwad",
+    "district_id": "DHARWAD",
+    "census_2011": 1847023,
+    "projected_2025": 2200000,
+    "centroid": {"lat": 15.4589, "lon": 75.0078}
+  }
+}

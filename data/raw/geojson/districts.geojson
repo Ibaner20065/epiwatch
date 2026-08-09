@@ -1,0 +1,320 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "PUNE",
+        "state": "Maharashtra",
+        "district": "Pune"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.3567,
+              18.0204
+            ],
+            [
+              74.3567,
+              18.0204
+            ],
+            [
+              74.3567,
+              19.0204
+            ],
+            [
+              73.3567,
+              19.0204
+            ],
+            [
+              73.3567,
+              18.0204
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "MUMBAI",
+        "state": "Maharashtra",
+        "district": "Mumbai"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              72.3777,
+              18.576
+            ],
+            [
+              73.3777,
+              18.576
+            ],
+            [
+              73.3777,
+              19.576
+            ],
+            [
+              72.3777,
+              19.576
+            ],
+            [
+              72.3777,
+              18.576
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "NAGPUR",
+        "state": "Maharashtra",
+        "district": "Nagpur"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.5882,
+              20.6458
+            ],
+            [
+              79.5882,
+              20.6458
+            ],
+            [
+              79.5882,
+              21.6458
+            ],
+            [
+              78.5882,
+              21.6458
+            ],
+            [
+              78.5882,
+              20.6458
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "KOLKATA",
+        "state": "West Bengal",
+        "district": "Kolkata"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              87.8639,
+              22.0726
+            ],
+            [
+              88.8639,
+              22.0726
+            ],
+            [
+              88.8639,
+              23.0726
+            ],
+            [
+              87.8639,
+              23.0726
+            ],
+            [
+              87.8639,
+              22.0726
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "NORTH_24_PARGANAS",
+        "state": "West Bengal",
+        "district": "North 24 Parganas"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              88.1445,
+              22.3676
+            ],
+            [
+              89.1445,
+              22.3676
+            ],
+            [
+              89.1445,
+              23.3676
+            ],
+            [
+              88.1445,
+              23.3676
+            ],
+            [
+              88.1445,
+              22.3676
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "HOWRAH",
+        "state": "West Bengal",
+        "district": "Howrah"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              87.7636,
+              22.0958
+            ],
+            [
+              88.7636,
+              22.0958
+            ],
+            [
+              88.7636,
+              23.0958
+            ],
+            [
+              87.7636,
+              23.0958
+            ],
+            [
+              87.7636,
+              22.0958
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "BENGALURU_URBAN",
+        "state": "Karnataka",
+        "district": "Bengaluru Urban"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.0946,
+              12.4716
+            ],
+            [
+              78.0946,
+              12.4716
+            ],
+            [
+              78.0946,
+              13.4716
+            ],
+            [
+              77.0946,
+              13.4716
+            ],
+            [
+              77.0946,
+              12.4716
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "MYSURU",
+        "state": "Karnataka",
+        "district": "Mysuru"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.1394,
+              11.7958
+            ],
+            [
+              77.1394,
+              11.7958
+            ],
+            [
+              77.1394,
+              12.7958
+            ],
+            [
+              76.1394,
+              12.7958
+            ],
+            [
+              76.1394,
+              11.7958
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "DHARWAD",
+        "state": "Karnataka",
+        "district": "Dharwad"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.5078,
+              14.9589
+            ],
+            [
+              75.5078,
+              14.9589
+            ],
+            [
+              75.5078,
+              15.9589
+            ],
+            [
+              74.5078,
+              15.9589
+            ],
+            [
+              74.5078,
+              14.9589
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-08-09T04:14:47.038729",
+  "files": {
+    "raw\\census\\district_population.json": {
+      "size_bytes": 1952,
+      "modified": "2026-08-08T21:40:48.747200",
+      "sha256": "f14460456157ff5d2d0f98cceae4e56cb64b35b67e612e64899f2356d5812aa4"
+    },
+    "raw\\climate\\BENGALURU_URBAN.json": {
+      "size_bytes": 245237,
+      "modified": "2026-08-08T21:50:16.691773",
+      "sha256": "48b035f700b1162bba848b4b5d2db8a26ddc0ed9bea7bca6c037780a1c22ea19"
+    },
+    "raw\\climate\\DHARWAD.json": {
+      "size_bytes": 245171,
+      "modified": "2026-08-08T21:50:23.388654",
+      "sha256": "af36aa41b9805169ea7527c6d92dc34ba1a3ed640b8096a36470a3ddba18307c"
+    },
+    "raw\\climate\\HOWRAH.json": {
+      "size_bytes": 245203,
+      "modified": "2026-08-08T21:50:13.340162",
+      "sha256": "36d26d387ea67f505b3930692c61e7389eddeda70a4cc4c9f23697864d88a876"
+    },
+    "raw\\climate\\KOLKATA.json": {
+      "size_bytes": 245203,
+      "modified": "2026-08-08T21:50:06.658290",
+      "sha256": "106402508df37659a070f02443de8715e410eb39bd7a836db60dcb7740e712c5"
+    },
+    "raw\\climate\\MUMBAI.json": {
+      "size_bytes": 245682,
+      "modified": "2026-08-08T21:49:59.800044",
+      "sha256": "e2c0606ef1320d7b89cdea5faea726c4cc6dbe5c34c54584e845a4ca5637870b"
+    },
+    "raw\\climate\\MYSURU.json": {
+      "size_bytes": 245442,
+      "modified": "2026-08-08T21:50:20.036098",
+      "sha256": "ebad5f5e731cc7403bf003d9577197ab6fb75a7c61cc2411a55290873fa30460"
+    },
+    "raw\\climate\\NAGPUR.json": {
+      "size_bytes": 244874,
+      "modified": "2026-08-08T21:50:03.220606",
+      "sha256": "a556e4630c004512207ee2edd1edf3065d740bdc2086574e0ba8171f147bce6b"
+    },
+    "raw\\climate\\NORTH_24_PARGANAS.json": {
+      "size_bytes": 245294,
+      "modified": "2026-08-08T21:50:09.999381",
+      "sha256": "41d2d3a2743b2a60d3a826059005dd75b30382cdc6e83fef98c4a04d4ff1d051"
+    },
+    "raw\\climate\\PUNE.json": {
+      "size_bytes": 245228,
+      "modified": "2026-08-08T21:49:56.393000",
+      "sha256": "37626133768db79821f23743da906ae771a933afdaced640f2c7cba6693e8edb"
+    },
+    "raw\\geojson\\districts.geojson": {
+      "size_bytes": 6215,
+      "modified": "2026-08-08T22:02:08.339322",
+      "sha256": "df461856cc8686352bcbbbc91025726da448fbcf06f602145c2bb1a0897985d6"
+    },
+    "raw\\idsp\\idsp_master.csv": {
+      "size_bytes": 535151,
+      "modified": "2026-08-09T04:14:36.350294",
+      "sha256": "9a3f8e253309b44bb0aad37fc3df5a54a04402ecd4a92283cf7ab1723d2fc580"
+    },
+    "processed\\climate_weekly.csv": {
+      "size_bytes": 340567,
+      "modified": "2026-08-08T21:50:24.504128",
+      "sha256": "1f301d3a0228b1ed39bdfcb1d8f343766141ce920398994759356620dc1186fa"
+    },
+    "processed\\joined_weekly.csv": {
+      "size_bytes": 1380814,
+      "modified": "2026-08-09T04:14:47.023714",
+      "sha256": "88034583c6a06a4b85e4c6ff10f0949927cfa68a90df5375d7bc559ae79a9570"
+    },
+    "processed\\missing_data_report.json": {
+      "size_bytes": 1603,
+      "modified": "2026-08-09T04:14:47.038729",
+      "sha256": "e8542bda4f2b99d13130d84dba872c9ca88bc665d3b10f09d958dd8c02daf5b8"
+    }
+  }
+}

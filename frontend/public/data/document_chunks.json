@@ -1,0 +1,242 @@
+[
+  {
+    "chunk_id": "census_pune",
+    "district_id": "PUNE",
+    "title": "Pune District Demographic & Census 2011 Profile",
+    "source_file": "Census_2011_District_Handbooks.pdf",
+    "page": 1,
+    "text": "District Pune located in Maharashtra at coordinates 18.5204\u00b0 N, 73.8567\u00b0 E has an estimated population of 11,200,000 residents with a population density of 24888 persons per square kilometer. High density peri-urban wards experience vector breeding vulnerability during monsoon season."
+  },
+  {
+    "chunk_id": "census_mumbai",
+    "district_id": "MUMBAI",
+    "title": "Mumbai District Demographic & Census 2011 Profile",
+    "source_file": "Census_2011_District_Handbooks.pdf",
+    "page": 1,
+    "text": "District Mumbai located in Maharashtra at coordinates 19.076\u00b0 N, 72.8777\u00b0 E has an estimated population of 13,500,000 residents with a population density of 30000 persons per square kilometer. High density peri-urban wards experience vector breeding vulnerability during monsoon season."
+  },
+  {
+    "chunk_id": "census_nagpur",
+    "district_id": "NAGPUR",
+    "title": "Nagpur District Demographic & Census 2011 Profile",
+    "source_file": "Census_2011_District_Handbooks.pdf",
+    "page": 1,
+    "text": "District Nagpur located in Maharashtra at coordinates 21.1458\u00b0 N, 79.0882\u00b0 E has an estimated population of 5,400,000 residents with a population density of 12000 persons per square kilometer. High density peri-urban wards experience vector breeding vulnerability during monsoon season."
+  },
+  {
+    "chunk_id": "census_kolkata",
+    "district_id": "KOLKATA",
+    "title": "Kolkata District Demographic & Census 2011 Profile",
+    "source_file": "Census_2011_District_Handbooks.pdf",
+    "page": 1,
+    "text": "District Kolkata located in West Bengal at coordinates 22.5726\u00b0 N, 88.3639\u00b0 E has an estimated population of 4,800,000 residents with a population density of 10666 persons per square kilometer. High density peri-urban wards experience vector breeding vulnerability during monsoon season."
+  },
+  {
+    "chunk_id": "census_north_24_parganas",
+    "district_id": "NORTH_24_PARGANAS",
+    "title": "North 24 Parganas District Demographic & Census 2011 Profile",
+    "source_file": "Census_2011_District_Handbooks.pdf",
+    "page": 1,
+    "text": "District North 24 Parganas located in West Bengal at coordinates 22.8676\u00b0 N, 88.6445\u00b0 E has an estimated population of 12,000,000 residents with a population density of 26666 persons per square kilometer. High density peri-urban wards experience vector breeding vulnerability during monsoon season."
+  },
+  {
+    "chunk_id": "census_howrah",
+    "district_id": "HOWRAH",
+    "title": "Howrah District Demographic & Census 2011 Profile",
+    "source_file": "Census_2011_District_Handbooks.pdf",
+    "page": 1,
+    "text": "District Howrah located in West Bengal at coordinates 22.5958\u00b0 N, 88.2636\u00b0 E has an estimated population of 5,600,000 residents with a population density of 12444 persons per square kilometer. High density peri-urban wards experience vector breeding vulnerability during monsoon season."
+  },
+  {
+    "chunk_id": "census_bengaluru_urban",
+    "district_id": "BENGALURU_URBAN",
+    "title": "Bengaluru Urban District Demographic & Census 2011 Profile",
+    "source_file": "Census_2011_District_Handbooks.pdf",
+    "page": 1,
+    "text": "District Bengaluru Urban located in Karnataka at coordinates 12.9716\u00b0 N, 77.5946\u00b0 E has an estimated population of 13,000,000 residents with a population density of 28888 persons per square kilometer. High density peri-urban wards experience vector breeding vulnerability during monsoon season."
+  },
+  {
+    "chunk_id": "census_mysuru",
+    "district_id": "MYSURU",
+    "title": "Mysuru District Demographic & Census 2011 Profile",
+    "source_file": "Census_2011_District_Handbooks.pdf",
+    "page": 1,
+    "text": "District Mysuru located in Karnataka at coordinates 12.2958\u00b0 N, 76.6394\u00b0 E has an estimated population of 3,600,000 residents with a population density of 8000 persons per square kilometer. High density peri-urban wards experience vector breeding vulnerability during monsoon season."
+  },
+  {
+    "chunk_id": "census_dharwad",
+    "district_id": "DHARWAD",
+    "title": "Dharwad District Demographic & Census 2011 Profile",
+    "source_file": "Census_2011_District_Handbooks.pdf",
+    "page": 1,
+    "text": "District Dharwad located in Karnataka at coordinates 15.4589\u00b0 N, 75.0078\u00b0 E has an estimated population of 2,200,000 residents with a population density of 4888 persons per square kilometer. High density peri-urban wards experience vector breeding vulnerability during monsoon season."
+  },
+  {
+    "chunk_id": "symptom_0",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Fever",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Fever' is clinically associated with possible diseases: Malaria, Dengue, Typhoid. Clinical severity tier: Moderate. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_1",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Persistent cough",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Persistent cough' is clinically associated with possible diseases: Tuberculosis, Bronchitis, COVID-19. Clinical severity tier: Moderate. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_2",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Joint pain",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Joint pain' is clinically associated with possible diseases: Chikungunya, Arthritis, Dengue. Clinical severity tier: Moderate. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_3",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Skin rash",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Skin rash' is clinically associated with possible diseases: Chickenpox, Measles, Allergic dermatitis. Clinical severity tier: Mild. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_4",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Headache",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Headache' is clinically associated with possible diseases: Migraine, Sinusitis, Hypertension. Clinical severity tier: Mild. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_5",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Abdominal pain",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Abdominal pain' is clinically associated with possible diseases: Gastritis, Appendicitis, Food poisoning. Clinical severity tier: Moderate. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_6",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Diarrhea",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Diarrhea' is clinically associated with possible diseases: Gastroenteritis, Cholera, Food poisoning. Clinical severity tier: Moderate. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_7",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Vomiting",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Vomiting' is clinically associated with possible diseases: Food poisoning, Viral infection, Gastritis. Clinical severity tier: Moderate. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_8",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Fatigue",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Fatigue' is clinically associated with possible diseases: Anemia, Hypothyroidism, Chronic fatigue syndrome. Clinical severity tier: Mild. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_9",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Difficulty breathing",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Difficulty breathing' is clinically associated with possible diseases: Asthma, Pneumonia, COPD. Clinical severity tier: Severe. Common occurrence in Indian regions: North India."
+  },
+  {
+    "chunk_id": "symptom_10",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Sore throat",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Sore throat' is clinically associated with possible diseases: Pharyngitis, Tonsillitis, Common cold. Clinical severity tier: Mild. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_11",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Nasal congestion",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Nasal congestion' is clinically associated with possible diseases: Common cold, Sinusitis, Allergic rhinitis. Clinical severity tier: Mild. Common occurrence in Indian regions: North India."
+  },
+  {
+    "chunk_id": "symptom_12",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Chest pain",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Chest pain' is clinically associated with possible diseases: Angina, Gastroesophageal reflux, Pneumonia. Clinical severity tier: Severe. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_13",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Dizziness",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Dizziness' is clinically associated with possible diseases: Vertigo, Anemia, Low blood pressure. Clinical severity tier: Moderate. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_14",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Swollen lymph nodes",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Swollen lymph nodes' is clinically associated with possible diseases: Tuberculosis, Lymphoma, Viral infection. Clinical severity tier: Moderate. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_15",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Jaundice",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Jaundice' is clinically associated with possible diseases: Hepatitis, Liver cirrhosis, Malaria. Clinical severity tier: Severe. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_16",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Blood in stool",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Blood in stool' is clinically associated with possible diseases: Hemorrhoids, Colorectal cancer, Dysentery. Clinical severity tier: Severe. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_17",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Burning urination",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Burning urination' is clinically associated with possible diseases: Urinary tract infection, Kidney stones, Prostatitis. Clinical severity tier: Moderate. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_18",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Back pain",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Back pain' is clinically associated with possible diseases: Muscle strain, Herniated disc, Kidney stones. Clinical severity tier: Moderate. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "symptom_19",
+    "district_id": "ALL",
+    "title": "Indian Healthcare Symptom Clinical Handbook: Ear pain",
+    "source_file": "Indian_Healthcare_Symptom_Disease_Dataset.csv",
+    "page": 1,
+    "text": "Symptom 'Ear pain' is clinically associated with possible diseases: Ear infection, Swimmer's ear, Sinusitis. Clinical severity tier: Moderate. Common occurrence in Indian regions: Pan-India."
+  },
+  {
+    "chunk_id": "hospital_diagnoses_summary",
+    "district_id": "ALL",
+    "title": "Hospital Admissions & ICD-10 Diagnostics Surveillance Summary",
+    "source_file": "Hospital_Analytics_Archive_Summary.pdf",
+    "page": 2,
+    "text": "Analysis of 271,341 hospital diagnostic records across 33 tertiary care hospitals in India reveals primary admission peaks for infectious viral fevers (Dengue ICD-10 A90), malaria parasites (ICD-10 B50-B54), and acute diarrhoeal diseases (ICD-10 A09) coinciding with post-monsoon vector breeding weeks."
+  }
+]
