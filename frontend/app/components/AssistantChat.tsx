@@ -16,6 +16,62 @@ interface Message {
   tools_used?: string[];
 }
 
+function renderFormattedMarkdown(text: string) {
+  if (!text) return null;
+
+  const lines = text.split("\n");
+  return lines.map((line, lineIdx) => {
+    // Process markdown inline tokens: **bold**, `code`, _italic_
+    const parts = line.split(/(\*\*.*?\*\*|`.*?`|_.*?_)/g);
+
+    const formattedLine = parts.map((part, pIdx) => {
+      if (part.startsWith("**") && part.endsWith("**") && part.length >= 4) {
+        return (
+          <strong key={pIdx} className="font-bold text-white">
+            {part.slice(2, -2)}
+          </strong>
+        );
+      }
+      if (part.startsWith("`") && part.endsWith("`") && part.length >= 2) {
+        return (
+          <code key={pIdx} className="bg-slate-950 px-1.5 py-0.5 rounded text-indigo-300 font-mono text-[11px] border border-slate-800">
+            {part.slice(1, -1)}
+          </code>
+        );
+      }
+      if (part.startsWith("_") && part.endsWith("_") && part.length >= 2) {
+        return (
+          <em key={pIdx} className="italic text-slate-400">
+            {part.slice(1, -1)}
+          </em>
+        );
+      }
+      return part;
+    });
+
+    const trimmed = line.trim();
+
+    if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
+      return (
+        <div key={lineIdx} className="flex items-start gap-2 my-1 pl-1">
+          <span className="text-indigo-400 font-bold shrink-0">•</span>
+          <div className="flex-1">{formattedLine}</div>
+        </div>
+      );
+    }
+
+    if (trimmed === "") {
+      return <div key={lineIdx} className="h-1.5" />;
+    }
+
+    return (
+      <div key={lineIdx} className="my-0.5">
+        {formattedLine}
+      </div>
+    );
+  });
+}
+
 export default function AssistantChat({ onClose }: { onClose?: () => void }) {
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -28,7 +84,7 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
   const [loading, setLoading] = useState(false);
 
   const samplePrompts = [
-    "What is Pune's dengue risk next month?",
+    "What is the local district's dengue risk next month?",
     "Why is Kolkata flagged high risk — what are the climate drivers?",
     "What is the population density of Bengaluru Urban?",
     "Compare Dengue vs Malaria in Mumbai.",
@@ -72,25 +128,17 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
         throw new Error("Backend offline");
       }
     } catch (e) {
-      // Offline fallback grounded generator
-      setTimeout(() => {
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: (Date.now() + 1).toString(),
-            sender: "assistant",
-            text: `[Grounded Offline Response] Based on EpiWatch model records for your query "${textToSend}":\n\n- **Risk Status:** High Tier\n- **Primary Driver:** 2-Week Precipitation Lag + Max Temperature > 31°C\n- **Projected Horizon:** Peak expected in 6 weeks with estimated ~340 cases.\n- **Demographics:** Census density of 24,000 residents/km² in high-vulnerability urban wards.`,
-            citations: [
-              {
-                tool_name: "query_predictions",
-                source_label: "Fallback Offline Predictions (predictions.json)",
-                provenance: "HistGradientBoosting + XGBoost Engine",
-              },
-            ],
-            tools_used: ["query_predictions", "query_explainability"],
-          },
-        ]);
-      }, 600);
+      // Show honest error — never fabricate data
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: (Date.now() + 1).toString(),
+          sender: "assistant",
+          text: `⚠️ **Backend Unreachable** — The EpiWatch API server is not responding. I cannot provide predictions without a live connection to the database.\n\nPlease ensure the backend server is running at \`${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"}\` and try again.\n\n_EpiWatch does not generate approximate or estimated answers when the data source is unavailable._`,
+          citations: [],
+          tools_used: ["connection_error"],
+        },
+      ]);
     } finally {
       setLoading(false);
     }
@@ -138,7 +186,7 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
                   : "bg-slate-900/90 border border-slate-800 text-slate-200 rounded-bl-none shadow-lg"
               }`}
             >
-              {m.text}
+              {renderFormattedMarkdown(m.text)}
 
               {/* Citations & Provenance Tags */}
               {m.citations && m.citations.length > 0 && (

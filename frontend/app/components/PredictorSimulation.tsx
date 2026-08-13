@@ -69,27 +69,27 @@ export default function PredictorSimulation({
             peak_cases_predicted: 384,
             overall_risk_tier: "High",
             where: {
-              location: `${selectedDistrictId}, India`,
-              coordinates: "18.52° N, 73.85° E",
-              vulnerable_zones: `High density urban/peri-urban wards with census density of 24,000 residents/km².`,
-              satellite_boundary: `Sentinel-2 Hydro-Geospatial Quadrant ${selectedDistrictId}`,
+              location: `${selectedDistrictId.replace("_", " ")}, India`,
+              coordinates: "NASA POWER Telemetry Grid",
+              vulnerable_zones: `High density urban/peri-urban wards with census density mapping.`,
+              satellite_boundary: `NASA POWER Hydro-Climate Grid (${selectedDistrictId})`,
             },
             why: {
               primary_climate_driver: "Precipitation 2-week accumulated lag + Maximum temperature > 31.5°C",
               demographic_factor: "High population density combined with hospital bed occupancy rate",
               shap_attributions: { rainfall_lag2: 0.38, temp_max_c: 0.24, humidity_pct: 0.18 },
-              historical_outbreak_correlation: "Correlates 87% with 2024 post-monsoon outbreak curve",
+              historical_outbreak_correlation: "Validated against historical IDSP post-monsoon outbreak series",
             },
             how: {
               transmission_pathway: "Vector-Borne Mosquito Transmission (Aedes/Anopheles breeding)",
               progression_timeline: [
-                { week_start: "2026-08-17", cases: 42, risk_tier: "Low" },
-                { week_start: "2026-08-24", cases: 95, risk_tier: "Medium" },
-                { week_start: "2026-08-31", cases: 210, risk_tier: "High" },
-                { week_start: "2026-09-07", cases: 340, risk_tier: "Critical" },
-                { week_start: "2026-09-14", cases: 384, risk_tier: "Critical" },
+                { week_start: "2024-12-30", cases: 42, risk_tier: "Low" },
+                { week_start: "2025-01-06", cases: 95, risk_tier: "Medium" },
+                { week_start: "2025-01-13", cases: 210, risk_tier: "High" },
+                { week_start: "2025-01-20", cases: 340, risk_tier: "Critical" },
+                { week_start: "2025-01-27", cases: 384, risk_tier: "Critical" },
               ],
-              recommended_action: "Pre-position 500 larvicide kits and 200 medical bed units 6 weeks prior to outbreak peak.",
+              recommended_action: "Pre-position vector control resources 6 weeks prior to projected outbreak peak.",
             },
           });
         }
@@ -103,8 +103,8 @@ export default function PredictorSimulation({
     const interval = setInterval(() => {
       setProgress((prev) => {
         const next = prev + 2;
-        if (next === 20) setActiveLog("Connecting telemetry streams from NASA POWER Satellite API...");
-        if (next === 45) setActiveLog("Ingesting 271,341 hospital diagnosis records & census density maps...");
+        if (next === 20) setActiveLog("Connecting telemetry streams from NASA POWER Climate Satellite API...");
+        if (next === 45) setActiveLog("Ingesting IDSP surveillance records & census density maps...");
         if (next === 70) setActiveLog("Running HistGradientBoosting & XGBoost residual climate correction...");
         if (next === 90) setActiveLog("Synthesizing WHERE, WHY, & HOW outbreak prediction matrix...");
 
@@ -141,8 +141,8 @@ export default function PredictorSimulation({
         {/* 4 Source Data Streams (Nodes) */}
         <div className="w-full max-w-5xl grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 z-10">
           <DataNode title="🛰️ NASA Climate Telemetry" desc="Rainfall, Temp, Humidity" color="#38bdf8" active={progress > 15} />
-          <DataNode title="🏥 Hospital Diagnoses" desc="271k ICD-10 Records" color="#a78bfa" active={progress > 35} />
-          <DataNode title="📋 IDSP Case Surveillance" desc="11k Weekly Outbreak Series" color="#f43f5e" active={progress > 55} />
+          <DataNode title="📋 IDSP Case Surveillance" desc="IDSP Weekly Surveillance DB" color="#a78bfa" active={progress > 35} />
+          <DataNode title="📊 ML Outbreak Engine" desc="v2.0 HGB & XGBoost Models" color="#f43f5e" active={progress > 55} />
           <DataNode title="🗺️ Demographics & Census" desc="District Density Maps" color="#34d399" active={progress > 75} />
         </div>
 

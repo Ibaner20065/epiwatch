@@ -1,0 +1,57 @@
+{
+  "PUNE_dengue": {
+    "district_id": "PUNE",
+    "disease": "dengue",
+    "cutoff_date": "2024-07-08",
+    "actual_peak_week": "2024-09-02",
+    "predicted_peak_week": "2024-09-02",
+    "lead_time_weeks": 0.0,
+    "mae": 12.11,
+    "rmse": 15.25,
+    "n_test_weeks": 12
+  },
+  "MUMBAI_malaria": {
+    "district_id": "MUMBAI",
+    "disease": "malaria",
+    "cutoff_date": "2024-05-13",
+    "actual_peak_week": "2024-07-08",
+    "predicted_peak_week": "2024-07-29",
+    "lead_time_weeks": 3.0,
+    "mae": 6.29,
+    "rmse": 7.76,
+    "n_test_weeks": 12
+  },
+  "KOLKATA_dengue": {
+    "district_id": "KOLKATA",
+    "disease": "dengue",
+    "cutoff_date": "2024-06-24",
+    "actual_peak_week": "2024-08-19",
+    "predicted_peak_week": "2024-08-12",
+    "lead_time_weeks": 1.0,
+    "mae": 6.74,
+    "rmse": 7.92,
+    "n_test_weeks": 12
+  },
+  "NAGPUR_malaria": {
+    "district_id": "NAGPUR",
+    "disease": "malaria",
+    "cutoff_date": "2024-06-03",
+    "actual_peak_week": "2024-07-29",
+    "predicted_peak_week": "2024-08-26",
+    "lead_time_weeks": 4.0,
+    "mae": 1.95,
+    "rmse": 2.52,
+    "n_test_weeks": 12
+  },
+  "MUMBAI_dengue": {
+    "district_id": "MUMBAI",
+    "disease": "dengue",
+    "cutoff_date": "2024-07-01",
+    "actual_peak_week": "2024-08-26",
+    "predicted_peak_week": "2024-08-26",
+    "lead_time_weeks": 0.0,
+    "mae": 7.22,
+    "rmse": 8.83,
+    "n_test_weeks": 12
+  }
+}

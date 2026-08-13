@@ -13,7 +13,6 @@ import xgboost as xgb
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 # STEP 2 — Hardcoded Config Defaults to eliminate ambiguity
-FIRST_DISTRICT_ID = "PUNE"
 FIRST_DISEASE = "dengue"
 MIN_WEEKS_REQUIRED = 52
 TRAIN_CUTOFF_WEEKS_BEFORE_EVENT = 8
@@ -145,10 +144,12 @@ def run_execution_plan():
     print("Executing Steps 0–8 AI Training Execution Plan...")
     df, df_districts = fetch_data()
     pop_lookup = df_districts.set_index('id')['population'].to_dict()
+    
+    first_district_id = df_districts['id'].iloc[0].upper() if len(df_districts) > 0 else 'UNKNOWN'
 
     # Step 2 & 5-7: First Run (Single District, Single Disease)
-    print(f"\n--- Running Headline Demo Model: {FIRST_DISTRICT_ID} ({FIRST_DISEASE}) ---")
-    mae1, rmse1, fe1, bt1 = train_and_backtest_pair(df, FIRST_DISTRICT_ID, FIRST_DISEASE, pop_lookup, is_first_run=True)
+    print(f"\n--- Running Headline Demo Model: {first_district_id} ({FIRST_DISEASE}) ---")
+    mae1, rmse1, fe1, bt1 = train_and_backtest_pair(df, first_district_id, FIRST_DISEASE, pop_lookup, is_first_run=True)
     print(f"Single District Baseline fit complete. Backtest MAE={mae1:.2f}, RMSE={rmse1:.2f}")
 
     # STEP 8 — Loop Over All District-Disease Pairs with Failure Logging

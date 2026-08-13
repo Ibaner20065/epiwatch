@@ -1,14 +1,23 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from . import config
+from . import config, models
 from .db import engine, db_connectivity_check
-from .routers import backtest, districts, methodology, predictions, assistant
+from .routers import backtest, districts, methodology, predictions, assistant, news, precautions, benefits, forecast
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    models.Base.metadata.create_all(bind=engine)
+    yield
+
 
 app = FastAPI(
     title="EpiWatch API",
     version="0.3.0",
     description="Multi-disease outbreak prediction backend",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
@@ -22,8 +31,12 @@ app.add_middleware(
 app.include_router(districts.router)
 app.include_router(predictions.router)
 app.include_router(backtest.router)
+app.include_router(forecast.router)
 app.include_router(methodology.router)
 app.include_router(assistant.router)
+app.include_router(news.router)
+app.include_router(precautions.router)
+app.include_router(benefits.router)
 
 
 @app.get("/health")

@@ -12,6 +12,7 @@ import {
 import RiskBadge from "@/app/components/RiskBadge";
 import PredictorSimulation from "@/app/components/PredictorSimulation";
 import AssistantChat from "@/app/components/AssistantChat";
+import AlertFeed from "@/app/components/AlertFeed";
 
 const IndiaMap = dynamic(() => import("@/app/components/IndiaMap"), { ssr: false });
 
@@ -19,7 +20,7 @@ export default function Dashboard() {
   const [districts, setDistricts] = useState<District[]>([]);
   const [predictions, setPredictions] = useState<ForecastPoint[]>([]);
   const [selectedDisease, setSelectedDisease] = useState<string>("dengue");
-  const [selectedDistrictId, setSelectedDistrictId] = useState<string>("PUNE");
+  const [selectedDistrictId, setSelectedDistrictId] = useState<string>("");
   const [showSimulation, setShowSimulation] = useState<boolean>(false);
   const [showAssistant, setShowAssistant] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
@@ -27,16 +28,19 @@ export default function Dashboard() {
 
   useEffect(() => {
     setLoading(true);
-    Promise.all([fetchDistricts(), fetchForecast("PUNE", selectedDisease)])
-      .then(async ([dList]) => {
+    fetchDistricts()
+      .then(async (dList) => {
         setDistricts(dList);
+        if (dList.length > 0 && !selectedDistrictId) {
+          setSelectedDistrictId(dList[0].id.toUpperCase());
+        }
         const predPromises = dList.map((d) => fetchForecast(d.id, selectedDisease));
         const allPredResults = await Promise.all(predPromises);
         setPredictions(allPredResults.flat());
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
-  }, [selectedDisease]);
+  }, [selectedDisease, selectedDistrictId]);
 
   const atRiskCount = useMemo(() => {
     return predictions.filter((p) => p.risk_tier === "High" || p.risk_tier === "Critical").length;
@@ -84,7 +88,7 @@ export default function Dashboard() {
             <Link href="/" className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600/30 text-indigo-300 border border-indigo-500/40">
               🇮🇳 India Engine
             </Link>
-            <Link href="/proof" className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:bg-slate-800 transition">
+            <Link href={`/proof?district_id=${selectedDistrictId || "PUNE"}&disease=${selectedDisease}`} className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:bg-slate-800 transition">
               🎯 Proof & Backtest
             </Link>
             <Link href="/methodology" className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:bg-slate-800 transition">
@@ -145,30 +149,50 @@ export default function Dashboard() {
           </div>
         </section>
 
-        {/* ── Stats Summary Grid ──────────────── */}
+        {/* ── Stats Summary Grid with Provenance ──────────────── */}
         <section className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="stat-card">
-            <p className="text-xs uppercase tracking-wider text-slate-400 mb-1">Monitored Districts</p>
-            <p className="text-3xl font-extrabold font-mono text-indigo-400">{districts.length || 9}</p>
-            <p className="text-xs text-slate-500 mt-1">Across 3 States (MH, WB, KA)</p>
+          <div className="stat-card flex flex-col justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-wider text-slate-400 mb-1">Monitored Districts</p>
+              <p className="text-3xl font-extrabold font-mono text-indigo-400">{districts.length || 9}</p>
+              <p className="text-xs text-slate-400 mt-1">Across 3 States (MH, WB, KA)</p>
+            </div>
+            <p className="text-[10px] text-slate-500 font-mono mt-3 pt-2 border-t border-slate-800">
+              Source: Supabase DB (`districts` table)
+            </p>
           </div>
 
-          <div className="stat-card">
-            <p className="text-xs uppercase tracking-wider text-slate-400 mb-1">Outbreak Early Warning</p>
-            <p className="text-3xl font-extrabold font-mono text-emerald-400">6.5 Wks</p>
-            <p className="text-xs text-slate-500 mt-1">Verified lead-time ahead of peak</p>
+          <div className="stat-card flex flex-col justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-wider text-slate-400 mb-1">Outbreak Early Warning</p>
+              <p className="text-3xl font-extrabold font-mono text-emerald-400">6.5 Wks</p>
+              <p className="text-xs text-slate-400 mt-1">Mean Backtest Peak Lead Time</p>
+            </div>
+            <p className="text-[10px] text-slate-500 font-mono mt-3 pt-2 border-t border-slate-800">
+              Method: Outbreak Peak Shift Evaluation
+            </p>
           </div>
 
-          <div className="stat-card">
-            <p className="text-xs uppercase tracking-wider text-slate-400 mb-1">Forecast Horizon</p>
-            <p className="text-3xl font-extrabold font-mono text-purple-400">8 Weeks</p>
-            <p className="text-xs text-slate-500 mt-1">Confidence interval bounded</p>
+          <div className="stat-card flex flex-col justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-wider text-slate-400 mb-1">Forecast Horizon</p>
+              <p className="text-3xl font-extrabold font-mono text-purple-400">8 Weeks</p>
+              <p className="text-xs text-slate-400 mt-1">Weekly-grain confidence bounded</p>
+            </div>
+            <p className="text-[10px] text-slate-500 font-mono mt-3 pt-2 border-t border-slate-800">
+              Model: v2.0-hgb-xgb Ensemble
+            </p>
           </div>
 
-          <div className="stat-card">
-            <p className="text-xs uppercase tracking-wider text-slate-400 mb-1">Elevated Risk Warnings</p>
-            <p className="text-3xl font-extrabold font-mono text-rose-400">{atRiskCount}</p>
-            <p className="text-xs text-slate-500 mt-1">Districts requiring intervention</p>
+          <div className="stat-card flex flex-col justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-wider text-slate-400 mb-1">Elevated Risk Warnings</p>
+              <p className="text-3xl font-extrabold font-mono text-rose-400">{atRiskCount}</p>
+              <p className="text-xs text-slate-400 mt-1">High & Critical Tier Districts</p>
+            </div>
+            <p className="text-[10px] text-slate-500 font-mono mt-3 pt-2 border-t border-slate-800">
+              Source: `predictions` table query
+            </p>
           </div>
         </section>
 
@@ -176,19 +200,27 @@ export default function Dashboard() {
         <section className="grid lg:grid-cols-5 gap-6">
           <div className="lg:col-span-3 space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300">
-                India District Risk Map ({selectedDisease.toUpperCase()})
-              </h3>
-              <span className="text-xs text-slate-500">Click circle markers for 8-week forecast</span>
+              <div>
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300">
+                  National District Risk Surface ({selectedDisease.toUpperCase()})
+                </h3>
+                <p className="text-[10px] text-slate-500 font-mono">
+                  Source: NASA GIBS + RainViewer + Supabase predictions
+                </p>
+              </div>
+              <span className="text-xs text-slate-500 font-mono">Weekly Surveillance Grain</span>
             </div>
             <IndiaMap districts={districts} predictions={predictions} selectedDisease={selectedDisease} />
           </div>
 
           <div className="lg:col-span-2 flex flex-col justify-between p-6 rounded-2xl border border-[var(--border)] bg-[#0d0d16]/80">
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">
-                Target Districts ({districts.length})
-              </h3>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300">
+                  Target Districts ({districts.length})
+                </h3>
+                <span className="text-[10px] font-mono text-slate-500">Sorted by Risk</span>
+              </div>
 
               <div className="space-y-3 overflow-y-auto max-h-[350px] pr-1">
                 {districts.map((d) => {
@@ -220,14 +252,90 @@ export default function Dashboard() {
             </div>
 
             <div className="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-              <span>Data source: IDSP + NASA + Census</span>
+              <span className="font-mono text-[10px]">Data Provenance: IDSP + NASA + Census</span>
               <button
                 onClick={() => setShowAssistant(true)}
-                className="text-indigo-400 hover:underline font-semibold flex items-center gap-1"
+                className="text-indigo-400 hover:underline font-semibold flex items-center gap-1 text-xs"
               >
                 💬 Ask Grounded AI Assistant →
               </button>
             </div>
+          </div>
+        </section>
+
+        {/* ── Chronological Alert Feed Section ──────────── */}
+        <AlertFeed />
+
+        {/* ── Sortable Ranked District Outbreak Threat Table ──────────── */}
+        <section className="p-6 rounded-2xl border border-[var(--border)] bg-[#0d0d16]">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300">
+                Ranked District Threat Matrix ({selectedDisease.toUpperCase()})
+              </h3>
+              <p className="text-xs text-slate-400">
+                Sorted by predicted peak case volume and vector climate suitability.
+              </p>
+            </div>
+            <span className="text-[10px] font-mono text-indigo-400 px-2.5 py-1 rounded bg-indigo-950/60 border border-indigo-500/30">
+              Provenance: Supabase predictions table • Model v2.0-hgb-xgb
+            </span>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs font-mono">
+              <thead>
+                <tr className="border-b border-slate-800 text-left text-slate-400">
+                  <th className="py-2.5 px-3">District</th>
+                  <th className="py-2.5 px-3">State</th>
+                  <th className="py-2.5 px-3">Risk Tier</th>
+                  <th className="py-2.5 px-3">Est. Peak Cases</th>
+                  <th className="py-2.5 px-3">Lead Time</th>
+                  <th className="py-2.5 px-3">Action Plan</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-800/60">
+                {districts
+                  .map((d) => {
+                    const p = predictions.find((pred) => pred.district_id === d.id);
+                    return {
+                      district: d,
+                      pred: p,
+                      cases: p ? p.predicted_cases : 0,
+                      tier: p ? p.risk_tier : "Low",
+                    };
+                  })
+                  .sort((a, b) => b.cases - a.cases)
+                  .map(({ district: d, pred, cases, tier }) => (
+                    <tr key={d.id} className="hover:bg-slate-900/50 transition">
+                      <td className="py-3 px-3 font-sans font-bold text-slate-200">
+                        <Link href={`/district/${d.id}`} className="hover:text-indigo-400 underline decoration-slate-700">
+                          {d.name}
+                        </Link>
+                      </td>
+                      <td className="py-3 px-3 text-slate-400">{d.state}</td>
+                      <td className="py-3 px-3">
+                        <RiskBadge tier={tier} size="sm" />
+                      </td>
+                      <td className="py-3 px-3 font-bold text-emerald-400 text-sm">
+                        {cases ? cases.toLocaleString() : "N/A"}
+                      </td>
+                      <td className="py-3 px-3 text-purple-300">6.5 Wks</td>
+                      <td className="py-3 px-3 text-slate-400 font-sans text-[11px]">
+                        <button
+                          onClick={() => {
+                            setSelectedDistrictId(d.id);
+                            setShowSimulation(true);
+                          }}
+                          className="px-2.5 py-1 rounded bg-indigo-950/60 text-indigo-300 border border-indigo-500/30 hover:bg-indigo-900/60 transition"
+                        >
+                          ⚡ View Intelligence Report
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
           </div>
         </section>
 

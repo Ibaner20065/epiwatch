@@ -1,11 +1,23 @@
 from fastapi import APIRouter, HTTPException, Depends, Query
 from sqlalchemy.orm import Session
-from typing import List, Dict
+from typing import List, Dict, Any
+import os, json
 from ..db import engine
 from ..models import District, Prediction, CaseData, ClimateData
 from ..schemas import ForecastPointSchema, HistoricalPointSchema, RiskResponseSchema
 
 router = APIRouter(prefix="/districts", tags=["Predictions"])
+
+_shap_cache: Dict[str, Any] = {}
+
+def _load_shap():
+    if _shap_cache:
+        return _shap_cache
+    shap_path = os.path.join(os.path.dirname(__file__), "..", "..", "..", "ml", "results", "shap_importance.json")
+    if os.path.exists(shap_path):
+        with open(shap_path) as f:
+            _shap_cache.update(json.load(f))
+    return _shap_cache
 
 def get_db():
     with Session(engine) as session:
@@ -74,3 +86,42 @@ def get_risk(district_id: str, db: Session = Depends(get_db)):
         district_name=d.name,
         risk_by_disease=risk_by_dis
     )
+
+@router.get("/{district_id}/shap")
+def get_shap_importance(district_id: str, disease: str = Query("dengue")):
+    """Return SHAP feature importance weights for a specific district and disease."""
+    d_id = district_id.upper()
+    dis = disease.lower()
+    key = f"{d_id}_{dis}"
+    
+    shap_data = _load_shap()
+    if key not in shap_data:
+        raise HTTPException(status_code=404, detail=f"No SHAP data for district '{d_id}' and disease '{dis}'")
+    
+    raw = shap_data[key]
+    # Sort by importance descending and format as readable list
+    sorted_features = sorted(raw.items(), key=lambda x: x[1], reverse=True)
+    
+    FEATURE_LABELS = {
+        "rainfall_mm": "Rainfall (Current Week)",
+        "temp_max_c": "Maximum Temperature",
+        "humidity_pct": "Relative Humidity (RH2M)",
+        "rainfall_lag2": "Rainfall (2-Week Lag)",
+        "temp_max_lag1": "Max Temperature (1-Week Lag)",
+        "humidity_lag1": "Humidity (1-Week Lag)",
+    }
+    
+    features = []
+    for feat, val in sorted_features:
+        features.append({
+            "feature": feat,
+            "label": FEATURE_LABELS.get(feat, feat),
+            "importance": round(val, 4),
+            "percentage": round(val * 100, 1)
+        })
+    
+    return {
+        "district_id": d_id,
+        "disease": dis,
+        "features": features
+    }

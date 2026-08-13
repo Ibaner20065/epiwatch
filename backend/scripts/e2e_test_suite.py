@@ -88,6 +88,8 @@ EXPECTED_TABLES = {
     "climate_data":     {"min_rows": 100},
     "predictions":      {"min_rows": 10},
     "backtest_events":  {"min_rows": 1},
+    "forecast_runs":    {"min_rows": 2},
+    "model_artifacts":  {"min_rows": 1},
 }
 
 # Also check extra tables that were seeded from Kaggle archives

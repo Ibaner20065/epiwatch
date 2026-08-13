@@ -50,6 +50,9 @@ export interface BacktestEvent {
     weeks: string[];
     actual: number[];
     predicted: number[];
+    cutoff_date?: string;
+    predicted_peak_week?: string;
+    lead_time_weeks?: number;
   };
 }
 
@@ -101,16 +104,22 @@ export async function fetchRisk(districtId: string): Promise<RiskResponse> {
   return { district_id: districtId, district_name: districtId, risk_by_disease: { dengue: "Low", malaria: "Low", add: "Low" } };
 }
 
-export async function fetchBacktest(eventId: number = 1): Promise<BacktestEvent> {
+export async function fetchBacktest(districtId: string = "PUNE", disease: string = "dengue"): Promise<BacktestEvent | null> {
   try {
-    const res = await fetch(`${API_BASE}/backtest/${eventId}`, { cache: "no-store" });
+    const res = await fetch(`${API_BASE}/backtest?district_id=${districtId}&disease=${disease}`, { cache: "no-store" });
     if (res.ok) return await res.json();
   } catch (e) {
     console.warn("Backend API unreachable, using static fallback for backtest:", e);
   }
-  const fallback = await fetch("/data/backtest.json");
-  const data = await fallback.json();
-  return Array.isArray(data) ? data[0] : data;
+
+  try {
+    const fallback = await fetch("/data/backtest.json");
+    const data = await fallback.json();
+    const arr = Array.isArray(data) ? data : [data];
+    return arr.find((b) => b.district_id.toLowerCase() === districtId.toLowerCase() && b.disease.toLowerCase() === disease.toLowerCase()) || null;
+  } catch (e) {
+    return null;
+  }
 }
 
 export async function fetchMethodology(): Promise<any> {
@@ -122,4 +131,95 @@ export async function fetchMethodology(): Promise<any> {
   }
   const fallback = await fetch("/data/methodology.json");
   return fallback.json();
+}
+
+export interface ShapFeature {
+  feature: string;
+  label: string;
+  importance: number;
+  percentage: number;
+}
+
+export interface ShapResponse {
+  district_id: string;
+  disease: string;
+  features: ShapFeature[];
+}
+
+export async function fetchShapFeatures(districtId: string, disease: string = "dengue"): Promise<ShapResponse | null> {
+  try {
+    const res = await fetch(`${API_BASE}/districts/${districtId}/shap?disease=${disease}`, { cache: "no-store" });
+    if (res.ok) return await res.json();
+  } catch (e) {
+    console.warn(`Backend API unreachable for SHAP features:`, e);
+  }
+  return null;
+}
+
+export interface RegionalSignal {
+  type: string;
+  title: string;
+  summary: string;
+  relevance: string;
+  source: string;
+  districts_mentioned: string[];
+}
+
+export interface RegionalSignalResponse {
+  district_id: string;
+  district_name: string;
+  state: string;
+  signals: RegionalSignal[];
+  signal_count: number;
+  disclaimer: string;
+}
+
+export async function fetchRegionalSignals(districtId: string): Promise<RegionalSignalResponse | null> {
+  try {
+    const res = await fetch(`${API_BASE}/news/regional-signal?district_id=${districtId}`, { cache: "no-store" });
+    if (res.ok) return await res.json();
+  } catch (e) {
+    console.warn(`Backend API unreachable for regional signals:`, e);
+  }
+  return null;
+}
+
+export interface Precaution {
+  disease_id: string;
+  individual_precautions?: string[];
+  community_precautions?: string[];
+  early_warning_symptoms?: string[];
+  high_risk_groups?: string[];
+  govt_helpline?: string;
+  seasonal_window?: string;
+}
+
+export interface GovtScheme {
+  disease_id: string;
+  scheme_name: string;
+  covering_body: string;
+  max_coverage_amount?: string;
+  eligibility_summary?: string;
+  application_link?: string;
+  helpline?: string;
+}
+
+export async function fetchPrecautions(diseaseId: string): Promise<Precaution | null> {
+  try {
+    const res = await fetch(`${API_BASE}/precautions/${diseaseId}`, { cache: "no-store" });
+    if (res.ok) return await res.json();
+  } catch (e) {
+    console.warn(`Backend API unreachable for precautions:`, e);
+  }
+  return null;
+}
+
+export async function fetchGovtBenefits(diseaseId: string): Promise<GovtScheme[]> {
+  try {
+    const res = await fetch(`${API_BASE}/benefits/${diseaseId}`, { cache: "no-store" });
+    if (res.ok) return await res.json();
+  } catch (e) {
+    console.warn(`Backend API unreachable for benefits:`, e);
+  }
+  return [];
 }
