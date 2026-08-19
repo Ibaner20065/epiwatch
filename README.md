@@ -304,7 +304,8 @@ Section 6: Next.js Frontend ....... 7/7  (all pages/routes present)
 
 ## License
 
-This project is developed for academic and public health research purposes.
+This project is licensed under the [MIT License](LICENSE).
+
 
 ---
 
