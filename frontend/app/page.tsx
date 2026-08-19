@@ -47,7 +47,7 @@ export default function Dashboard() {
   }, [predictions]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#07070b] text-slate-100 font-sans relative">
+    <div className="flex flex-col min-h-screen text-[var(--text-primary)] font-mono relative">
       
       {/* ── Predictor Simulation Overlay ─────── */}
       {showSimulation && (
@@ -64,38 +64,40 @@ export default function Dashboard() {
       )}
 
       {/* ── Header ────────────────────────────── */}
-      <header className="sticky top-0 z-40 border-b border-[var(--border)] px-6 py-4 backdrop-blur-md bg-[#09090f]/80">
+      <header className="sticky top-0 z-40 border-b border-[var(--border)] px-6 py-4 backdrop-blur-md" style={{ background: 'rgba(0, 30, 60, 0.9)' }}>
         <div className="max-w-[1400px] mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl shadow-lg bg-gradient-to-br from-indigo-500 to-purple-600">
+            <div className="w-10 h-10 border border-dashed border-[var(--bp-cyan)] flex items-center justify-center text-xl" style={{ color: 'var(--bp-cyan)' }}>
               🦠
             </div>
             <div>
-              <h1 className="text-xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">
+              <h1 className="text-xl font-bold tracking-widest uppercase" style={{ color: 'var(--bp-cyan)' }}>
                 EpiWatch India
               </h1>
-              <p className="text-xs text-slate-400 -mt-0.5">District Outbreak Prediction Engine</p>
+              <p className="text-[10px] tracking-wider" style={{ color: 'var(--bp-white-muted)' }}>
+                <span className="bp-serial">[SYS-001]</span> District Outbreak Prediction Engine
+              </p>
             </div>
           </div>
 
           <nav className="flex items-center gap-2">
             <button
               onClick={() => setShowAssistant(true)}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow border border-purple-400/40 flex items-center gap-1.5"
+              className="bp-btn bp-btn-active"
             >
-              💬 Ask AI Assistant
+              💬 ASK AI ASSISTANT
             </button>
-            <Link href="/" className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600/30 text-indigo-300 border border-indigo-500/40">
-              🇮🇳 India Engine
+            <Link href="/" className="bp-btn bp-btn-active">
+              🇮🇳 INDIA ENGINE
             </Link>
-            <Link href={`/proof?district_id=${selectedDistrictId || "PUNE"}&disease=${selectedDisease}`} className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:bg-slate-800 transition">
-              🎯 Proof & Backtest
+            <Link href={`/proof?district_id=${selectedDistrictId || "PUNE"}&disease=${selectedDisease}`} className="bp-btn">
+              🎯 PROOF &amp; BACKTEST
             </Link>
-            <Link href="/methodology" className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:bg-slate-800 transition">
-              📊 Methodology
+            <Link href="/methodology" className="bp-btn">
+              📊 METHODOLOGY
             </Link>
-            <Link href="/world" className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition">
-              🌐 World Context
+            <Link href="/world" className="bp-btn">
+              🌐 WORLD CONTEXT
             </Link>
           </nav>
         </div>
@@ -105,92 +107,112 @@ export default function Dashboard() {
       <main className="flex-1 max-w-[1400px] mx-auto w-full px-4 sm:px-6 py-8 space-y-8">
         
         {/* ── Hero / Overview Bar ──────────────── */}
-        <section className="flex flex-col md:flex-row md:items-center justify-between gap-6 p-6 rounded-2xl border border-indigo-500/20 bg-gradient-to-r from-indigo-950/40 via-purple-950/20 to-slate-950">
-          <div>
-            <div className="flex flex-wrap items-center gap-2 mb-3">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                Live AI Outbreak Engine v2.0
-              </span>
+        <section className="blueprint-card p-6 animate-fade-up">
+          <div className="bp-corners">
+            <span className="corner-tr">+</span>
+            <span className="corner-bl">+</span>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <span className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-bold uppercase tracking-widest border border-[var(--bp-cyan)] border-dashed" style={{ color: 'var(--bp-cyan)' }}>
+                  <span className="w-2 h-2 bg-[var(--bp-cyan)]" style={{ animation: 'bp-pulse 2s ease-in-out infinite' }} />
+                  LIVE AI OUTBREAK ENGINE V2.0
+                </span>
+                <span className="bp-serial">[SEC-001]</span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-wider uppercase" style={{ color: 'var(--bp-white-soft)' }}>
+                District Outbreak Early Warning System
+              </h2>
+              <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--bp-white-muted)' }}>
+                Integrating IDSP surveillance records, NASA POWER climate satellite feeds, Census demographics, and hospital diagnoses to forecast disease spikes 6–8 weeks in advance.
+              </p>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
-              District Outbreak Early Warning System
-            </h2>
-            <p className="text-sm text-slate-400 mt-1 max-w-2xl">
-              Integrating IDSP surveillance records, NASA POWER climate satellite feeds, Census demographics, and hospital diagnoses to forecast disease spikes 6–8 weeks in advance.
-            </p>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+              <button
+                onClick={() => setShowSimulation(true)}
+                className="bp-btn bp-btn-danger px-5 py-3 text-xs font-extrabold"
+              >
+                <span className="text-base" style={{ animation: 'bp-spin 4s linear infinite', display: 'inline-block' }}>⚡</span>
+                EXECUTE PREDICTOR SIMULATION
+              </button>
+
+              <div className="flex items-center gap-1 p-1 border border-[var(--bp-line-faint)]">
+                {["dengue", "malaria", "add"].map((dis) => (
+                  <button
+                    key={dis}
+                    onClick={() => setSelectedDisease(dis)}
+                    className={`px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest transition font-mono ${
+                      selectedDisease === dis
+                        ? "border border-[var(--bp-cyan)] text-[var(--bp-cyan)] bg-[rgba(0,255,255,0.08)]"
+                        : "text-[var(--bp-white-muted)] hover:text-[var(--bp-white-soft)]"
+                    }`}
+                  >
+                    {dis === "dengue" ? "🦟 DENGUE" : dis === "malaria" ? "🦟 MALARIA" : "💧 ADD"}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
-            <button
-              onClick={() => setShowSimulation(true)}
-              className="px-5 py-3 rounded-xl text-xs font-extrabold uppercase tracking-wider bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white shadow-lg shadow-indigo-500/30 hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2"
-            >
-              <span className="animate-spin text-base" style={{ animationDuration: "4s" }}>⚡</span>
-              RUN PREDICTOR AI SIMULATION
-            </button>
-
-            <div className="flex items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-xl border border-slate-800">
-              {["dengue", "malaria", "add"].map((dis) => (
-                <button
-                  key={dis}
-                  onClick={() => setSelectedDisease(dis)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition ${
-                    selectedDisease === dis
-                      ? "bg-indigo-600 text-white shadow"
-                      : "text-slate-400 hover:text-slate-200"
-                  }`}
-                >
-                  {dis === "dengue" ? "🦟 Dengue" : dis === "malaria" ? "🦟 Malaria" : "💧 ADD"}
-                </button>
-              ))}
-            </div>
+          {/* Dimension marker */}
+          <div className="bp-divider mt-4">
+            <span>&lt;── 1400px ──&gt;</span>
           </div>
         </section>
 
-        {/* ── Stats Summary Grid with Provenance ──────────────── */}
+        {/* ── Stats Summary Grid ──────────────── */}
         <section className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="stat-card flex flex-col justify-between">
+          <div className="stat-card flex flex-col justify-between animate-fade-up">
             <div>
-              <p className="text-xs uppercase tracking-wider text-slate-400 mb-1">Monitored Districts</p>
-              <p className="text-3xl font-extrabold font-mono text-indigo-400">{districts.length || 9}</p>
-              <p className="text-xs text-slate-400 mt-1">Across 3 States (MH, WB, KA)</p>
+              <p className="text-[10px] uppercase tracking-widest mb-1" style={{ color: 'var(--bp-white-muted)' }}>
+                <span className="bp-serial">[STAT-01]</span> Monitored Districts
+              </p>
+              <p className="text-3xl font-bold font-mono" style={{ color: 'var(--bp-cyan)' }}>{districts.length || 9}</p>
+              <p className="text-[10px] mt-1" style={{ color: 'var(--bp-white-faint)' }}>Across 3 States (MH, WB, KA)</p>
             </div>
-            <p className="text-[10px] text-slate-500 font-mono mt-3 pt-2 border-t border-slate-800">
+            <p className="text-[9px] font-mono mt-3 pt-2 border-t border-[var(--bp-line-faint)]" style={{ color: 'var(--bp-white-faint)' }}>
               Source: Supabase DB (`districts` table)
             </p>
           </div>
 
-          <div className="stat-card flex flex-col justify-between">
+          <div className="stat-card flex flex-col justify-between animate-fade-up" style={{ animationDelay: '80ms' }}>
             <div>
-              <p className="text-xs uppercase tracking-wider text-slate-400 mb-1">Outbreak Early Warning</p>
-              <p className="text-3xl font-extrabold font-mono text-emerald-400">6.5 Wks</p>
-              <p className="text-xs text-slate-400 mt-1">Mean Backtest Peak Lead Time</p>
+              <p className="text-[10px] uppercase tracking-widest mb-1" style={{ color: 'var(--bp-white-muted)' }}>
+                <span className="bp-serial">[STAT-02]</span> Outbreak Early Warning
+              </p>
+              <p className="text-3xl font-bold font-mono" style={{ color: 'var(--bp-cyan)' }}>6.5 Wks</p>
+              <p className="text-[10px] mt-1" style={{ color: 'var(--bp-white-faint)' }}>Mean Backtest Peak Lead Time</p>
             </div>
-            <p className="text-[10px] text-slate-500 font-mono mt-3 pt-2 border-t border-slate-800">
+            <p className="text-[9px] font-mono mt-3 pt-2 border-t border-[var(--bp-line-faint)]" style={{ color: 'var(--bp-white-faint)' }}>
               Method: Outbreak Peak Shift Evaluation
             </p>
           </div>
 
-          <div className="stat-card flex flex-col justify-between">
+          <div className="stat-card flex flex-col justify-between animate-fade-up" style={{ animationDelay: '160ms' }}>
             <div>
-              <p className="text-xs uppercase tracking-wider text-slate-400 mb-1">Forecast Horizon</p>
-              <p className="text-3xl font-extrabold font-mono text-purple-400">8 Weeks</p>
-              <p className="text-xs text-slate-400 mt-1">Weekly-grain confidence bounded</p>
+              <p className="text-[10px] uppercase tracking-widest mb-1" style={{ color: 'var(--bp-white-muted)' }}>
+                <span className="bp-serial">[STAT-03]</span> Forecast Horizon
+              </p>
+              <p className="text-3xl font-bold font-mono" style={{ color: 'var(--bp-white-soft)' }}>8 Weeks</p>
+              <p className="text-[10px] mt-1" style={{ color: 'var(--bp-white-faint)' }}>Weekly-grain confidence bounded</p>
             </div>
-            <p className="text-[10px] text-slate-500 font-mono mt-3 pt-2 border-t border-slate-800">
+            <p className="text-[9px] font-mono mt-3 pt-2 border-t border-[var(--bp-line-faint)]" style={{ color: 'var(--bp-white-faint)' }}>
               Model: v2.0-hgb-xgb Ensemble
             </p>
           </div>
 
-          <div className="stat-card flex flex-col justify-between">
+          <div className="stat-card flex flex-col justify-between animate-fade-up" style={{ animationDelay: '240ms' }}>
             <div>
-              <p className="text-xs uppercase tracking-wider text-slate-400 mb-1">Elevated Risk Warnings</p>
-              <p className="text-3xl font-extrabold font-mono text-rose-400">{atRiskCount}</p>
-              <p className="text-xs text-slate-400 mt-1">High & Critical Tier Districts</p>
+              <p className="text-[10px] uppercase tracking-widest mb-1" style={{ color: 'var(--bp-white-muted)' }}>
+                <span className="bp-serial">[STAT-04]</span> Elevated Risk Warnings
+              </p>
+              <p className="text-3xl font-bold font-mono" style={{ color: 'var(--bp-redline)' }}>{atRiskCount}</p>
+              <p className="text-[10px] mt-1" style={{ color: 'var(--bp-white-faint)' }}>High &amp; Critical Tier Districts</p>
             </div>
-            <p className="text-[10px] text-slate-500 font-mono mt-3 pt-2 border-t border-slate-800">
+            <p className="text-[9px] font-mono mt-3 pt-2 border-t border-[var(--bp-line-faint)]" style={{ color: 'var(--bp-white-faint)' }}>
               Source: `predictions` table query
             </p>
           </div>
@@ -201,29 +223,33 @@ export default function Dashboard() {
           <div className="lg:col-span-3 space-y-3">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300">
-                  National District Risk Surface ({selectedDisease.toUpperCase()})
+                <h3 className="text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--bp-white-soft)' }}>
+                  <span className="bp-serial">[MAP-01]</span> National District Risk Surface ({selectedDisease.toUpperCase()})
                 </h3>
-                <p className="text-[10px] text-slate-500 font-mono">
+                <p className="text-[9px] font-mono" style={{ color: 'var(--bp-white-faint)' }}>
                   Source: NASA GIBS + RainViewer + Supabase predictions
                 </p>
               </div>
-              <span className="text-xs text-slate-500 font-mono">Weekly Surveillance Grain</span>
+              <span className="bp-coord">Weekly Surveillance Grain</span>
             </div>
             <IndiaMap districts={districts} predictions={predictions} selectedDisease={selectedDisease} />
           </div>
 
-          <div className="lg:col-span-2 flex flex-col justify-between p-6 rounded-2xl border border-[var(--border)] bg-[#0d0d16]/80">
+          <div className="lg:col-span-2 flex flex-col justify-between p-6 blueprint-card">
+            <div className="bp-corners">
+              <span className="corner-tr">+</span>
+              <span className="corner-bl">+</span>
+            </div>
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300">
-                  Target Districts ({districts.length})
+                <h3 className="text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--bp-white-soft)' }}>
+                  <span className="bp-serial">[LIST-01]</span> Target Districts ({districts.length})
                 </h3>
-                <span className="text-[10px] font-mono text-slate-500">Sorted by Risk</span>
+                <span className="bp-coord">Sorted by Risk</span>
               </div>
 
-              <div className="space-y-3 overflow-y-auto max-h-[350px] pr-1">
-                {districts.map((d) => {
+              <div className="space-y-2 overflow-y-auto max-h-[350px] pr-1">
+                {districts.map((d, idx) => {
                   const p = predictions.find((pred) => pred.district_id === d.id);
                   const tier = p ? p.risk_tier : "Low";
                   const cases = p ? p.predicted_cases : 0;
@@ -235,15 +261,18 @@ export default function Dashboard() {
                         setSelectedDistrictId(d.id);
                         setShowSimulation(true);
                       }}
-                      className="flex items-center justify-between p-3.5 rounded-xl border border-slate-800/80 bg-slate-900/40 hover:bg-slate-800/60 hover:border-indigo-500/50 cursor-pointer transition group"
+                      className="flex items-center justify-between p-3 border border-[var(--bp-line-faint)] hover:border-[var(--bp-cyan-dim)] cursor-pointer transition group"
                     >
                       <div>
-                        <p className="text-sm font-bold text-slate-100 group-hover:text-indigo-400 transition">{d.name}</p>
-                        <p className="text-xs text-slate-400">{d.state}</p>
+                        <p className="text-xs font-bold group-hover:text-[var(--bp-cyan)] transition" style={{ color: 'var(--bp-white-soft)' }}>
+                          <span className="bp-serial mr-1">[D-{String(idx + 1).padStart(2, '0')}]</span>
+                          {d.name}
+                        </p>
+                        <p className="text-[10px]" style={{ color: 'var(--bp-white-faint)' }}>{d.state}</p>
                       </div>
                       <div className="text-right">
                         <RiskBadge tier={tier} size="sm" />
-                        <p className="text-xs font-mono text-slate-300 mt-1">{cases.toLocaleString()} est. cases</p>
+                        <p className="text-[10px] font-mono mt-1" style={{ color: 'var(--bp-white-muted)' }}>{cases.toLocaleString()} est. cases</p>
                       </div>
                     </div>
                   );
@@ -251,13 +280,13 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <div className="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-              <span className="font-mono text-[10px]">Data Provenance: IDSP + NASA + Census</span>
+            <div className="mt-4 pt-4 border-t border-[var(--bp-line-faint)] flex items-center justify-between text-[10px]">
+              <span className="bp-coord">Data Provenance: IDSP + NASA + Census</span>
               <button
                 onClick={() => setShowAssistant(true)}
-                className="text-indigo-400 hover:underline font-semibold flex items-center gap-1 text-xs"
+                className="bp-btn text-[9px]"
               >
-                💬 Ask Grounded AI Assistant →
+                💬 ASK AI ASSISTANT →
               </button>
             </div>
           </div>
@@ -267,34 +296,38 @@ export default function Dashboard() {
         <AlertFeed />
 
         {/* ── Sortable Ranked District Outbreak Threat Table ──────────── */}
-        <section className="p-6 rounded-2xl border border-[var(--border)] bg-[#0d0d16]">
+        <section className="blueprint-card p-6">
+          <div className="bp-corners">
+            <span className="corner-tr">+</span>
+            <span className="corner-bl">+</span>
+          </div>
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4">
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300">
-                Ranked District Threat Matrix ({selectedDisease.toUpperCase()})
+              <h3 className="text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--bp-white-soft)' }}>
+                <span className="bp-serial">[TBL-01]</span> Ranked District Threat Matrix ({selectedDisease.toUpperCase()})
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-[10px]" style={{ color: 'var(--bp-white-faint)' }}>
                 Sorted by predicted peak case volume and vector climate suitability.
               </p>
             </div>
-            <span className="text-[10px] font-mono text-indigo-400 px-2.5 py-1 rounded bg-indigo-950/60 border border-indigo-500/30">
-              Provenance: Supabase predictions table • Model v2.0-hgb-xgb
+            <span className="bp-coord px-2 py-1 border border-[var(--bp-line-faint)]">
+              Provenance: Supabase predictions • Model v2.0-hgb-xgb
             </span>
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-xs font-mono">
+            <table className="w-full text-[10px] font-mono">
               <thead>
-                <tr className="border-b border-slate-800 text-left text-slate-400">
-                  <th className="py-2.5 px-3">District</th>
-                  <th className="py-2.5 px-3">State</th>
-                  <th className="py-2.5 px-3">Risk Tier</th>
-                  <th className="py-2.5 px-3">Est. Peak Cases</th>
-                  <th className="py-2.5 px-3">Lead Time</th>
-                  <th className="py-2.5 px-3">Action Plan</th>
+                <tr className="border-b border-[var(--bp-line-faint)] text-left" style={{ color: 'var(--bp-white-muted)' }}>
+                  <th className="py-2.5 px-3">DISTRICT</th>
+                  <th className="py-2.5 px-3">STATE</th>
+                  <th className="py-2.5 px-3">RISK TIER</th>
+                  <th className="py-2.5 px-3">EST. PEAK CASES</th>
+                  <th className="py-2.5 px-3">LEAD TIME</th>
+                  <th className="py-2.5 px-3">ACTION PLAN</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60">
+              <tbody className="divide-y divide-[var(--bp-line-faint)]">
                 {districts
                   .map((d) => {
                     const p = predictions.find((pred) => pred.district_id === d.id);
@@ -307,29 +340,29 @@ export default function Dashboard() {
                   })
                   .sort((a, b) => b.cases - a.cases)
                   .map(({ district: d, pred, cases, tier }) => (
-                    <tr key={d.id} className="hover:bg-slate-900/50 transition">
-                      <td className="py-3 px-3 font-sans font-bold text-slate-200">
-                        <Link href={`/district/${d.id}`} className="hover:text-indigo-400 underline decoration-slate-700">
+                    <tr key={d.id} className="hover:bg-[rgba(0,255,255,0.03)] transition">
+                      <td className="py-3 px-3 font-bold" style={{ color: 'var(--bp-white-soft)' }}>
+                        <Link href={`/district/${d.id}`} className="hover:text-[var(--bp-cyan)] border-b border-dashed border-[var(--bp-line-faint)]">
                           {d.name}
                         </Link>
                       </td>
-                      <td className="py-3 px-3 text-slate-400">{d.state}</td>
+                      <td className="py-3 px-3" style={{ color: 'var(--bp-white-faint)' }}>{d.state}</td>
                       <td className="py-3 px-3">
                         <RiskBadge tier={tier} size="sm" />
                       </td>
-                      <td className="py-3 px-3 font-bold text-emerald-400 text-sm">
+                      <td className="py-3 px-3 font-bold text-sm" style={{ color: 'var(--bp-cyan)' }}>
                         {cases ? cases.toLocaleString() : "N/A"}
                       </td>
-                      <td className="py-3 px-3 text-purple-300">6.5 Wks</td>
-                      <td className="py-3 px-3 text-slate-400 font-sans text-[11px]">
+                      <td className="py-3 px-3" style={{ color: 'var(--bp-white-muted)' }}>6.5 Wks</td>
+                      <td className="py-3 px-3">
                         <button
                           onClick={() => {
                             setSelectedDistrictId(d.id);
                             setShowSimulation(true);
                           }}
-                          className="px-2.5 py-1 rounded bg-indigo-950/60 text-indigo-300 border border-indigo-500/30 hover:bg-indigo-900/60 transition"
+                          className="bp-btn text-[9px]"
                         >
-                          ⚡ View Intelligence Report
+                          ⚡ VIEW INTEL REPORT
                         </button>
                       </td>
                     </tr>
@@ -341,26 +374,30 @@ export default function Dashboard() {
 
       </main>
 
-      {/* Floating Assistant Trigger Pill */}
+      {/* Floating Assistant Trigger */}
       {!showAssistant && (
         <button
           onClick={() => setShowAssistant(true)}
-          className="fixed bottom-6 right-6 z-40 px-4 py-3 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold text-xs shadow-2xl hover:scale-105 transition flex items-center gap-2 border border-indigo-400/40"
+          className="fixed bottom-6 right-6 z-40 bp-btn bp-btn-active px-4 py-3 text-xs shadow-lg"
+          style={{ boxShadow: '0 0 20px rgba(0, 255, 255, 0.15)' }}
         >
           <span className="text-base">💬</span>
-          Ask EpiWatch AI
+          ASK EPIWATCH AI
         </button>
       )}
 
       {/* Footer */}
-      <footer className="border-t border-[var(--border)] px-6 py-6 mt-12 bg-[#050508]">
-        <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <footer className="border-t border-[var(--bp-line-faint)] px-6 py-6 mt-12" style={{ background: 'rgba(0, 20, 40, 0.8)' }}>
+        <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] font-mono" style={{ color: 'var(--bp-white-faint)' }}>
           <p>
-            <strong className="text-slate-300">EpiWatch India</strong> — Multi-Disease Outbreak Prediction Platform
+            <strong style={{ color: 'var(--bp-cyan)' }}>EPIWATCH INDIA</strong> — Multi-Disease Outbreak Prediction Platform
           </p>
-          <p>
-            PREDICTOR AI Engine v2.0 • Grounded Conversational Intelligence Layer Active.
+          <p className="bp-serial">
+            PREDICTOR AI ENGINE V2.0 • GROUNDED INTELLIGENCE LAYER ACTIVE
           </p>
+        </div>
+        <div className="bp-divider max-w-[1400px] mx-auto mt-3">
+          <span>&lt;── BLUEPRINT SYSTEM V1.0 ──&gt;</span>
         </div>
       </footer>
     </div>

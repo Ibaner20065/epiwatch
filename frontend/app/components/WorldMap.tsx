@@ -10,12 +10,12 @@ function bubbleRadius(cases: number): number {
   return Math.max(3, Math.min(30, Math.log10(cases) * 3.5));
 }
 
-/* Risk color based on cases per million */
+/* Risk color based on cases per million — blueprint palette */
 function riskColor(casesPerMillion: number): string {
-  if (casesPerMillion > 300_000) return "#f43f5e";   // Critical
-  if (casesPerMillion > 100_000) return "#fb923c";   // High
-  if (casesPerMillion > 30_000)  return "#fbbf24";   // Medium
-  return "#34d399";                                   // Low
+  if (casesPerMillion > 300_000) return "#FF3333";       // Critical - Redline
+  if (casesPerMillion > 100_000) return "#FFFFFFdd";     // High - White
+  if (casesPerMillion > 30_000)  return "#00FFFF";       // Medium - Cyan
+  return "rgba(255,255,255,0.35)";                        // Low - Faint
 }
 
 interface Props {
@@ -30,8 +30,8 @@ export default function WorldMap({ countries }: Props) {
       minZoom={2}
       maxZoom={6}
       scrollWheelZoom={true}
-      className="h-[380px] w-full rounded-xl"
-      style={{ background: "#0a0a0f" }}
+      className="h-[380px] w-full border border-[var(--bp-line-faint)]"
+      style={{ background: "#002244" }}
     >
       {/* CartoDB dark basemap — no API key needed */}
       <TileLayer
@@ -51,10 +51,10 @@ export default function WorldMap({ countries }: Props) {
             radius={bubbleRadius(c.cases)}
             pathOptions={{
               fillColor: color,
-              fillOpacity: 0.5,
+              fillOpacity: 0.4,
               color: color,
               weight: 1,
-              opacity: 0.8,
+              opacity: 0.7,
             }}
           >
             <Tooltip
@@ -64,15 +64,15 @@ export default function WorldMap({ countries }: Props) {
             >
               <div
                 style={{
-                  background: "#111118",
-                  border: "1px solid #1e1e30",
-                  borderRadius: 10,
+                  background: "#002244",
+                  border: "1px solid rgba(255,255,255,0.15)",
                   padding: "10px 14px",
-                  color: "#f0f0f5",
-                  fontSize: 12,
+                  color: "rgba(255,255,255,0.85)",
+                  fontSize: 11,
                   lineHeight: 1.6,
                   minWidth: 180,
-                  boxShadow: "0 4px 24px rgba(0,0,0,0.5)",
+                  fontFamily: "'Roboto Mono', monospace",
+                  boxShadow: "0 0 15px rgba(0,255,255,0.08)",
                 }}
               >
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
@@ -80,24 +80,24 @@ export default function WorldMap({ countries }: Props) {
                   <img
                     src={c.countryInfo.flag}
                     alt={c.country}
-                    style={{ width: 24, height: 16, borderRadius: 3, objectFit: "cover" }}
+                    style={{ width: 24, height: 16, objectFit: "cover", border: "1px solid rgba(255,255,255,0.2)" }}
                   />
-                  <strong style={{ fontSize: 13 }}>{c.country}</strong>
+                  <strong style={{ fontSize: 12 }}>{c.country}</strong>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "2px 12px" }}>
-                  <span style={{ color: "#8888a0" }}>Population</span>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "2px 12px", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 4 }}>
+                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Population</span>
                   <span style={{ textAlign: "right", fontFamily: "monospace" }}>{formatNum(c.population)}</span>
 
-                  <span style={{ color: "#8888a0" }}>Cases</span>
-                  <span style={{ textAlign: "right", fontFamily: "monospace", color: "#6366f1" }}>{formatNum(c.cases)}</span>
+                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Cases</span>
+                  <span style={{ textAlign: "right", fontFamily: "monospace", color: "#00FFFF" }}>{formatNum(c.cases)}</span>
 
-                  <span style={{ color: "#8888a0" }}>Deaths</span>
-                  <span style={{ textAlign: "right", fontFamily: "monospace", color: "#f43f5e" }}>{formatNum(c.deaths)}</span>
+                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Deaths</span>
+                  <span style={{ textAlign: "right", fontFamily: "monospace", color: "#FF3333" }}>{formatNum(c.deaths)}</span>
 
-                  <span style={{ color: "#8888a0" }}>Recovered</span>
-                  <span style={{ textAlign: "right", fontFamily: "monospace", color: "#34d399" }}>{formatNum(c.recovered)}</span>
+                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Recovered</span>
+                  <span style={{ textAlign: "right", fontFamily: "monospace", color: "rgba(255,255,255,0.7)" }}>{formatNum(c.recovered)}</span>
 
-                  <span style={{ color: "#8888a0" }}>Cases/1M</span>
+                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Cases/1M</span>
                   <span style={{ textAlign: "right", fontFamily: "monospace" }}>{c.casesPerOneMillion.toLocaleString()}</span>
                 </div>
               </div>

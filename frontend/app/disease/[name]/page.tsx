@@ -63,19 +63,20 @@ export default function DiseasePage({ params }: PageProps) {
   const sortedPredictions = [...predictions].sort((a, b) => b.predicted_cases - a.predicted_cases);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#07070b] text-slate-100 font-sans">
+    <div className="flex flex-col min-h-screen text-[var(--bp-white-soft)] font-mono">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-[var(--border)] px-6 py-4 backdrop-blur-md bg-[#09090f]/80">
+      <header className="sticky top-0 z-50 border-b border-[var(--bp-line-faint)] px-6 py-4 backdrop-blur-md" style={{ background: 'rgba(0, 30, 60, 0.9)' }}>
         <div className="max-w-[1400px] mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Link href="/" className="w-10 h-10 rounded-xl flex items-center justify-center text-lg bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">
+            <Link href="/" className="w-10 h-10 border border-[var(--bp-line-faint)] flex items-center justify-center text-lg hover:border-[var(--bp-cyan)] transition" style={{ color: 'var(--bp-white-soft)' }}>
               ←
             </Link>
             <div>
-              <h1 className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+              <h1 className="text-sm font-bold tracking-widest uppercase flex items-center gap-2" style={{ color: 'var(--bp-white-soft)' }}>
+                <span className="bp-serial">[DIS-01]</span>
                 <span>{meta.icon}</span> {meta.title}
               </h1>
-              <p className="text-xs text-slate-400">Targeted Multi-District Outbreak & Environmental Vector Analysis</p>
+              <p className="text-[10px]" style={{ color: 'var(--bp-white-faint)' }}>Targeted Multi-District Outbreak &amp; Environmental Vector Analysis</p>
             </div>
           </div>
 
@@ -84,10 +85,10 @@ export default function DiseasePage({ params }: PageProps) {
               <Link
                 key={d}
                 href={`/disease/${d}`}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition ${
+                className={`px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest transition border font-mono ${
                   diseaseName === d
-                    ? "bg-indigo-600 text-white shadow"
-                    : "bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800"
+                    ? "border-[var(--bp-cyan)] text-[var(--bp-cyan)] bg-[rgba(0,255,255,0.08)]"
+                    : "border-[var(--bp-line-faint)] text-[var(--bp-white-faint)] hover:text-[var(--bp-white-muted)]"
                 }`}
               >
                 {d}
@@ -101,65 +102,76 @@ export default function DiseasePage({ params }: PageProps) {
       <main className="flex-1 max-w-[1400px] mx-auto w-full px-4 sm:px-6 py-8 space-y-8">
         
         {/* Overview Banner */}
-        <section className="p-6 rounded-2xl border border-indigo-500/30 bg-gradient-to-r from-indigo-950/40 via-purple-950/20 to-slate-950">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 mb-3">
+        <section className="blueprint-card p-6">
+          <div className="bp-corners">
+            <span className="corner-tr">+</span>
+            <span className="corner-bl">+</span>
+          </div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-bold border border-[var(--bp-cyan)] border-dashed mb-3" style={{ color: 'var(--bp-cyan)' }}>
             {meta.category}
           </div>
-          <h2 className="text-2xl font-extrabold text-white">
+          <h2 className="text-xl font-bold uppercase tracking-wider" style={{ color: 'var(--bp-white-soft)' }}>
             National Surveillance Status: {diseaseName.toUpperCase()}
           </h2>
-          <div className="grid md:grid-cols-2 gap-4 mt-4 text-xs font-mono">
-            <div className="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800">
-              <span className="text-slate-400 block mb-1 font-sans font-semibold">Primary Environmental Driver</span>
-              <span className="text-amber-300">{meta.driver}</span>
+          <div className="grid md:grid-cols-2 gap-4 mt-4 text-[10px] font-mono">
+            <div className="p-3.5 border border-[var(--bp-line-faint)]">
+              <span className="block mb-1 font-bold" style={{ color: 'var(--bp-white-muted)' }}>Primary Environmental Driver</span>
+              <span style={{ color: 'var(--bp-cyan)' }}>{meta.driver}</span>
             </div>
-            <div className="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800">
-              <span className="text-slate-400 block mb-1 font-sans font-semibold">Dominant Transmission Pathway</span>
-              <span className="text-emerald-300">{meta.pathway}</span>
+            <div className="p-3.5 border border-[var(--bp-line-faint)]">
+              <span className="block mb-1 font-bold" style={{ color: 'var(--bp-white-muted)' }}>Dominant Transmission Pathway</span>
+              <span style={{ color: 'var(--bp-white-soft)' }}>{meta.pathway}</span>
             </div>
+          </div>
+          <div className="bp-divider mt-4">
+            <span>&lt;── {diseaseName.toUpperCase()} SURVEILLANCE ──&gt;</span>
           </div>
         </section>
 
         {/* Affected District Rankings */}
-        <section className="p-6 rounded-2xl border border-[var(--border)] bg-[#0d0d16]">
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">
-            Districts Ranked by Predicted {diseaseName.toUpperCase()} Peak Burden
+        <section className="blueprint-card p-6">
+          <div className="bp-corners">
+            <span className="corner-tr">+</span>
+            <span className="corner-bl">+</span>
+          </div>
+          <h3 className="text-[11px] font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--bp-white-soft)' }}>
+            <span className="bp-serial">[TBL-01]</span> Districts Ranked by Predicted {diseaseName.toUpperCase()} Peak Burden
           </h3>
 
           {loading ? (
-            <div className="text-xs text-slate-500 font-mono py-8 text-center">Loading disease predictions...</div>
+            <div className="text-[10px] font-mono py-8 text-center" style={{ color: 'var(--bp-white-faint)' }}>Loading disease predictions...</div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-xs font-mono">
+              <table className="w-full text-[10px] font-mono">
                 <thead>
-                  <tr className="border-b border-slate-800 text-left text-slate-400">
-                    <th className="py-2.5 px-3">District</th>
-                    <th className="py-2.5 px-3">State</th>
-                    <th className="py-2.5 px-3">Risk Tier</th>
-                    <th className="py-2.5 px-3">Predicted Peak Cases</th>
-                    <th className="py-2.5 px-3">Peak Outbreak Week</th>
-                    <th className="py-2.5 px-3">Model Source</th>
+                  <tr className="border-b border-[var(--bp-line-faint)] text-left" style={{ color: 'var(--bp-white-muted)' }}>
+                    <th className="py-2.5 px-3">DISTRICT</th>
+                    <th className="py-2.5 px-3">STATE</th>
+                    <th className="py-2.5 px-3">RISK TIER</th>
+                    <th className="py-2.5 px-3">PREDICTED PEAK CASES</th>
+                    <th className="py-2.5 px-3">PEAK OUTBREAK WEEK</th>
+                    <th className="py-2.5 px-3">MODEL SOURCE</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60">
+                <tbody className="divide-y divide-[var(--bp-line-faint)]">
                   {sortedPredictions.map((p) => {
                     const dist = districts.find((d) => d.id === p.district_id);
                     return (
-                      <tr key={`${p.district_id}_${p.week_start}`} className="hover:bg-slate-900/50 transition">
-                        <td className="py-3 px-3 font-sans font-bold text-slate-200">
-                          <Link href={`/district/${p.district_id}`} className="hover:text-indigo-400 underline">
+                      <tr key={`${p.district_id}_${p.week_start}`} className="hover:bg-[rgba(0,255,255,0.03)] transition">
+                        <td className="py-3 px-3 font-bold" style={{ color: 'var(--bp-white-soft)' }}>
+                          <Link href={`/district/${p.district_id}`} className="hover:text-[var(--bp-cyan)] border-b border-dashed border-[var(--bp-line-faint)]">
                             {dist?.name || p.district_id}
                           </Link>
                         </td>
-                        <td className="py-3 px-3 text-slate-400">{dist?.state || "N/A"}</td>
+                        <td className="py-3 px-3" style={{ color: 'var(--bp-white-faint)' }}>{dist?.state || "N/A"}</td>
                         <td className="py-3 px-3">
                           <RiskBadge tier={p.risk_tier} size="sm" />
                         </td>
-                        <td className="py-3 px-3 font-bold text-rose-400 text-sm">
+                        <td className="py-3 px-3 font-bold text-sm" style={{ color: 'var(--bp-redline)' }}>
                           {p.predicted_cases.toLocaleString()} cases
                         </td>
-                        <td className="py-3 px-3 text-purple-300">{p.week_start}</td>
-                        <td className="py-3 px-3 text-slate-500 text-[11px]">{p.model_version || "v2.0-hgb-xgb"}</td>
+                        <td className="py-3 px-3" style={{ color: 'var(--bp-white-muted)' }}>{p.week_start}</td>
+                        <td className="py-3 px-3 text-[9px]" style={{ color: 'var(--bp-white-faint)' }}>{p.model_version || "v2.0-hgb-xgb"}</td>
                       </tr>
                     );
                   })}

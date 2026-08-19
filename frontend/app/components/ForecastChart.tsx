@@ -30,24 +30,25 @@ export default function ForecastChart({ data }: ForecastChartProps) {
         <AreaChart data={formattedData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
           <defs>
             <linearGradient id="gradPred" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#6366f1" stopOpacity={0.4} />
-              <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
+              <stop offset="5%" stopColor="#00FFFF" stopOpacity={0.3} />
+              <stop offset="95%" stopColor="#00FFFF" stopOpacity={0} />
             </linearGradient>
             <linearGradient id="gradCI" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.2} />
-              <stop offset="95%" stopColor="#38bdf8" stopOpacity={0.02} />
+              <stop offset="5%" stopColor="rgba(255,255,255,0.15)" stopOpacity={0.15} />
+              <stop offset="95%" stopColor="rgba(255,255,255,0.02)" stopOpacity={0.02} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-          <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#94a3b8" }} />
-          <YAxis tick={{ fontSize: 11, fill: "#94a3b8" }} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+          <XAxis dataKey="date" tick={{ fontSize: 10, fill: "rgba(255,255,255,0.4)", fontFamily: "'Roboto Mono', monospace" }} />
+          <YAxis tick={{ fontSize: 10, fill: "rgba(255,255,255,0.4)", fontFamily: "'Roboto Mono', monospace" }} />
           <Tooltip
             contentStyle={{
-              background: "#0f172a",
-              border: "1px solid #334155",
-              borderRadius: "12px",
-              color: "#f8fafc",
-              fontSize: "12px",
+              background: "#002244",
+              border: "1px solid rgba(255,255,255,0.15)",
+              borderRadius: "0px",
+              color: "rgba(255,255,255,0.85)",
+              fontSize: "11px",
+              fontFamily: "'Roboto Mono', monospace",
             }}
             formatter={(val: any, name: any) => [
               val ? Math.round(Number(val)).toLocaleString() + " cases" : "0 cases",
@@ -63,10 +64,10 @@ export default function ForecastChart({ data }: ForecastChartProps) {
           <Area
             type="monotone"
             dataKey="predicted"
-            stroke="#6366f1"
-            strokeWidth={3}
+            stroke="#00FFFF"
+            strokeWidth={2}
             fill="url(#gradPred)"
-            dot={{ r: 4, fill: "#6366f1", strokeWidth: 2, stroke: "#ffffff" }}
+            dot={{ r: 3, fill: "#00FFFF", strokeWidth: 1, stroke: "#ffffff" }}
           />
         </AreaChart>
       </ResponsiveContainer>

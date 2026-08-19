@@ -1,82 +1,146 @@
 @import "tailwindcss";
 
-/* ── Design tokens ──────────────────────────── */
+/* ── Blueprint Design Tokens ──────────────── */
 :root {
-  --bg-primary: #0a0a0f;
-  --bg-card: #111118;
-  --bg-card-hover: #18182a;
-  --border: #1e1e30;
-  --border-glow: #6366f1;
-  --text-primary: #f0f0f5;
-  --text-secondary: #8888a0;
-  --text-muted: #55556a;
-  --accent-blue: #6366f1;
-  --accent-cyan: #22d3ee;
-  --accent-emerald: #34d399;
-  --accent-amber: #fbbf24;
-  --accent-rose: #f43f5e;
-  --accent-violet: #a78bfa;
-  --gradient-primary: linear-gradient(135deg, #6366f1, #22d3ee);
-  --gradient-danger: linear-gradient(135deg, #f43f5e, #fb923c);
-  --gradient-success: linear-gradient(135deg, #34d399, #22d3ee);
-  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.15);
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
-  --radius: 16px;
-  --radius-sm: 10px;
-  --radius-xs: 6px;
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), 'Cascadia Code', monospace;
+  /* Cyanotype palette */
+  --bp-blue: #003366;
+  --bp-blue-deep: #002244;
+  --bp-blue-dark: #001a33;
+  --bp-blue-card: rgba(0, 40, 80, 0.6);
+  --bp-blue-card-hover: rgba(0, 50, 100, 0.8);
+  --bp-line: rgba(255, 255, 255, 0.8);
+  --bp-line-faint: rgba(255, 255, 255, 0.15);
+  --bp-line-grid: rgba(255, 255, 255, 0.08);
+  --bp-redline: #FF3333;
+  --bp-cyan: #00FFFF;
+  --bp-cyan-dim: rgba(0, 255, 255, 0.6);
+  --bp-white: #FFFFFF;
+  --bp-white-soft: rgba(255, 255, 255, 0.85);
+  --bp-white-muted: rgba(255, 255, 255, 0.5);
+  --bp-white-faint: rgba(255, 255, 255, 0.3);
+
+  /* Semantic aliases */
+  --bg-primary: var(--bp-blue);
+  --bg-card: var(--bp-blue-card);
+  --bg-card-hover: var(--bp-blue-card-hover);
+  --border: var(--bp-line-faint);
+  --border-glow: var(--bp-cyan);
+  --text-primary: var(--bp-white-soft);
+  --text-secondary: var(--bp-white-muted);
+  --text-muted: var(--bp-white-faint);
+  --accent-blue: var(--bp-cyan);
+  --accent-cyan: var(--bp-cyan);
+  --accent-emerald: var(--bp-cyan);
+  --accent-amber: var(--bp-white-soft);
+  --accent-rose: var(--bp-redline);
+  --accent-violet: var(--bp-cyan-dim);
+
+  --shadow-glow: 0 0 20px rgba(0, 255, 255, 0.1);
+  --shadow-card: 0 0 1px rgba(255, 255, 255, 0.3);
+  --radius: 0px;
+  --radius-sm: 0px;
+  --radius-xs: 0px;
+
+  --font-notes: var(--font-architects), 'Architects Daughter', cursive;
+  --font-mono: var(--font-roboto-mono), 'Roboto Mono', monospace;
+  --font-sans: var(--font-roboto-mono), 'Roboto Mono', monospace;
 }
 
 /* ── Base reset ─────────────────────────────── */
 html {
   scroll-behavior: smooth;
-  background: var(--bg-primary);
+  background: var(--bp-blue);
   color: var(--text-primary);
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+
+  /* Blueprint grid background */
+  background-color: var(--bp-blue);
+  background-image:
+    /* Fine 20px grid */
+    linear-gradient(var(--bp-line-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bp-line-grid) 1px, transparent 1px),
+    /* Bold 100px grid */
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+
+  /* Subtle paper/vellum grain texture */
+  background-blend-mode: normal;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+/* Ensure all content is above the grain overlay */
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Scrollbar ──────────────────────────────── */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bp-blue-deep); }
+::-webkit-scrollbar-thumb { background: var(--bp-line-faint); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--bp-white-muted); }
 
 /* ── Animations ─────────────────────────────── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
+
+/* Drafting line-draw reveal */
+@keyframes drafting-draw {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Fade in from below, blueprint style */
+@keyframes bp-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 8px rgba(99, 102, 241, 0.2); }
-  50%      { box-shadow: 0 0 20px rgba(99, 102, 241, 0.5); }
+
+/* Slow pulse for active indicators */
+@keyframes bp-pulse {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 1; }
 }
+
+/* Crosshair blink */
+@keyframes crosshair-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+
+/* Shimmer for loading */
 @keyframes shimmer {
   0%   { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
-@keyframes count-up {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes orbit {
+
+@keyframes bp-spin {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
 
 .animate-fade-up {
-  animation: fadeUp 0.5s ease-out both;
+  animation: bp-fade-up 0.5s ease-out both;
 }
 .animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
+  animation: bp-pulse 3s ease-in-out infinite;
 }
 .animate-count-up {
-  animation: count-up 0.4s ease-out both;
+  animation: bp-fade-up 0.4s ease-out both;
 }
 
 /* Staggered children */
@@ -91,65 +155,188 @@ body {
 .skeleton {
   background: linear-gradient(
     90deg,
-    var(--bg-card) 25%,
-    var(--bg-card-hover) 50%,
-    var(--bg-card) 75%
+    var(--bp-blue-card) 25%,
+    var(--bp-blue-card-hover) 50%,
+    var(--bp-blue-card) 75%
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s ease-in-out infinite;
-  border-radius: var(--radius-xs);
 }
 
-/* ── Stat card component ────────────────────── */
+/* ══════════════════════════════════════════════
+   BLUEPRINT COMPONENT SYSTEM
+   ══════════════════════════════════════════════ */
+
+/* ── Stat card (Blueprint wireframe card) ───── */
 .stat-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  background: transparent;
+  border: 1px solid var(--bp-line-faint);
   padding: 1.25rem 1.5rem;
   transition: all 0.25s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+}
+
+/* Crosshair corner marks */
+.stat-card::before,
+.stat-card::after {
+  content: '+';
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--bp-cyan-dim);
+  line-height: 1;
+  pointer-events: none;
 }
 .stat-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--gradient-primary);
-  opacity: 0;
-  transition: opacity 0.25s ease;
+  top: -5px;
+  left: -3px;
 }
+.stat-card::after {
+  bottom: -5px;
+  right: -3px;
+}
+
 .stat-card:hover {
-  border-color: color-mix(in srgb, var(--border-glow) 40%, transparent);
-  transform: translateY(-2px);
+  border-color: var(--bp-cyan-dim);
   box-shadow: var(--shadow-glow);
 }
-.stat-card:hover::before { opacity: 1; }
 
-/* ── Glass panel ────────────────────────────── */
-.glass-panel {
-  background: rgba(17, 17, 24, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+/* ── Blueprint card (generic wireframe panel) ─ */
+.blueprint-card {
+  background: transparent;
+  border: 1px solid var(--bp-line-faint);
+  position: relative;
+  overflow: visible;
 }
 
-/* ── Gradient text ──────────────────────────── */
+.blueprint-card::before,
+.blueprint-card::after {
+  content: '+';
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--bp-cyan-dim);
+  line-height: 1;
+  pointer-events: none;
+}
+.blueprint-card::before {
+  top: -5px;
+  left: -3px;
+}
+.blueprint-card::after {
+  bottom: -5px;
+  right: -3px;
+}
+
+/* Extra corner marks via inner element (add .bp-corners class) */
+.bp-corners {
+  position: relative;
+}
+.bp-corners > .corner-tr,
+.bp-corners > .corner-bl {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--bp-cyan-dim);
+  line-height: 1;
+  pointer-events: none;
+}
+.bp-corners > .corner-tr {
+  top: -5px;
+  right: -3px;
+}
+.bp-corners > .corner-bl {
+  bottom: -5px;
+  left: -3px;
+}
+
+/* ── Glass panel (repurposed as blueprint panel) */
+.glass-panel {
+  background: rgba(0, 30, 60, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--bp-line-faint);
+}
+
+/* ── Blueprint stamp button ─────────────────── */
+.bp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px dashed var(--bp-line);
+  background: transparent;
+  color: var(--bp-white-soft);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+.bp-btn:hover {
+  border-color: var(--bp-cyan);
+  color: var(--bp-cyan);
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.15);
+}
+.bp-btn-active {
+  border-style: solid;
+  border-color: var(--bp-cyan);
+  color: var(--bp-cyan);
+  background: rgba(0, 255, 255, 0.08);
+}
+.bp-btn-danger {
+  border-color: var(--bp-redline);
+  color: var(--bp-redline);
+}
+.bp-btn-danger:hover {
+  background: rgba(255, 51, 51, 0.1);
+  box-shadow: 0 0 8px rgba(255, 51, 51, 0.15);
+}
+
+/* ── Blueprint dimension divider ────────────── */
+.bp-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--bp-white-faint);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+.bp-divider::before,
+.bp-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--bp-line-faint);
+}
+
+/* ── Drafting redline note ──────────────────── */
+.bp-redline {
+  color: var(--bp-redline);
+  font-family: var(--font-notes);
+  font-style: italic;
+  position: relative;
+}
+
+/* ── Gradient text (blueprint version) ──────── */
 .gradient-text {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--bp-cyan);
+  -webkit-text-fill-color: var(--bp-cyan);
 }
 
 /* ── Live indicator ─────────────────────────── */
 .live-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--accent-emerald);
-  animation: pulse-glow 2s ease-in-out infinite;
-  box-shadow: 0 0 6px var(--accent-emerald);
+  width: 6px;
+  height: 6px;
+  border-radius: 0;
+  background: var(--bp-cyan);
+  animation: bp-pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 4px var(--bp-cyan);
 }
 
 /* ── Country table rows ─────────────────────── */
@@ -157,31 +344,107 @@ body {
   transition: background 0.15s ease;
 }
 .country-row:hover {
-  background: var(--bg-card-hover);
+  background: rgba(0, 255, 255, 0.05);
 }
 
 /* ── Leaflet map overrides ──────────────────── */
 .leaflet-container {
-  background: var(--bg-primary) !important;
-  border-radius: var(--radius);
+  background: var(--bp-blue-deep) !important;
+  border: 1px solid var(--bp-line-faint) !important;
 }
 .leaflet-popup-content-wrapper {
-  background: var(--bg-card) !important;
-  color: var(--text-primary) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: var(--radius-sm) !important;
+  background: var(--bp-blue-deep) !important;
+  color: var(--bp-white-soft) !important;
+  border: 1px solid var(--bp-line-faint) !important;
+  border-radius: 0 !important;
   box-shadow: var(--shadow-card) !important;
 }
 .leaflet-popup-tip {
-  background: var(--bg-card) !important;
+  background: var(--bp-blue-deep) !important;
+}
+.leaflet-control-layers {
+  background: rgba(0, 30, 60, 0.9) !important;
+  border: 1px solid var(--bp-line-faint) !important;
+  border-radius: 0 !important;
+  color: var(--bp-white-soft) !important;
+}
+.leaflet-control-layers label {
+  color: var(--bp-white-muted) !important;
+}
+.leaflet-control-zoom a {
+  background: var(--bp-blue-deep) !important;
+  color: var(--bp-white-soft) !important;
+  border-color: var(--bp-line-faint) !important;
+  border-radius: 0 !important;
 }
 
 /* ── Recharts overrides ─────────────────────── */
 .recharts-cartesian-grid-horizontal line,
 .recharts-cartesian-grid-vertical line {
-  stroke: var(--border) !important;
+  stroke: var(--bp-line-faint) !important;
 }
 .recharts-text {
-  fill: var(--text-muted) !important;
-  font-size: 11px;
+  fill: var(--bp-white-muted) !important;
+  font-size: 10px;
+  font-family: var(--font-mono) !important;
+}
+
+/* ── Cursor crosshair coordinate tracker ────── */
+#bp-cursor-tracker {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--bp-cyan);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 4px rgba(0, 255, 255, 0.4);
+  opacity: 0.7;
+  transition: opacity 0.1s;
+}
+#bp-cursor-tracker::before {
+  content: '+';
+  position: absolute;
+  top: -8px;
+  left: -4px;
+  font-size: 14px;
+  color: var(--bp-cyan-dim);
+  animation: crosshair-blink 2s ease-in-out infinite;
+}
+
+/* ── Serial number labels ───────────────────── */
+.bp-serial {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--bp-cyan-dim);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ── Coordinate label ───────────────────────── */
+.bp-coord {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--bp-cyan);
+  letter-spacing: 0.08em;
+}
+
+/* ── Measurement text ───────────────────────── */
+.bp-measure {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--bp-cyan-dim);
+}
+
+/* ── Note / annotation (handwritten style) ──── */
+.bp-note {
+  font-family: var(--font-notes);
+  color: var(--bp-white-muted);
+  font-style: italic;
+}
+
+/* ── Selection colors ───────────────────────── */
+::selection {
+  background: rgba(0, 255, 255, 0.25);
+  color: var(--bp-white);
 }

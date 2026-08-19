@@ -8,6 +8,13 @@ from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
 from sqlalchemy import text
 from app.db import engine
+import google.generativeai as genai
+from dotenv import load_dotenv
+
+load_dotenv()
+api_key = (os.getenv("GEMINI_API_KEY") or "").strip()
+if api_key:
+    genai.configure(api_key=api_key)
 
 router = APIRouter(prefix="/assistant", tags=["Assistant"])
 
@@ -29,10 +36,15 @@ _weather_cache: Dict[str, tuple] = {}
 WEATHER_CACHE_TTL_SECONDS = 900  # 15 minutes
 
 
+class AssistantMessage(BaseModel):
+    role: str
+    content: str
+
 class AssistantQueryRequest(BaseModel):
     query: str
-    district_id: Optional[str] = "PUNE"
-    disease: Optional[str] = "dengue"
+    district_id: Optional[str] = None
+    disease: Optional[str] = None
+    history: Optional[List[AssistantMessage]] = []
 
 class SourceCitation(BaseModel):
     tool_name: str
@@ -238,10 +250,103 @@ def _detect_intent(q_lower: str) -> str:
     
     return "unknown"
 
+def _deterministic_fast_path(q_lower: str) -> Optional[Dict[str, Any]]:
+    q = q_lower.strip().strip("?!.")
+    if q in ["hi", "hello", "hey", "helloooo"]:
+        return {"intent": "GREETING", "answer": "Hello! I am EpiWatch AI Assistant. How can I help you today?"}
+    if q in ["how are you", "whats up", "hows it going", "how are you doing"]:
+        return {"intent": "CASUAL", "answer": "I'm functioning perfectly, thank you! I can help you monitor outbreaks, predict disease spread, and check local climate data. What would you like to know?"}
+    if q in ["thanks", "thank you", "thanks!"]:
+        return {"intent": "THANKS", "answer": "You're welcome! Let me know if you need any more information."}
+    if q in ["bye", "goodbye", "exit"]:
+        return {"intent": "FAREWELL", "answer": "Goodbye! Stay safe and healthy."}
+    if len(q.split()) <= 1 and q not in ["dengue", "malaria", "risk", "forecast", "weather"]:
+        return {"intent": "AMBIGUOUS", "answer": f"I'm not quite sure what you mean by '{q}'. Could you please provide more context? (e.g., 'What is the dengue risk in Pune?')"}
+    return None
+
+def _llm_detect_intent(query: str, history: List[Dict[str, str]]) -> Dict[str, Any]:
+    if not os.getenv("GEMINI_API_KEY"):
+        return {"intent": _detect_intent(query.lower())}
+        
+    system_prompt = """You are an intent classifier for EpiWatch.
+    Determine the intent and extract entities from the latest user query given the conversation history.
+    Available intents:
+    - disease_forecast (e.g., "What is the dengue risk?", "predict malaria")
+    - weather (e.g., "What's the weather in Pune?", "temperature today")
+    - disease_explain (e.g., "Why is Kolkata flagged high risk?", "climate drivers for dengue")
+    - demographics (e.g., "population of Mumbai", "hospital locations")
+    - general_public_health (e.g., "What is dengue?", "Symptoms of malaria")
+    - unknown (if it doesn't fit any category)
+    
+    Valid district_ids: PUNE, MUMBAI, KOLKATA, NAGPUR, HOWRAH, MYSURU, DHARWAD, BENGALURU_URBAN, NORTH_24_PARGANAS.
+    Valid diseases: dengue, malaria.
+
+    Output valid JSON with keys: 'intent', 'district_id' (null if none), 'disease' (null if none).
+    """
+    
+    prompt = system_prompt + "\n\nHistory:\n"
+    for m in history[-5:]:
+        prompt += f"{m['role']}: {m['content']}\n"
+    prompt += f"User: {query}\nOutput JSON:"
+    
+    try:
+        model = genai.GenerativeModel('gemini-3.6-flash', generation_config={"response_mime_type": "application/json"})
+        response = model.generate_content(prompt, request_options={"timeout": 6.0})
+        result = json.loads(response.text)
+        return {
+            "intent": result.get("intent", "unknown"),
+            "district_id": result.get("district_id"),
+            "disease": result.get("disease")
+        }
+    except Exception:
+        return {"intent": _detect_intent(query.lower())}
+
+def _generate_general_response(query: str, history: List[Dict[str, str]]) -> str:
+    if not (os.getenv("GEMINI_API_KEY") or "").strip():
+        return "I can answer general public health questions when the LLM service is configured."
+    
+    system_prompt = "You are the EpiWatch AI Assistant. Provide a brief, scientifically accurate response to the user's public health question. Remind them to consult a doctor for medical advice if they mention personal symptoms."
+    
+    prompt = system_prompt + "\n\nHistory:\n"
+    for m in history[-5:]:
+        prompt += f"{m['role']}: {m['content']}\n"
+    prompt += f"User: {query}\n"
+    
+    try:
+        model = genai.GenerativeModel('gemini-3.6-flash')
+        response = model.generate_content(prompt, request_options={"timeout": 8.0})
+        return response.text
+    except Exception:
+        return "Sorry, I am currently unable to generate a detailed response."
+
 
 @router.post("/query", response_model=AssistantQueryResponse)
 def query_assistant(req: AssistantQueryRequest):
     q_lower = req.query.lower()
+
+    # Deterministic Fast Paths
+    fast_path = _deterministic_fast_path(q_lower)
+    if fast_path:
+        return AssistantQueryResponse(
+            answer=fast_path["answer"],
+            citations=[],
+            tools_used=["deterministic_router"],
+            disclaimer="Fast-path conversational response."
+        )
+
+    # Convert pydantic history to dicts
+    history_dicts = [{"role": m.role, "content": m.content} for m in req.history] if req.history else []
+
+    # LLM Intent Classifier
+    llm_classification = _llm_detect_intent(req.query, history_dicts)
+    req_intent = llm_classification.get("intent", "unknown")
+    
+    # Use extracted entities if available and not explicitly provided in the request as overrides
+    d_id = llm_classification.get("district_id") or req.district_id or "PUNE"
+    dis = llm_classification.get("disease") or req.disease or "dengue"
+    
+    d_id = str(d_id).upper().replace(" ", "_") if d_id else "PUNE"
+    dis = str(dis).lower() if dis else "dengue"
 
     # Refuse medical advice/diagnosis
     if any(kw in q_lower for kw in ["my symptoms", "cure me", "treatment for me", "diagnose me", "doctor"]):
@@ -252,11 +357,17 @@ def query_assistant(req: AssistantQueryRequest):
             disclaimer="Refused personal medical advice query in compliance with public health safety guardrails."
         )
 
+    if req_intent == "general_public_health":
+        answer = _generate_general_response(req.query, history_dicts)
+        return AssistantQueryResponse(
+            answer=answer,
+            citations=[],
+            tools_used=["general_knowledge_llm"],
+            disclaimer="General public health information provided by LLM. Not intended as medical advice."
+        )
+
     tools_used = []
     citations = []
-
-    d_id = req.district_id or "PUNE"
-    dis = req.disease or "dengue"
 
     # Known states and national keywords
     KNOWN_STATES = {"maharashtra": ["PUNE", "MUMBAI", "NAGPUR"], "west bengal": ["KOLKATA", "HOWRAH", "NORTH_24_PARGANAS"], "karnataka": ["BENGALURU_URBAN", "MYSURU", "DHARWAD"]}
@@ -354,7 +465,7 @@ def query_assistant(req: AssistantQueryRequest):
             break
 
     # ── Intent-based tool routing ─────────────────────────────
-    intent = _detect_intent(q_lower)
+    intent = req_intent
 
     forecast_data = None
     explain_data = None

@@ -124,90 +124,107 @@ export default function PredictorSimulation({
   }, [stage]);
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-[#040407] text-slate-100 flex flex-col font-sans">
+    <div className="fixed inset-0 z-50 overflow-hidden text-[var(--bp-white-soft)] flex flex-col font-mono" style={{ background: 'var(--bp-blue-dark)' }}>
       
       {/* ── STAGE 1 & 2: THE PREDICTOR AI SIMULATION ── */}
       <div
         className={`absolute inset-0 flex flex-col items-center justify-center p-6 transition-transform duration-1000 ease-in-out z-20 ${
           stage === "revealed" ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
         }`}
-        style={{
-          background: "radial-gradient(circle at center, #0b0c1a 0%, #030307 100%)",
-        }}
+        style={{ background: 'var(--bp-blue-dark)' }}
       >
-        {/* Glowing background grid lines */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+        {/* Blueprint grid overlay */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+          maskImage: 'radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%)',
+        }} />
 
-        {/* 4 Source Data Streams (Nodes) */}
+        {/* 4 Source Data Stream Nodes */}
         <div className="w-full max-w-5xl grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 z-10">
-          <DataNode title="🛰️ NASA Climate Telemetry" desc="Rainfall, Temp, Humidity" color="#38bdf8" active={progress > 15} />
-          <DataNode title="📋 IDSP Case Surveillance" desc="IDSP Weekly Surveillance DB" color="#a78bfa" active={progress > 35} />
-          <DataNode title="📊 ML Outbreak Engine" desc="v2.0 HGB & XGBoost Models" color="#f43f5e" active={progress > 55} />
-          <DataNode title="🗺️ Demographics & Census" desc="District Density Maps" color="#34d399" active={progress > 75} />
+          <DataNode title="🛰️ NASA CLIMATE" desc="Rainfall, Temp, Humidity" serial="NODE-01" active={progress > 15} />
+          <DataNode title="📋 IDSP SURVEILLANCE" desc="IDSP Weekly Surveillance DB" serial="NODE-02" active={progress > 35} />
+          <DataNode title="📊 ML ENGINE" desc="v2.0 HGB & XGBoost Models" serial="NODE-03" active={progress > 55} />
+          <DataNode title="🗺️ DEMOGRAPHICS" desc="District Density Maps" serial="NODE-04" active={progress > 75} />
         </div>
 
-        {/* Central Glowing PREDICTOR Engine */}
+        {/* Central Blueprint Engine Core */}
         <div className="relative flex flex-col items-center justify-center z-10">
-          {/* Animated Connecting Beams */}
-          <div className="absolute -inset-16 rounded-full bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 blur-2xl animate-pulse" />
+          {/* Glow ring */}
+          <div className="absolute -inset-16 border border-dashed border-[var(--bp-cyan-dim)] opacity-30" style={{ animation: 'bp-spin 20s linear infinite' }} />
           
-          <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full border-2 border-indigo-500/40 flex items-center justify-center bg-[#080812]/90 shadow-[0_0_80px_rgba(99,102,241,0.3)]">
-            {/* Spinning Rings */}
-            <div className="absolute inset-1 rounded-full border-t-2 border-indigo-400 animate-spin" style={{ animationDuration: "3s" }} />
-            <div className="absolute inset-3 rounded-full border-r-2 border-purple-400 animate-spin" style={{ animationDuration: "5s", animationDirection: "reverse" }} />
-            <div className="absolute inset-5 rounded-full border-b-2 border-pink-400 animate-spin" style={{ animationDuration: "8s" }} />
+          <div className="relative w-48 h-48 sm:w-56 sm:h-56 border-2 border-[var(--bp-cyan-dim)] flex items-center justify-center" style={{ background: 'rgba(0,20,40,0.8)', boxShadow: '0 0 60px rgba(0,255,255,0.12)' }}>
+            {/* Corner crosshairs */}
+            <span className="absolute -top-2 -left-1 text-[10px] font-mono" style={{ color: 'var(--bp-cyan-dim)' }}>+</span>
+            <span className="absolute -top-2 -right-1 text-[10px] font-mono" style={{ color: 'var(--bp-cyan-dim)' }}>+</span>
+            <span className="absolute -bottom-2 -left-1 text-[10px] font-mono" style={{ color: 'var(--bp-cyan-dim)' }}>+</span>
+            <span className="absolute -bottom-2 -right-1 text-[10px] font-mono" style={{ color: 'var(--bp-cyan-dim)' }}>+</span>
+            
+            {/* Spinning wireframe rings */}
+            <div className="absolute inset-4 border-t border-[var(--bp-cyan)]" style={{ animation: 'bp-spin 3s linear infinite' }} />
+            <div className="absolute inset-8 border-r border-[var(--bp-white-faint)]" style={{ animation: 'bp-spin 5s linear infinite reverse' }} />
+            <div className="absolute inset-12 border-b border-[var(--bp-cyan-dim)]" style={{ animation: 'bp-spin 8s linear infinite' }} />
 
             <div className="text-center p-4">
-              <span className="text-[10px] uppercase tracking-widest text-indigo-300 font-bold block mb-1">SYSTEM NAME</span>
-              <h3 className="text-xl sm:text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">
+              <span className="bp-serial block mb-1">[SYS-CORE]</span>
+              <h3 className="text-xl sm:text-2xl font-bold tracking-[0.3em] uppercase" style={{ color: 'var(--bp-cyan)' }}>
                 PREDICTOR
               </h3>
-              <p className="text-3xl font-extrabold font-mono text-white mt-1">{progress}%</p>
+              <p className="text-3xl font-bold font-mono mt-1" style={{ color: 'var(--bp-white)' }}>{progress}%</p>
             </div>
           </div>
         </div>
 
         {/* Console Log Status */}
         <div className="mt-8 text-center z-10 max-w-lg">
-          <p className="text-xs font-mono text-indigo-300/90 animate-pulse">{activeLog}</p>
-          <div className="w-64 h-1.5 bg-slate-900 rounded-full mx-auto mt-3 overflow-hidden border border-slate-800">
-            <div className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-150" style={{ width: `${progress}%` }} />
+          <p className="text-[10px] font-mono" style={{ color: 'var(--bp-cyan-dim)', animation: 'bp-pulse 2s ease-in-out infinite' }}>{activeLog}</p>
+          {/* Blueprint dimension-style progress bar */}
+          <div className="w-64 h-1 mx-auto mt-3 overflow-hidden border border-[var(--bp-line-faint)]" style={{ background: 'var(--bp-blue-deep)' }}>
+            <div className="h-full transition-all duration-150" style={{ width: `${progress}%`, background: 'var(--bp-cyan)' }} />
+          </div>
+          <div className="flex justify-between text-[8px] mt-1 w-64 mx-auto" style={{ color: 'var(--bp-white-faint)' }}>
+            <span>0%</span>
+            <span>&lt;── {progress}% ──&gt;</span>
+            <span>100%</span>
           </div>
         </div>
       </div>
 
       {/* ── BURST OF LIGHT TRANSITION EFFECT ── */}
       <div
-        className={`fixed inset-0 z-40 bg-white pointer-events-none transition-opacity duration-700 ease-out ${
-          stage === "light_flash" ? "opacity-100" : "opacity-0"
+        className={`fixed inset-0 z-40 pointer-events-none transition-opacity duration-700 ease-out ${
+          stage === "light_flash" ? "opacity-80" : "opacity-0"
         }`}
+        style={{ background: 'var(--bp-cyan)' }}
       />
 
       {/* ── STAGE 3: THE OUTBREAK INTELLIGENCE REPORT (REVEALED VIEW) ── */}
       <div
-        className={`absolute inset-0 overflow-y-auto z-30 transition-all duration-1000 ease-out flex flex-col bg-[#06060c] ${
+        className={`absolute inset-0 overflow-y-auto z-30 transition-all duration-1000 ease-out flex flex-col ${
           stage === "revealed" ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
         }`}
+        style={{ background: 'var(--bp-blue-dark)' }}
       >
         {/* Report Header Bar */}
-        <header className="sticky top-0 z-50 border-b border-[var(--border)] px-6 py-4 backdrop-blur-md bg-[#080812]/90 flex items-center justify-between">
+        <header className="sticky top-0 z-50 border-b border-[var(--bp-line-faint)] px-6 py-4 backdrop-blur-md flex items-center justify-between" style={{ background: 'rgba(0, 20, 40, 0.9)' }}>
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center text-lg bg-gradient-to-br from-rose-500 to-indigo-600 font-bold text-white shadow-lg">
+            <div className="w-9 h-9 border border-dashed border-[var(--bp-redline)] flex items-center justify-center text-lg font-bold" style={{ color: 'var(--bp-redline)' }}>
               ⚡
             </div>
             <div>
-              <h1 className="text-lg font-bold tracking-tight text-white flex items-center gap-2">
-                PREDICTOR Outbreak Intelligence Report
+              <h1 className="text-sm font-bold tracking-widest uppercase flex items-center gap-2" style={{ color: 'var(--bp-white-soft)' }}>
+                <span className="bp-serial">[RPT-001]</span> PREDICTOR Outbreak Intelligence Report
               </h1>
-              <p className="text-xs text-slate-400">Synthesized from Demographics, Satellite Climate Telemetry, & Historical Outbreaks</p>
+              <p className="text-[9px]" style={{ color: 'var(--bp-white-faint)' }}>Synthesized from Demographics, Satellite Climate Telemetry, &amp; Historical Outbreaks</p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition"
+            className="bp-btn text-[9px]"
           >
-            ✕ Close Report
+            ✕ CLOSE REPORT
           </button>
         </header>
 
@@ -215,23 +232,29 @@ export default function PredictorSimulation({
         <main className="flex-1 max-w-[1300px] mx-auto w-full px-4 sm:px-6 py-8 space-y-8">
           
           {/* Target Highlight Banner */}
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-6 rounded-2xl border border-rose-500/30 bg-gradient-to-r from-rose-950/40 via-indigo-950/20 to-slate-950 shadow-2xl">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <RiskBadge tier={report?.overall_risk_tier || "High"} size="lg" />
-                <span className="text-xs text-slate-400 font-mono">Target: {report?.district_name}, {report?.state}</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-                Projected {report?.disease.toUpperCase()} Outbreak Peak: {report?.peak_outbreak_week}
-              </h2>
-              <p className="text-sm text-slate-300 mt-1">
-                Predicted Peak Case Volume: <strong className="text-rose-400 font-mono text-base">{report?.peak_cases_predicted} cases</strong> ({((report?.population || 0) / 1000000).toFixed(1)}M Population Base)
-              </p>
+          <div className="blueprint-card p-6">
+            <div className="bp-corners">
+              <span className="corner-tr">+</span>
+              <span className="corner-bl">+</span>
             </div>
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <RiskBadge tier={report?.overall_risk_tier || "High"} size="lg" />
+                  <span className="bp-coord">Target: {report?.district_name}, {report?.state}</span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-wider" style={{ color: 'var(--bp-white-soft)' }}>
+                  Projected {report?.disease.toUpperCase()} Outbreak Peak: {report?.peak_outbreak_week}
+                </h2>
+                <p className="text-xs mt-1" style={{ color: 'var(--bp-white-muted)' }}>
+                  Predicted Peak Case Volume: <strong className="font-mono text-base" style={{ color: 'var(--bp-redline)' }}>{report?.peak_cases_predicted} cases</strong> ({((report?.population || 0) / 1000000).toFixed(1)}M Population Base)
+                </p>
+              </div>
 
-            <div className="p-4 rounded-xl border border-slate-800 bg-slate-900/60 text-xs font-mono space-y-1 shrink-0">
-              <p className="text-slate-400">Coordinates: <span className="text-indigo-300">{report?.where?.coordinates}</span></p>
-              <p className="text-slate-400">Satellite Quad: <span className="text-emerald-300">{report?.where?.satellite_boundary}</span></p>
+              <div className="p-4 border border-[var(--bp-line-faint)] text-[10px] font-mono space-y-1 shrink-0">
+                <p style={{ color: 'var(--bp-white-faint)' }}>Coordinates: <span style={{ color: 'var(--bp-cyan)' }}>{report?.where?.coordinates}</span></p>
+                <p style={{ color: 'var(--bp-white-faint)' }}>Satellite Quad: <span style={{ color: 'var(--bp-cyan)' }}>{report?.where?.satellite_boundary}</span></p>
+              </div>
             </div>
           </div>
 
@@ -239,58 +262,70 @@ export default function PredictorSimulation({
           <div className="grid lg:grid-cols-3 gap-6">
             
             {/* 1. WHERE */}
-            <div className="p-6 rounded-2xl border border-indigo-500/20 bg-[#0c0c16] flex flex-col justify-between space-y-4">
+            <div className="blueprint-card p-6 flex flex-col justify-between space-y-4">
+              <div className="bp-corners">
+                <span className="corner-tr">+</span>
+                <span className="corner-bl">+</span>
+              </div>
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="w-8 h-8 rounded-lg flex items-center justify-center bg-indigo-600/30 text-indigo-300 font-bold text-sm">📍</span>
-                  <h3 className="text-base font-bold uppercase tracking-wider text-white">1. WHERE Outbreak Will Strike</h3>
+                  <span className="w-8 h-8 border border-[var(--bp-cyan)] flex items-center justify-center text-sm" style={{ color: 'var(--bp-cyan)' }}>📍</span>
+                  <h3 className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--bp-white-soft)' }}>
+                    <span className="bp-serial">[SEC-01]</span> WHERE Outbreak Will Strike
+                  </h3>
                 </div>
 
-                <div className="space-y-3 text-xs">
-                  <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                    <p className="text-slate-400 mb-1 font-semibold">Location & Demographics</p>
-                    <p className="text-slate-200 font-bold text-sm">{report?.where?.location}</p>
-                    <p className="text-slate-400 mt-1">Census Population: {((report?.population || 0)).toLocaleString()}</p>
+                <div className="space-y-3 text-[10px]">
+                  <div className="p-3 border border-[var(--bp-line-faint)]">
+                    <p className="font-bold mb-1" style={{ color: 'var(--bp-white-muted)' }}>Location &amp; Demographics</p>
+                    <p className="font-bold text-xs" style={{ color: 'var(--bp-white-soft)' }}>{report?.where?.location}</p>
+                    <p className="mt-1" style={{ color: 'var(--bp-white-faint)' }}>Census Population: {((report?.population || 0)).toLocaleString()}</p>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                    <p className="text-slate-400 mb-1 font-semibold">Vulnerable Density Zones</p>
-                    <p className="text-slate-300 leading-relaxed">{report?.where?.vulnerable_zones}</p>
+                  <div className="p-3 border border-[var(--bp-line-faint)]">
+                    <p className="font-bold mb-1" style={{ color: 'var(--bp-white-muted)' }}>Vulnerable Density Zones</p>
+                    <p className="leading-relaxed" style={{ color: 'var(--bp-white-faint)' }}>{report?.where?.vulnerable_zones}</p>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                    <p className="text-slate-400 mb-1 font-semibold">Satellite Map Quadrant</p>
-                    <p className="text-emerald-400 font-mono">{report?.where?.satellite_boundary}</p>
+                  <div className="p-3 border border-[var(--bp-line-faint)]">
+                    <p className="font-bold mb-1" style={{ color: 'var(--bp-white-muted)' }}>Satellite Map Quadrant</p>
+                    <p className="font-mono" style={{ color: 'var(--bp-cyan)' }}>{report?.where?.satellite_boundary}</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* 2. WHY */}
-            <div className="p-6 rounded-2xl border border-purple-500/20 bg-[#0c0c16] flex flex-col justify-between space-y-4">
+            <div className="blueprint-card p-6 flex flex-col justify-between space-y-4">
+              <div className="bp-corners">
+                <span className="corner-tr">+</span>
+                <span className="corner-bl">+</span>
+              </div>
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="w-8 h-8 rounded-lg flex items-center justify-center bg-purple-600/30 text-purple-300 font-bold text-sm">🧪</span>
-                  <h3 className="text-base font-bold uppercase tracking-wider text-white">2. WHY Outbreak Triggers</h3>
+                  <span className="w-8 h-8 border border-[var(--bp-white-muted)] flex items-center justify-center text-sm" style={{ color: 'var(--bp-white-muted)' }}>🧪</span>
+                  <h3 className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--bp-white-soft)' }}>
+                    <span className="bp-serial">[SEC-02]</span> WHY Outbreak Triggers
+                  </h3>
                 </div>
 
-                <div className="space-y-3 text-xs">
-                  <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                    <p className="text-slate-400 mb-1 font-semibold">Primary Climate Telemetry Driver</p>
-                    <p className="text-amber-300 font-medium">{report?.why?.primary_climate_driver}</p>
+                <div className="space-y-3 text-[10px]">
+                  <div className="p-3 border border-[var(--bp-line-faint)]">
+                    <p className="font-bold mb-1" style={{ color: 'var(--bp-white-muted)' }}>Primary Climate Telemetry Driver</p>
+                    <p style={{ color: 'var(--bp-cyan)' }}>{report?.why?.primary_climate_driver}</p>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                    <p className="text-slate-400 mb-1 font-semibold">Historical Outbreak Correlation</p>
-                    <p className="text-purple-300 font-medium">{report?.why?.historical_outbreak_correlation}</p>
+                  <div className="p-3 border border-[var(--bp-line-faint)]">
+                    <p className="font-bold mb-1" style={{ color: 'var(--bp-white-muted)' }}>Historical Outbreak Correlation</p>
+                    <p style={{ color: 'var(--bp-white-muted)' }}>{report?.why?.historical_outbreak_correlation}</p>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
-                    <p className="text-slate-400 font-semibold mb-2">SHAP Environmental Feature Weights</p>
+                  <div className="p-3 border border-[var(--bp-line-faint)] space-y-1.5">
+                    <p className="font-bold mb-2" style={{ color: 'var(--bp-white-muted)' }}>SHAP Environmental Feature Weights</p>
                     {Object.entries(report?.why?.shap_attributions || {}).map(([key, val]) => (
                       <div key={key} className="flex items-center justify-between font-mono">
-                        <span className="text-slate-400">{key}</span>
-                        <span className="text-indigo-400 font-bold">{(val * 100).toFixed(0)}%</span>
+                        <span style={{ color: 'var(--bp-white-faint)' }}>{key}</span>
+                        <span className="font-bold" style={{ color: 'var(--bp-cyan)' }}>{(val * 100).toFixed(0)}%</span>
                       </div>
                     ))}
                   </div>
@@ -299,31 +334,37 @@ export default function PredictorSimulation({
             </div>
 
             {/* 3. HOW */}
-            <div className="p-6 rounded-2xl border border-pink-500/20 bg-[#0c0c16] flex flex-col justify-between space-y-4">
+            <div className="blueprint-card p-6 flex flex-col justify-between space-y-4">
+              <div className="bp-corners">
+                <span className="corner-tr">+</span>
+                <span className="corner-bl">+</span>
+              </div>
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="w-8 h-8 rounded-lg flex items-center justify-center bg-pink-600/30 text-pink-300 font-bold text-sm">🚑</span>
-                  <h3 className="text-base font-bold uppercase tracking-wider text-white">3. HOW & Recommended Action</h3>
+                  <span className="w-8 h-8 border border-[var(--bp-redline)] flex items-center justify-center text-sm" style={{ color: 'var(--bp-redline)' }}>🚑</span>
+                  <h3 className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--bp-white-soft)' }}>
+                    <span className="bp-serial">[SEC-03]</span> HOW &amp; Recommended Action
+                  </h3>
                 </div>
 
-                <div className="space-y-3 text-xs">
-                  <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                    <p className="text-slate-400 mb-1 font-semibold">Transmission Pathway</p>
-                    <p className="text-pink-300 font-medium">{report?.how?.transmission_pathway}</p>
+                <div className="space-y-3 text-[10px]">
+                  <div className="p-3 border border-[var(--bp-line-faint)]">
+                    <p className="font-bold mb-1" style={{ color: 'var(--bp-white-muted)' }}>Transmission Pathway</p>
+                    <p style={{ color: 'var(--bp-redline)' }}>{report?.how?.transmission_pathway}</p>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30">
-                    <p className="text-emerald-400 font-bold mb-1">Pre-Positioning Action Plan</p>
-                    <p className="text-slate-200 leading-relaxed">{report?.how?.recommended_action}</p>
+                  <div className="p-3 border border-[var(--bp-cyan-dim)]" style={{ background: 'rgba(0,255,255,0.03)' }}>
+                    <p className="font-bold mb-1" style={{ color: 'var(--bp-cyan)' }}>Pre-Positioning Action Plan</p>
+                    <p className="leading-relaxed" style={{ color: 'var(--bp-white-muted)' }}>{report?.how?.recommended_action}</p>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                    <p className="text-slate-400 mb-2 font-semibold">8-Week Projected Progression</p>
-                    <div className="space-y-1 font-mono text-[11px]">
+                  <div className="p-3 border border-[var(--bp-line-faint)]">
+                    <p className="font-bold mb-2" style={{ color: 'var(--bp-white-muted)' }}>8-Week Projected Progression</p>
+                    <div className="space-y-1 font-mono text-[10px]">
                       {report?.how?.progression_timeline?.map((pt, i) => (
-                        <div key={i} className="flex items-center justify-between py-0.5 border-b border-slate-800/60 last:border-none">
-                          <span className="text-slate-400">{pt.week_start}</span>
-                          <span className="text-rose-400 font-bold">{pt.cases} cases</span>
+                        <div key={i} className="flex items-center justify-between py-0.5 border-b border-[var(--bp-line-faint)] last:border-none">
+                          <span style={{ color: 'var(--bp-white-faint)' }}>{pt.week_start}</span>
+                          <span className="font-bold" style={{ color: 'var(--bp-redline)' }}>{pt.cases} cases</span>
                         </div>
                       ))}
                     </div>
@@ -341,21 +382,22 @@ export default function PredictorSimulation({
   );
 }
 
-function DataNode({ title, desc, color, active }: { title: string; desc: string; color: string; active: boolean }) {
+function DataNode({ title, desc, serial, active }: { title: string; desc: string; serial: string; active: boolean }) {
   return (
     <div
-      className={`p-3.5 rounded-2xl border transition-all duration-500 ${
+      className={`p-3.5 border transition-all duration-500 ${
         active
-          ? "bg-slate-900/90 border-slate-700 shadow-lg"
-          : "bg-slate-950/40 border-slate-900 opacity-40"
+          ? "border-[var(--bp-cyan-dim)]"
+          : "border-[var(--bp-line-faint)] opacity-40"
       }`}
       style={{
-        boxShadow: active ? `0 0 20px ${color}22` : "none",
-        borderColor: active ? color : undefined,
+        background: active ? 'rgba(0,255,255,0.03)' : 'transparent',
+        boxShadow: active ? '0 0 15px rgba(0,255,255,0.08)' : 'none',
       }}
     >
-      <p className="text-xs font-bold text-white mb-0.5">{title}</p>
-      <p className="text-[10px] text-slate-400 font-mono">{desc}</p>
+      <span className="bp-serial">[{serial}]</span>
+      <p className="text-[10px] font-bold mt-1" style={{ color: active ? 'var(--bp-white-soft)' : 'var(--bp-white-faint)' }}>{title}</p>
+      <p className="text-[9px] font-mono" style={{ color: 'var(--bp-white-faint)' }}>{desc}</p>
     </div>
   );
 }

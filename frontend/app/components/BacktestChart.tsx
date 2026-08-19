@@ -29,33 +29,34 @@ export default function BacktestChart({ weeks, actual, predicted }: BacktestChar
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={chartData} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
-          <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#94a3b8" }} />
-          <YAxis tick={{ fontSize: 11, fill: "#94a3b8" }} />
+          <XAxis dataKey="date" tick={{ fontSize: 10, fill: "rgba(255,255,255,0.4)", fontFamily: "'Roboto Mono', monospace" }} />
+          <YAxis tick={{ fontSize: 10, fill: "rgba(255,255,255,0.4)", fontFamily: "'Roboto Mono', monospace" }} />
           <Tooltip
             contentStyle={{
-              background: "#0f172a",
-              border: "1px solid #334155",
-              borderRadius: "12px",
-              color: "#f8fafc",
-              fontSize: "12px",
+              background: "#002244",
+              border: "1px solid rgba(255,255,255,0.15)",
+              borderRadius: "0px",
+              color: "rgba(255,255,255,0.85)",
+              fontSize: "11px",
+              fontFamily: "'Roboto Mono', monospace",
             }}
           />
-          <Legend wrapperStyle={{ paddingTop: "10px", fontSize: "12px" }} />
+          <Legend wrapperStyle={{ paddingTop: "10px", fontSize: "11px", fontFamily: "'Roboto Mono', monospace" }} />
           <Line
             type="monotone"
             dataKey="Actual"
-            stroke="#f43f5e"
-            strokeWidth={3}
-            dot={{ r: 4, fill: "#f43f5e" }}
-            activeDot={{ r: 6 }}
+            stroke="#FF3333"
+            strokeWidth={2}
+            dot={{ r: 3, fill: "#FF3333" }}
+            activeDot={{ r: 5 }}
           />
           <Line
             type="monotone"
             dataKey="Predicted"
-            stroke="#10b981"
-            strokeWidth={3}
+            stroke="#00FFFF"
+            strokeWidth={2}
             strokeDasharray="4 4"
-            dot={{ r: 4, fill: "#10b981" }}
+            dot={{ r: 3, fill: "#00FFFF" }}
           />
         </LineChart>
       </ResponsiveContainer>

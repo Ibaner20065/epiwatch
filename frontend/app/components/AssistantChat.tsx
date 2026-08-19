@@ -27,21 +27,21 @@ function renderFormattedMarkdown(text: string) {
     const formattedLine = parts.map((part, pIdx) => {
       if (part.startsWith("**") && part.endsWith("**") && part.length >= 4) {
         return (
-          <strong key={pIdx} className="font-bold text-white">
+          <strong key={pIdx} className="font-bold" style={{ color: 'var(--bp-white)' }}>
             {part.slice(2, -2)}
           </strong>
         );
       }
       if (part.startsWith("`") && part.endsWith("`") && part.length >= 2) {
         return (
-          <code key={pIdx} className="bg-slate-950 px-1.5 py-0.5 rounded text-indigo-300 font-mono text-[11px] border border-slate-800">
+          <code key={pIdx} className="px-1.5 py-0.5 font-mono text-[10px] border border-[var(--bp-line-faint)]" style={{ color: 'var(--bp-cyan)', background: 'rgba(0,20,40,0.5)' }}>
             {part.slice(1, -1)}
           </code>
         );
       }
       if (part.startsWith("_") && part.endsWith("_") && part.length >= 2) {
         return (
-          <em key={pIdx} className="italic text-slate-400">
+          <em key={pIdx} className="italic bp-note">
             {part.slice(1, -1)}
           </em>
         );
@@ -54,7 +54,7 @@ function renderFormattedMarkdown(text: string) {
     if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
       return (
         <div key={lineIdx} className="flex items-start gap-2 my-1 pl-1">
-          <span className="text-indigo-400 font-bold shrink-0">•</span>
+          <span className="font-bold shrink-0" style={{ color: 'var(--bp-cyan)' }}>+</span>
           <div className="flex-1">{formattedLine}</div>
         </div>
       );
@@ -105,12 +105,23 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
     setLoading(true);
 
     try {
-      // Try hitting backend API first, fallback to offline response generator
-      const res = await fetch("http://127.0.0.1:8000/assistant/query", {
+      // Build history payload
+      const historyPayload = messages.map((m) => ({
+        role: m.sender,
+        content: m.text,
+      }));
+
+      const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+      const res = await fetch(`${apiBase}/assistant/query`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: textToSend }),
+        body: JSON.stringify({ query: textToSend, history: historyPayload }),
+        signal: controller.signal,
       });
+      clearTimeout(timeoutId);
 
       if (res.ok) {
         const data = await res.json();
@@ -125,7 +136,7 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
           },
         ]);
       } else {
-        throw new Error("Backend offline");
+        throw new Error("Backend returned status " + res.status);
       }
     } catch (e) {
       // Show honest error — never fabricate data
@@ -145,18 +156,20 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
   };
 
   return (
-    <div className="fixed inset-y-0 right-0 z-50 w-full sm:w-[460px] bg-[#090912]/95 border-l border-slate-800 shadow-2xl backdrop-blur-xl flex flex-col font-sans text-slate-100">
+    <div className="fixed inset-y-0 right-0 z-50 w-full sm:w-[460px] border-l border-[var(--bp-line-faint)] shadow-2xl backdrop-blur-xl flex flex-col font-mono" style={{ background: 'rgba(0, 25, 50, 0.95)', color: 'var(--bp-white-soft)' }}>
       
       {/* Header */}
-      <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/60">
+      <div className="p-4 border-b border-[var(--bp-line-faint)] flex items-center justify-between" style={{ background: 'rgba(0, 20, 40, 0.8)' }}>
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-white shadow">
+          <div className="w-8 h-8 border border-dashed border-[var(--bp-cyan)] flex items-center justify-center font-bold text-sm" style={{ color: 'var(--bp-cyan)' }}>
             💬
           </div>
           <div>
-            <h3 className="text-sm font-bold text-white">EpiWatch Conversational AI</h3>
-            <p className="text-[10px] text-emerald-400 font-mono flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <h3 className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--bp-white-soft)' }}>
+              <span className="bp-serial">[AI-01]</span> EpiWatch AI
+            </h3>
+            <p className="text-[9px] font-mono flex items-center gap-1" style={{ color: 'var(--bp-cyan)' }}>
+              <span className="w-1.5 h-1.5 bg-[var(--bp-cyan)]" style={{ animation: 'bp-pulse 2s ease-in-out infinite' }} />
               Grounded Anti-Hallucination Guardrails
             </p>
           </div>
@@ -165,37 +178,38 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
         {onClose && (
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-white transition"
+            className="bp-btn text-[9px] px-2 py-1"
           >
-            ✕
+            ✕ CLOSE
           </button>
         )}
       </div>
 
       {/* Messages Scroll Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 text-[10px]">
         {messages.map((m) => (
           <div
             key={m.id}
             className={`flex flex-col ${m.sender === "user" ? "items-end" : "items-start"}`}
           >
             <div
-              className={`max-w-[88%] p-3.5 rounded-2xl leading-relaxed whitespace-pre-wrap ${
+              className={`max-w-[88%] p-3 leading-relaxed whitespace-pre-wrap ${
                 m.sender === "user"
-                  ? "bg-indigo-600 text-white rounded-br-none"
-                  : "bg-slate-900/90 border border-slate-800 text-slate-200 rounded-bl-none shadow-lg"
+                  ? "border border-[var(--bp-redline)] bg-[rgba(255,51,51,0.08)]"
+                  : "border border-[var(--bp-line-faint)] bg-[rgba(0,20,40,0.5)]"
               }`}
+              style={{ color: m.sender === "user" ? 'var(--bp-white-soft)' : 'var(--bp-white-muted)' }}
             >
               {renderFormattedMarkdown(m.text)}
 
               {/* Citations & Provenance Tags */}
               {m.citations && m.citations.length > 0 && (
-                <div className="mt-3 pt-2.5 border-t border-slate-800/80 space-y-1 text-[10px] font-mono">
-                  <p className="text-indigo-400 font-bold uppercase tracking-wider">Source Provenance Citations:</p>
+                <div className="mt-3 pt-2 border-t border-[var(--bp-line-faint)] space-y-1 text-[9px] font-mono">
+                  <p className="font-bold uppercase tracking-widest" style={{ color: 'var(--bp-cyan)' }}>Source Provenance Citations:</p>
                   {m.citations.map((c, idx) => (
-                    <div key={idx} className="p-1.5 rounded bg-slate-950/80 border border-slate-800 text-slate-400 flex flex-col">
-                      <span className="text-slate-200 font-semibold">📌 {c.source_label}</span>
-                      <span className="text-[9px] text-slate-500">{c.provenance}</span>
+                    <div key={idx} className="p-1.5 border border-[var(--bp-line-faint)] flex flex-col" style={{ background: 'rgba(0,15,30,0.5)' }}>
+                      <span className="font-bold" style={{ color: 'var(--bp-white-muted)' }}>📌 {c.source_label}</span>
+                      <span className="text-[8px]" style={{ color: 'var(--bp-white-faint)' }}>{c.provenance}</span>
                     </div>
                   ))}
                 </div>
@@ -205,21 +219,22 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
         ))}
 
         {loading && (
-          <div className="flex items-center gap-2 text-indigo-400 text-xs font-mono p-2">
-            <span className="animate-spin text-base">⚡</span> Running grounded tool queries...
+          <div className="flex items-center gap-2 text-[10px] font-mono p-2" style={{ color: 'var(--bp-cyan)' }}>
+            <span className="text-base" style={{ animation: 'bp-spin 2s linear infinite', display: 'inline-block' }}>⚡</span>
+            Running grounded tool queries...
           </div>
         )}
       </div>
 
       {/* Sample Prompt Pills */}
-      <div className="p-3 border-t border-slate-800/80 bg-slate-950/40">
-        <p className="text-[10px] uppercase font-bold text-slate-500 mb-1.5 tracking-wider">Suggested Questions:</p>
+      <div className="p-3 border-t border-[var(--bp-line-faint)]" style={{ background: 'rgba(0,15,30,0.5)' }}>
+        <p className="text-[9px] uppercase font-bold tracking-widest mb-1.5" style={{ color: 'var(--bp-white-faint)' }}>Suggested Queries:</p>
         <div className="flex flex-wrap gap-1.5">
           {samplePrompts.map((sp, i) => (
             <button
               key={i}
               onClick={() => handleSend(sp)}
-              className="px-2.5 py-1 rounded-lg text-[10px] bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition text-left"
+              className="px-2 py-1 text-[9px] border border-[var(--bp-line-faint)] hover:border-[var(--bp-cyan-dim)] transition text-left font-mono" style={{ color: 'var(--bp-white-muted)', background: 'transparent' }}
             >
               {sp}
             </button>
@@ -228,21 +243,22 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
       </div>
 
       {/* Input Box */}
-      <div className="p-3 border-t border-slate-800 bg-slate-900/80 flex items-center gap-2">
+      <div className="p-3 border-t border-[var(--bp-line-faint)] flex items-center gap-2" style={{ background: 'rgba(0,20,40,0.8)' }}>
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
-          placeholder="Ask about risk forecasts, climate drivers, or census demographics..."
-          className="flex-1 px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+          placeholder="Query risk forecasts, climate drivers, demographics..."
+          className="flex-1 px-3 py-2 border border-[var(--bp-line-faint)] text-[10px] font-mono focus:outline-none focus:border-[var(--bp-cyan)]"
+          style={{ background: 'rgba(0,15,30,0.5)', color: 'var(--bp-white-soft)' }}
         />
         <button
           onClick={() => handleSend()}
           disabled={loading}
-          className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-bold text-white text-xs shadow transition"
+          className="bp-btn bp-btn-active px-4 py-2 text-[10px]"
         >
-          Send
+          TRANSMIT
         </button>
       </div>
 

@@ -58,41 +58,47 @@ export default function AlertFeed() {
   }, []);
 
   return (
-    <div className="p-6 rounded-2xl border border-[var(--border)] bg-[#0d0d16]">
+    <div className="blueprint-card p-6">
+      <div className="bp-corners">
+        <span className="corner-tr">+</span>
+        <span className="corner-bl">+</span>
+      </div>
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300 flex items-center gap-2">
-            <span>🚨</span> Chronological Surveillance Alert Feed
+          <h3 className="text-[11px] font-bold uppercase tracking-widest flex items-center gap-2" style={{ color: 'var(--bp-white-soft)' }}>
+            <span className="bp-serial">[FEED-01]</span>
+            <span style={{ color: 'var(--bp-redline)' }}>🚨</span> Chronological Surveillance Alert Feed
           </h3>
-          <p className="text-xs text-slate-400">Real-time alerts triggered by climate anomalies & IDSP surveillance spikes</p>
+          <p className="text-[10px]" style={{ color: 'var(--bp-white-faint)' }}>Real-time alerts triggered by climate anomalies &amp; IDSP surveillance spikes</p>
         </div>
-        <span className="text-[10px] font-mono text-emerald-400 px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/30">
-          Live Stream Active
+        <span className="bp-coord px-2 py-1 border border-[var(--bp-cyan)] border-dashed text-[9px]">
+          ● LIVE STREAM ACTIVE
         </span>
       </div>
 
-      <div className="space-y-3">
-        {alerts.map((alert) => (
+      <div className="space-y-2">
+        {alerts.map((alert, idx) => (
           <div
             key={alert.id}
-            className="p-4 rounded-xl border border-slate-800 bg-slate-900/50 hover:bg-slate-900/80 transition flex flex-col md:flex-row md:items-center justify-between gap-4"
+            className="p-4 border border-[var(--bp-line-faint)] hover:border-[var(--bp-cyan-dim)] transition flex flex-col md:flex-row md:items-center justify-between gap-4"
           >
             <div className="space-y-1">
-              <div className="flex items-center gap-2 font-mono text-xs">
-                <span className="text-indigo-400 font-bold">{alert.timestamp}</span>
-                <span className="text-slate-600">•</span>
-                <span className="text-slate-300 font-semibold">{alert.district_name}, {alert.state}</span>
-                <span className="text-slate-600">•</span>
-                <span className="text-purple-300 uppercase">{alert.disease}</span>
+              <div className="flex items-center gap-2 font-mono text-[10px]">
+                <span className="bp-serial">[ALT-{String(idx + 1).padStart(2, '0')}]</span>
+                <span style={{ color: 'var(--bp-cyan)' }} className="font-bold">{alert.timestamp}</span>
+                <span style={{ color: 'var(--bp-white-faint)' }}>•</span>
+                <span style={{ color: 'var(--bp-white-soft)' }} className="font-bold">{alert.district_name}, {alert.state}</span>
+                <span style={{ color: 'var(--bp-white-faint)' }}>•</span>
+                <span className="uppercase" style={{ color: 'var(--bp-white-muted)' }}>{alert.disease}</span>
               </div>
-              <h4 className="text-sm font-bold text-slate-100">{alert.headline}</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">{alert.details}</p>
+              <h4 className="text-xs font-bold" style={{ color: 'var(--bp-white-soft)' }}>{alert.headline}</h4>
+              <p className="text-[10px] leading-relaxed" style={{ color: 'var(--bp-white-faint)' }}>{alert.details}</p>
             </div>
 
             <div className="flex items-center gap-3 shrink-0">
-              <div className="text-right font-mono text-[10px]">
-                <span className="text-slate-500 block">Trigger Source:</span>
-                <span className="text-slate-300">{alert.trigger_source}</span>
+              <div className="text-right font-mono text-[9px]">
+                <span className="block" style={{ color: 'var(--bp-white-faint)' }}>Trigger Source:</span>
+                <span style={{ color: 'var(--bp-white-muted)' }}>{alert.trigger_source}</span>
               </div>
               <RiskBadge tier={alert.severity} size="sm" />
             </div>

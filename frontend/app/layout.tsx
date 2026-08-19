@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Architects_Daughter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
+import BlueprintCursor from "@/app/components/BlueprintCursor";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const architectsDaughter = Architects_Daughter({
+  variable: "--font-architects",
   subsets: ["latin"],
+  weight: "400",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const robotoMono = Roboto_Mono({
+  variable: "--font-roboto-mono",
   subsets: ["latin"],
+  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -23,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${architectsDaughter.variable} ${robotoMono.variable} h-full`}
     >
       <head>
         <link
@@ -33,7 +36,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           crossOrigin=""
         />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <BlueprintCursor />
+      </body>
     </html>
   );
 }

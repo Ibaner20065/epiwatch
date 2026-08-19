@@ -15,22 +15,22 @@ interface IndiaMapProps {
 function getRiskColor(tier: string): string {
   switch (tier?.toLowerCase()) {
     case "critical":
-      return "#f43f5e";
+      return "#FF3333";
     case "high":
-      return "#fb923c";
+      return "#FFFFFFdd";
     case "medium":
-      return "#fbbf24";
+      return "#00FFFF";
     default:
-      return "#34d399";
+      return "rgba(255,255,255,0.4)";
   }
 }
 
 // Climate data color scale for district choropleth
 function getClimateColor(rainfall: number): string {
-  if (rainfall > 50) return "rgba(59, 130, 246, 0.35)";   // Heavy rain — blue
-  if (rainfall > 20) return "rgba(99, 102, 241, 0.25)";   // Moderate — indigo
-  if (rainfall > 5)  return "rgba(168, 85, 247, 0.2)";    // Light — purple
-  return "rgba(251, 191, 36, 0.15)";                       // Dry — amber
+  if (rainfall > 50) return "rgba(0, 255, 255, 0.25)";
+  if (rainfall > 20) return "rgba(0, 255, 255, 0.15)";
+  if (rainfall > 5)  return "rgba(255, 255, 255, 0.1)";
+  return "rgba(255, 255, 255, 0.05)";
 }
 
 export default function IndiaMap({ districts, predictions, selectedDisease }: IndiaMapProps) {
@@ -68,8 +68,8 @@ export default function IndiaMap({ districts, predictions, selectedDisease }: In
         minZoom={4}
         maxZoom={10}
         scrollWheelZoom={true}
-        className="h-[440px] w-full rounded-2xl border border-[var(--border)] overflow-hidden shadow-2xl z-0"
-        style={{ background: "#09090e" }}
+        className="h-[440px] w-full border border-[var(--bp-line-faint)] overflow-hidden z-0"
+        style={{ background: "var(--bp-blue-deep)" }}
       >
         <LayersControl position="topright">
           {/* ── Base Layers ── */}
@@ -150,7 +150,7 @@ export default function IndiaMap({ districts, predictions, selectedDisease }: In
           if (metricMode === "cases") {
             radius = Math.max(12, Math.min(32, (cases / 25) * 10));
           } else if (metricMode === "incidence") {
-            color = parseFloat(incidence) > 3 ? "#f43f5e" : parseFloat(incidence) > 1 ? "#fb923c" : "#34d399";
+            color = parseFloat(incidence) > 3 ? "#FF3333" : parseFloat(incidence) > 1 ? "#FFFFFFdd" : "#00FFFF";
           }
 
           return (
@@ -163,50 +163,50 @@ export default function IndiaMap({ districts, predictions, selectedDisease }: In
               }}
               pathOptions={{
                 fillColor: color,
-                fillOpacity: 0.6,
+                fillOpacity: 0.5,
                 color: color,
-                weight: 2,
-                opacity: 0.9,
+                weight: 1,
+                opacity: 0.8,
               }}
             >
               <Tooltip direction="top" offset={[0, -10]} className="!bg-transparent !border-none !shadow-none !p-0">
                 <div
                   style={{
-                    background: "#11111a",
-                    border: `1px solid ${color}`,
-                    borderRadius: 12,
+                    background: "#002244",
+                    border: "1px solid rgba(255,255,255,0.2)",
                     padding: "12px 16px",
-                    color: "#f0f0f5",
-                    fontSize: 12,
+                    color: "rgba(255,255,255,0.85)",
+                    fontSize: 11,
                     lineHeight: 1.6,
                     minWidth: 220,
-                    boxShadow: "0 8px 32px rgba(0,0,0,0.8)",
+                    fontFamily: "'Roboto Mono', monospace",
+                    boxShadow: "0 0 20px rgba(0,255,255,0.1)",
                   }}
                 >
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <strong className="text-sm text-white font-bold">{d.name}</strong>
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase" style={{ background: `${color}22`, color }}>
-                      {tier} Risk
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 8 }}>
+                    <strong style={{ fontSize: 12, color: "#fff" }}>{d.name}</strong>
+                    <span style={{ fontSize: 9, fontWeight: 700, padding: "2px 6px", border: `1px solid ${color}`, color, textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                      {tier} RISK
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs font-mono border-t border-[#222233] pt-2">
-                    <span style={{ color: "#8888a0" }}>State</span>
-                    <span className="text-right text-slate-300">{d.state}</span>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "2px 12px", fontSize: 10, borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 6 }}>
+                    <span style={{ color: "rgba(255,255,255,0.4)" }}>State</span>
+                    <span style={{ textAlign: "right" }}>{d.state}</span>
 
-                    <span style={{ color: "#8888a0" }}>Disease</span>
-                    <span className="text-right text-indigo-400 capitalize">{selectedDisease}</span>
+                    <span style={{ color: "rgba(255,255,255,0.4)" }}>Disease</span>
+                    <span style={{ textAlign: "right", color: "#00FFFF", textTransform: "capitalize" }}>{selectedDisease}</span>
 
-                    <span style={{ color: "#8888a0" }}>Est. Peak Cases</span>
-                    <span className="text-right font-bold text-emerald-400">{cases.toLocaleString()}</span>
+                    <span style={{ color: "rgba(255,255,255,0.4)" }}>Est. Peak Cases</span>
+                    <span style={{ textAlign: "right", fontWeight: 700, color: "#00FFFF" }}>{cases.toLocaleString()}</span>
 
-                    <span style={{ color: "#8888a0" }}>Incidence /100k</span>
-                    <span className="text-right text-amber-400">{incidence}</span>
+                    <span style={{ color: "rgba(255,255,255,0.4)" }}>Incidence /100k</span>
+                    <span style={{ textAlign: "right" }}>{incidence}</span>
 
-                    <span style={{ color: "#8888a0" }}>Population</span>
-                    <span className="text-right text-slate-400">{(d.population / 1000000).toFixed(1)}M</span>
+                    <span style={{ color: "rgba(255,255,255,0.4)" }}>Population</span>
+                    <span style={{ textAlign: "right", color: "rgba(255,255,255,0.5)" }}>{(d.population / 1000000).toFixed(1)}M</span>
                   </div>
-                  <div className="mt-2 text-[10px] text-center text-indigo-300 underline font-sans">
+                  <div style={{ marginTop: 8, fontSize: 9, textAlign: "center", color: "#00FFFF", borderTop: "1px dashed rgba(255,255,255,0.1)", paddingTop: 6 }}>
                     Click for Full Intelligence Panel →
                   </div>
                 </div>
@@ -217,30 +217,34 @@ export default function IndiaMap({ districts, predictions, selectedDisease }: In
       </MapContainer>
 
       {/* ── Custom Layer & Metric Mode Control Bar ── */}
-      <div className="absolute bottom-3 left-3 right-3 z-[1000] flex flex-wrap items-center justify-between gap-2 p-2 rounded-xl bg-slate-950/80 backdrop-blur-md border border-slate-800">
+      <div className="absolute bottom-3 left-3 right-3 z-[1000] flex flex-wrap items-center justify-between gap-2 p-2 border border-[var(--bp-line-faint)] backdrop-blur-md" style={{ background: 'rgba(0, 25, 50, 0.85)' }}>
         <div className="flex items-center gap-1">
-          <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mr-1">Display Metric:</span>
+          <span className="bp-serial mr-1">METRIC:</span>
           {(["risk", "cases", "incidence", "growth"] as const).map((m) => (
             <button
               key={m}
               onClick={() => setMetricMode(m)}
-              className={`px-2 py-1 rounded text-[10px] font-bold uppercase transition ${
-                metricMode === m ? "bg-indigo-600 text-white shadow" : "bg-slate-900 text-slate-400 hover:text-slate-200"
+              className={`px-2 py-1 text-[9px] font-bold uppercase tracking-wider transition font-mono border ${
+                metricMode === m
+                  ? "border-[var(--bp-cyan)] text-[var(--bp-cyan)] bg-[rgba(0,255,255,0.08)]"
+                  : "border-[var(--bp-line-faint)] text-[var(--bp-white-faint)] hover:text-[var(--bp-white-muted)]"
               }`}
             >
-              {m === "risk" ? "Tier" : m === "cases" ? "Cases" : m === "incidence" ? "Incidence" : "WoW Growth"}
+              {m === "risk" ? "TIER" : m === "cases" ? "CASES" : m === "incidence" ? "INCIDENCE" : "WoW GROWTH"}
             </button>
           ))}
         </div>
 
         <div className="flex items-center gap-1.5">
-          <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">Time Window:</span>
+          <span className="bp-serial">WINDOW:</span>
           {(["7D", "30D", "90D"] as const).map((w) => (
             <button
               key={w}
               onClick={() => setTimeWindow(w)}
-              className={`px-2 py-1 rounded text-[10px] font-mono transition ${
-                timeWindow === w ? "bg-purple-600 text-white" : "bg-slate-900 text-slate-400 hover:text-slate-200"
+              className={`px-2 py-1 text-[9px] font-mono transition border ${
+                timeWindow === w
+                  ? "border-[var(--bp-white-muted)] text-[var(--bp-white-soft)]"
+                  : "border-[var(--bp-line-faint)] text-[var(--bp-white-faint)] hover:text-[var(--bp-white-muted)]"
               }`}
             >
               {w}
@@ -248,15 +252,16 @@ export default function IndiaMap({ districts, predictions, selectedDisease }: In
           ))}
           <button
             onClick={() => setShowClimateOverlay(!showClimateOverlay)}
-            className={`px-2 py-1 rounded text-[10px] font-bold uppercase transition border ${
-              showClimateOverlay ? "bg-emerald-600 text-white border-emerald-400" : "bg-slate-900 text-slate-400 border-slate-800"
+            className={`px-2 py-1 text-[9px] font-bold uppercase transition border font-mono ${
+              showClimateOverlay
+                ? "border-[var(--bp-cyan)] text-[var(--bp-cyan)] bg-[rgba(0,255,255,0.08)]"
+                : "border-[var(--bp-line-faint)] text-[var(--bp-white-faint)]"
             }`}
           >
-            🌍 Climate
+            🌍 CLIMATE
           </button>
         </div>
       </div>
     </div>
   );
 }
-

@@ -85,9 +85,9 @@ export default function DistrictDetail() {
   const currentRisk = forecast.length > 0 ? forecast[0].risk_tier : "Low";
 
   function getInfluenceColor(pct: number): string {
-    if (pct >= 25) return "text-emerald-400";
-    if (pct >= 15) return "text-amber-400";
-    return "text-indigo-400";
+    if (pct >= 25) return "var(--bp-cyan)";
+    if (pct >= 15) return "var(--bp-white-soft)";
+    return "var(--bp-white-muted)";
   }
 
   function getInfluenceLabel(pct: number): string {
@@ -97,50 +97,52 @@ export default function DistrictDetail() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#07070b] text-slate-100">
+    <div className="flex flex-col min-h-screen text-[var(--bp-white-soft)] font-mono">
       {/* ── Header ────────────────────────────── */}
-      <header className="sticky top-0 z-50 glass-panel border-b border-[var(--border)] px-6 py-4 backdrop-blur-md bg-[#09090f]/80">
+      <header className="sticky top-0 z-50 glass-panel border-b border-[var(--bp-line-faint)] px-6 py-4 backdrop-blur-md" style={{ background: 'rgba(0, 30, 60, 0.9)' }}>
         <div className="max-w-[1400px] mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Link href="/" className="w-10 h-10 rounded-xl flex items-center justify-center text-lg bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">
+            <Link href="/" className="w-10 h-10 border border-[var(--bp-line-faint)] flex items-center justify-center text-lg hover:border-[var(--bp-cyan)] transition" style={{ color: 'var(--bp-white-soft)' }}>
               ←
             </Link>
             <div>
               <div className="flex items-center gap-3">
-                <h1 className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                <h1 className="text-sm font-bold tracking-widest uppercase flex items-center gap-2" style={{ color: 'var(--bp-white-soft)' }}>
+                  <span className="bp-serial">[DST-01]</span>
                   <select 
                     value={districtId}
                     onChange={(e) => setDistrictId(e.target.value)}
-                    className="bg-transparent border-none text-xl font-bold text-white focus:ring-0 cursor-pointer hover:text-indigo-300 transition-colors"
+                    className="bg-transparent border-none text-sm font-bold uppercase tracking-widest focus:ring-0 cursor-pointer hover:text-[var(--bp-cyan)] transition-colors font-mono"
+                    style={{ color: 'var(--bp-white-soft)' }}
                   >
                     {allDistricts.map(d => (
-                      <option key={d.id} value={d.id.toUpperCase()} className="bg-slate-900 text-sm">
+                      <option key={d.id} value={d.id.toUpperCase()} style={{ background: '#002244' }}>
                         {d.name}
                       </option>
                     ))}
                     {!allDistricts.find(d => d.id.toUpperCase() === districtId) && (
-                      <option value={districtId} className="bg-slate-900 text-sm">{district?.name || districtId}</option>
+                      <option value={districtId} style={{ background: '#002244' }}>{district?.name || districtId}</option>
                     )}
                   </select>
-                  Forecast
+                  FORECAST
                 </h1>
               </div>
-              <p className="text-xs text-slate-400 mt-1">{district?.state || "India"} • Pop: {((district?.population || 0) / 1000000).toFixed(1)}M</p>
+              <p className="text-[10px] mt-1" style={{ color: 'var(--bp-white-faint)' }}>{district?.state || "India"} • Pop: {((district?.population || 0) / 1000000).toFixed(1)}M</p>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <Link href={`/proof?district_id=${districtId}&disease=${disease}`} className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/30 transition">
-              🎯 Backtest Proof
+            <Link href={`/proof?district_id=${districtId}&disease=${disease}`} className="bp-btn bp-btn-active text-[9px]">
+              🎯 BACKTEST PROOF
             </Link>
             {["dengue", "malaria", "add"].map((dis) => (
               <button
                 key={dis}
                 onClick={() => setDisease(dis)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition border ${
+                className={`px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest transition border font-mono ${
                   disease === dis
-                    ? "bg-indigo-600 text-white border-indigo-400"
-                    : "bg-slate-900 text-slate-400 border-slate-800 hover:bg-slate-800"
+                    ? "border-[var(--bp-cyan)] text-[var(--bp-cyan)] bg-[rgba(0,255,255,0.08)]"
+                    : "border-[var(--bp-line-faint)] text-[var(--bp-white-faint)] hover:text-[var(--bp-white-muted)]"
                 }`}
               >
                 {dis}
@@ -154,49 +156,59 @@ export default function DistrictDetail() {
       <main className="flex-1 max-w-[1400px] mx-auto w-full px-4 sm:px-6 py-8 space-y-8">
         
         {/* District Summary Header with Provenance */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-6 rounded-2xl border border-slate-800 bg-[#0d0d16]">
-          <div>
-            <div className="flex items-center gap-3 mb-2">
-              <RiskBadge tier={currentRisk} size="lg" />
-              <span className="text-xs text-slate-400 font-mono">8-Week Horizon ({disease.toUpperCase()})</span>
-            </div>
-            <p className="text-sm text-slate-300">
-              Climate-corrected residual modeling incorporating NASA POWER rainfall, temperature, and historical IDSP surveillance baselines.
-            </p>
+        <div className="blueprint-card p-6">
+          <div className="bp-corners">
+            <span className="corner-tr">+</span>
+            <span className="corner-bl">+</span>
           </div>
-          <div className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 font-mono text-[10px] text-slate-400 space-y-0.5 shrink-0">
-            <p>Model: <span className="text-indigo-300">v2.0-comprehensive-hgb-xgb</span></p>
-            <p>Cutoff: <span className="text-emerald-400">Dec 2024</span></p>
-            <p>Evaluation: <span className="text-purple-300">Backtested (MAE 2.1-4.3)</span></p>
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <RiskBadge tier={currentRisk} size="lg" />
+                <span className="bp-coord">8-Week Horizon ({disease.toUpperCase()})</span>
+              </div>
+              <p className="text-[10px]" style={{ color: 'var(--bp-white-faint)' }}>
+                Climate-corrected residual modeling incorporating NASA POWER rainfall, temperature, and historical IDSP surveillance baselines.
+              </p>
+            </div>
+            <div className="px-3 py-2 border border-[var(--bp-line-faint)] font-mono text-[9px] space-y-0.5 shrink-0" style={{ color: 'var(--bp-white-faint)' }}>
+              <p>Model: <span style={{ color: 'var(--bp-cyan)' }}>v2.0-comprehensive-hgb-xgb</span></p>
+              <p>Cutoff: <span style={{ color: 'var(--bp-cyan)' }}>Dec 2024</span></p>
+              <p>Evaluation: <span style={{ color: 'var(--bp-white-muted)' }}>Backtested (MAE 2.1-4.3)</span></p>
+            </div>
           </div>
         </div>
 
         {/* 1. OBSERVED SURVEILLANCE BASELINE & 2. ENVIRONMENTAL CLIMATE SIGNALS */}
         <div className="grid lg:grid-cols-2 gap-6">
-          <div className="p-6 rounded-2xl border border-[var(--border)] bg-[#0d0d16]">
+          <div className="blueprint-card p-6">
+            <div className="bp-corners">
+              <span className="corner-tr">+</span>
+              <span className="corner-bl">+</span>
+            </div>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300">
-                1. Observed Surveillance Baseline (IDSP)
+              <h3 className="text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--bp-white-soft)' }}>
+                <span className="bp-serial">[SEC-01]</span> Observed Surveillance Baseline (IDSP)
               </h3>
-              <span className="text-[10px] font-mono text-slate-500">Source: `case_data` DB table</span>
+              <span className="bp-coord">Source: `case_data` DB table</span>
             </div>
             {loading ? (
-              <div className="h-[260px] flex items-center justify-center text-slate-500 text-xs">Loading historical data...</div>
+              <div className="h-[260px] flex items-center justify-center text-[10px]" style={{ color: 'var(--bp-white-faint)' }}>Loading historical data...</div>
             ) : history.length > 0 ? (
-              <div className="space-y-3 font-mono text-xs max-h-[260px] overflow-y-auto pr-1">
+              <div className="space-y-2 font-mono text-[10px] max-h-[260px] overflow-y-auto pr-1">
                 {history.slice(-10).map((h, i) => (
-                  <div key={i} className="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 border border-slate-800">
-                    <span className="text-slate-400">{h.week_start}</span>
-                    <span className="text-indigo-400 font-bold">{h.cases} cases</span>
-                    <span className="text-slate-500">{h.rainfall_mm ?? 0} mm rain</span>
+                  <div key={i} className="flex items-center justify-between p-2.5 border border-[var(--bp-line-faint)]">
+                    <span style={{ color: 'var(--bp-white-faint)' }}>{h.week_start}</span>
+                    <span className="font-bold" style={{ color: 'var(--bp-cyan)' }}>{h.cases} cases</span>
+                    <span style={{ color: 'var(--bp-white-faint)' }}>{h.rainfall_mm ?? 0} mm rain</span>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="h-[260px] flex flex-col items-center justify-center text-slate-500 text-xs gap-2">
+              <div className="h-[260px] flex flex-col items-center justify-center text-[10px] gap-2" style={{ color: 'var(--bp-white-faint)' }}>
                 <span className="text-2xl">📋</span>
-                <p className="font-semibold">No historical surveillance data available</p>
-                <p className="text-slate-600 text-center max-w-xs">
+                <p className="font-bold">No historical surveillance data available</p>
+                <p className="text-center max-w-xs">
                   {historyError
                     ? "Historical case data unavailable from API server."
                     : "No IDSP case records found for this district and disease combination."}
@@ -205,69 +217,78 @@ export default function DistrictDetail() {
             )}
           </div>
 
-          <div className="p-6 rounded-2xl border border-[var(--border)] bg-[#0d0d16] flex flex-col justify-between">
+          <div className="blueprint-card p-6 flex flex-col justify-between">
+            <div className="bp-corners">
+              <span className="corner-tr">+</span>
+              <span className="corner-bl">+</span>
+            </div>
             <div>
               <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300">
-                  2. Environmental Climate Drivers (NASA POWER)
+                <h3 className="text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--bp-white-soft)' }}>
+                  <span className="bp-serial">[SEC-02]</span> Environmental Climate Drivers (NASA POWER)
                 </h3>
-                <span className="text-[10px] font-mono text-slate-500">Model Inference (SHAP)</span>
+                <span className="bp-coord">Model Inference (SHAP)</span>
               </div>
-              <p className="text-xs text-slate-400 mb-4">
+              <p className="text-[10px] mb-4" style={{ color: 'var(--bp-white-faint)' }}>
                 SHAP feature attribution identifies top environmental indicators driving vector and waterborne transmission in {district?.name}.
               </p>
               
               {shapData && shapData.features.length > 0 ? (
-                <div className="space-y-2 text-xs">
+                <div className="space-y-2 text-[10px]">
                   {shapData.features.slice(0, 4).map((feat, i) => (
                     <div
                       key={feat.feature}
-                      className={`flex items-center justify-between p-2.5 rounded-lg border ${
+                      className={`flex items-center justify-between p-2.5 border ${
                         i === 0
-                          ? "bg-indigo-950/30 border-indigo-500/20"
-                          : "bg-slate-900 border-slate-800"
+                          ? "border-[var(--bp-cyan-dim)]"
+                          : "border-[var(--bp-line-faint)]"
                       }`}
+                      style={i === 0 ? { background: 'rgba(0,255,255,0.03)' } : {}}
                     >
-                      <span>{feat.label}</span>
-                      <span className={`font-mono ${getInfluenceColor(feat.percentage)}`}>
+                      <span style={{ color: 'var(--bp-white-muted)' }}>{feat.label}</span>
+                      <span className="font-mono font-bold" style={{ color: getInfluenceColor(feat.percentage) }}>
                         {getInfluenceLabel(feat.percentage)} (+{feat.percentage}%)
                       </span>
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="flex flex-col items-center justify-center h-[140px] text-slate-500 text-xs gap-2">
+                <div className="flex flex-col items-center justify-center h-[140px] text-[10px] gap-2" style={{ color: 'var(--bp-white-faint)' }}>
                   <span className="text-2xl">🧪</span>
-                  <p className="font-semibold">SHAP feature data unavailable</p>
-                  <p className="text-slate-600 text-center">Ensure backend API is running to load feature attributions.</p>
+                  <p className="font-bold">SHAP feature data unavailable</p>
+                  <p className="text-center">Ensure backend API is running to load feature attributions.</p>
                 </div>
               )}
             </div>
 
-            <div className="mt-4 pt-4 border-t border-slate-800 text-[10px] font-mono text-slate-500">
+            <div className="mt-4 pt-4 border-t border-[var(--bp-line-faint)] text-[9px] font-mono" style={{ color: 'var(--bp-white-faint)' }}>
               Source: NASA POWER API • Telemetry lag window: 2 weeks
             </div>
           </div>
         </div>
 
         {/* 3. ML MODEL FORECAST (8-WEEK PROJECTION CHART) */}
-        <div className="p-6 rounded-2xl border border-[var(--border)] bg-[#0d0d16]">
+        <div className="blueprint-card p-6">
+          <div className="bp-corners">
+            <span className="corner-tr">+</span>
+            <span className="corner-bl">+</span>
+          </div>
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300">
-                3. ML Outbreak Forecast Matrix (8-Week Bounded Horizon)
+              <h3 className="text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--bp-white-soft)' }}>
+                <span className="bp-serial">[SEC-03]</span> ML Outbreak Forecast Matrix (8-Week Bounded Horizon)
               </h3>
-              <p className="text-xs text-slate-400">Confidence interval bounded by model variance.</p>
+              <p className="text-[10px]" style={{ color: 'var(--bp-white-faint)' }}>Confidence interval bounded by model variance.</p>
             </div>
-            <span className="text-xs text-indigo-400 font-mono">Model Version: v2.0-comprehensive-hgb-xgb</span>
+            <span className="bp-coord">Model: v2.0-comprehensive-hgb-xgb</span>
           </div>
 
           {loading ? (
-            <div className="h-[320px] flex items-center justify-center text-slate-500">Loading forecast...</div>
+            <div className="h-[320px] flex items-center justify-center" style={{ color: 'var(--bp-white-faint)' }}>Loading forecast...</div>
           ) : forecast.length > 0 ? (
             <ForecastChart data={forecast} />
           ) : (
-            <div className="h-[320px] flex items-center justify-center text-slate-500">No predictions recorded for these parameters.</div>
+            <div className="h-[320px] flex items-center justify-center" style={{ color: 'var(--bp-white-faint)' }}>No predictions recorded for these parameters.</div>
           )}
         </div>
 
@@ -287,4 +308,3 @@ export default function DistrictDetail() {
     </div>
   );
 }
-
