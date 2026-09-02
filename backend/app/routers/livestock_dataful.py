@@ -8,6 +8,7 @@ model evaluation metrics, and clinical symptom triage.
 import os
 import json
 import pickle
+import pandas as pd
 from typing import Optional, List, Dict, Any
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel
@@ -184,3 +185,71 @@ def symptom_triage_inference(symptoms: str = Query(..., description="Comma-separ
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Inference error: {str(e)}")
+
+
+# ── Maharashtra 19th Livestock Census Endpoints ────────────────────
+
+@router.get("/census/summary")
+def get_maharashtra_census_summary():
+    """Returns aggregated state-level totals from the 19th Livestock & Poultry Census."""
+    summary_path = os.path.join(PROCESSED_DIR, "maharashtra_district_livestock_census_summary.json")
+    data = _load_json(summary_path)
+    if not data:
+        raise HTTPException(status_code=404, detail="Census summary data not found")
+
+    total_cattle = sum(d.get("cattle_total", 0) for d in data.values())
+    total_cattle_exotic = sum(d.get("cattle_exotic", 0) for d in data.values())
+    total_cattle_indigenous = sum(d.get("cattle_indigenous", 0) for d in data.values())
+    total_buffaloes = sum(d.get("buffaloes_total", 0) for d in data.values())
+    total_sheep = sum(d.get("sheep_total", 0) for d in data.values())
+    total_goats = sum(d.get("goats_total", 0) for d in data.values())
+    total_pigs = sum(d.get("pigs_total", 0) for d in data.values())
+    total_livestock = sum(d.get("total_livestock", 0) for d in data.values())
+    total_poultry = sum(d.get("total_poultry_birds", 0) for d in data.values())
+    total_tehsils = sum(d.get("total_tehsils", 0) for d in data.values())
+
+    return {
+        "state": "Maharashtra",
+        "census_edition": "19th Livestock & Poultry Census (Tehsilwise)",
+        "total_districts": len(data),
+        "total_tehsils": total_tehsils,
+        "total_livestock": total_livestock,
+        "cattle_total": total_cattle,
+        "cattle_exotic_crossbred": total_cattle_exotic,
+        "cattle_indigenous": total_cattle_indigenous,
+        "buffaloes_total": total_buffaloes,
+        "sheep_total": total_sheep,
+        "goats_total": total_goats,
+        "pigs_total": total_pigs,
+        "total_poultry_birds": total_poultry,
+    }
+
+
+@router.get("/census/districts")
+def get_maharashtra_census_districts():
+    """Returns district-level livestock & poultry census profiles."""
+    summary_path = os.path.join(PROCESSED_DIR, "maharashtra_district_livestock_census_summary.json")
+    data = _load_json(summary_path)
+    if not data:
+        raise HTTPException(status_code=404, detail="Census summary data not found")
+    return list(data.values())
+
+
+@router.get("/census/tehsils")
+def get_maharashtra_census_tehsils(
+    district_id: Optional[str] = Query(None, description="Filter by district ID e.g. PUNE, AHMEDNAGAR"),
+    district_name: Optional[str] = Query(None, description="Filter by district name e.g. Pune, Nashik")
+):
+    """Returns tehsil-level livestock & poultry census breakdown."""
+    tehsil_csv = os.path.join(PROCESSED_DIR, "maharashtra_tehsil_livestock_census.csv")
+    if not os.path.exists(tehsil_csv):
+        raise HTTPException(status_code=404, detail="Tehsil census data not found")
+
+    df = pd.read_csv(tehsil_csv)
+    if district_id:
+        df = df[df["district_id"] == district_id.upper().strip()]
+    elif district_name:
+        df = df[df["district_name"].str.lower() == district_name.lower().strip()]
+
+    return df.to_dict(orient="records")
+

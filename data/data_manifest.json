@@ -100,7 +100,22 @@
       "size_bytes": 23697,
       "modified": "2026-09-02T14:06:13.470436",
       "sha256": "293ea8a3fc90d193aa66780e655483351264c7c546f43ce8440dc711e781f5fd"
+    },
+    "data\\raw\\census\\maharashtra_19th_livestock_poultry_census_tehsilwise.csv": {
+      "size_bytes": 46669,
+      "modified": "2026-09-02T16:02:39.862020",
+      "sha256": "cc0a346dbcaafe125852b3a8dd25f3600d2fddcfc5691a9155d9dca08660fc07"
+    },
+    "data\\processed\\maharashtra_tehsil_livestock_census.csv": {
+      "size_bytes": 50658,
+      "modified": "2026-09-02T16:06:40.156815",
+      "sha256": "cf6aeb3ef1a971e62875d1545e86a212c22491114ba336dfca3ee96c9459741c"
+    },
+    "data\\processed\\maharashtra_district_livestock_census_summary.json": {
+      "size_bytes": 24195,
+      "modified": "2026-09-02T16:06:40.171319",
+      "sha256": "a5e647237be49b6851599663496181057f616d6d576d77e5fcdf3bc69b0a85e3"
     }
   },
-  "last_updated": "2026-09-02T08:36:13.529226"
+  "last_updated": "2026-09-02T16:06:40.205862"
 }

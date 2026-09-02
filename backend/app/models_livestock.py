@@ -292,3 +292,44 @@ class LivestockAdvisory(Base):
     issued_at = Column(DateTime, nullable=False)
     valid_until = Column(Date, nullable=True)
     target_audience = Column(String, default="all")  # farmer|para_vet|official|all
+
+
+# ── Maharashtra Tehsil Census ──────────────────────────────────────
+
+class MaharashtraTehsilCensus(Base):
+    """Tehsil/Block-level 19th Livestock & Poultry Census for Maharashtra."""
+    __tablename__ = "maharashtra_tehsil_livestock_census"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    sr_no = Column(Integer, nullable=True)
+    district_name = Column(String, nullable=False, index=True)
+    district_id = Column(String, ForeignKey("livestock_districts.id"), nullable=True, index=True)
+    tehsil_name = Column(String, nullable=False, index=True)
+    cattle_exotic = Column(Integer, default=0)
+    cattle_indigenous = Column(Integer, default=0)
+    cattle_total = Column(Integer, default=0)
+    buffaloes_total = Column(Integer, default=0)
+    sheep_exotic = Column(Integer, default=0)
+    sheep_indigenous = Column(Integer, default=0)
+    sheep_total = Column(Integer, default=0)
+    goats_total = Column(Integer, default=0)
+    pigs_exotic = Column(Integer, default=0)
+    pigs_indigenous = Column(Integer, default=0)
+    pigs_total = Column(Integer, default=0)
+    horses_ponies_total = Column(Integer, default=0)
+    mules_total = Column(Integer, default=0)
+    donkeys_total = Column(Integer, default=0)
+    camels_total = Column(Integer, default=0)
+    total_livestock = Column(Integer, default=0)
+    dogs_total = Column(Integer, default=0)
+    rabbits_total = Column(Integer, default=0)
+    elephants_total = Column(Integer, default=0)
+    poultry_fowls = Column(Integer, default=0)
+    poultry_ducks = Column(Integer, default=0)
+    poultry_turkeys = Column(Integer, default=0)
+    poultry_quails = Column(Integer, default=0)
+    poultry_other = Column(Integer, default=0)
+    poultry_backyard_total = Column(Integer, default=0)
+    poultry_commercial_total = Column(Integer, default=0)
+    total_poultry_birds = Column(Integer, default=0)
+
