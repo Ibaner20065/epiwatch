@@ -149,8 +149,8 @@ def create_supabase_livestock_tables():
             CREATE TABLE IF NOT EXISTS lab_samples (
                 id SERIAL PRIMARY KEY,
                 sample_id VARCHAR UNIQUE NOT NULL,
-                report_id VARCHAR,
-                animal_id VARCHAR,
+                report_id VARCHAR REFERENCES symptom_reports(report_id) ON DELETE SET NULL,
+                animal_id VARCHAR REFERENCES animal_records(animal_id) ON DELETE SET NULL,
                 sample_type VARCHAR NOT NULL,
                 species VARCHAR,
                 suspected_disease VARCHAR,
@@ -162,7 +162,7 @@ def create_supabase_livestock_tables():
                 result VARCHAR,
                 pathogen_identified VARCHAR,
                 result_date TIMESTAMP,
-                district_id VARCHAR,
+                district_id VARCHAR REFERENCES livestock_districts(id) ON DELETE SET NULL,
                 block VARCHAR,
                 notes TEXT
             );
@@ -176,7 +176,7 @@ def create_supabase_livestock_tables():
                 alert_type VARCHAR NOT NULL,
                 severity VARCHAR DEFAULT 'watch',
                 status VARCHAR DEFAULT 'active',
-                district_id VARCHAR REFERENCES livestock_districts(id),
+                district_id VARCHAR REFERENCES livestock_districts(id) ON DELETE CASCADE,
                 block VARCHAR,
                 village VARCHAR,
                 disease VARCHAR,
@@ -184,7 +184,7 @@ def create_supabase_livestock_tables():
                 message_en TEXT NOT NULL,
                 message_hi TEXT,
                 message_mr TEXT,
-                triggered_by_report_id VARCHAR,
+                triggered_by_report_id VARCHAR REFERENCES symptom_reports(report_id) ON DELETE SET NULL,
                 triggered_at TIMESTAMP NOT NULL,
                 acknowledged_by VARCHAR,
                 acknowledged_at TIMESTAMP,
