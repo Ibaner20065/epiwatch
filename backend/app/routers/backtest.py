@@ -7,7 +7,11 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import HistGradientBoostingRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
-import xgboost as xgb
+try:
+    import xgboost as xgb
+    HAS_XGB = True
+except ImportError:
+    HAS_XGB = False
 
 from ..db import engine
 from ..models import BacktestEvent, BacktestRun
@@ -125,7 +129,10 @@ def compute_backtest(district_id: str, disease: str) -> dict:
     train_feats["rainfall_lag2"] = train_feats["rainfall_mm"].shift(2).fillna(0)
     train_feats["temp_max_lag1"] = train_feats["temp_max_c"].shift(1).fillna(train_feats["temp_max_c"].mean())
     train_feats["humidity_lag1"] = train_feats["humidity_pct"].shift(1).fillna(train_feats["humidity_pct"].mean())
-    xgb_model = xgb.XGBRegressor(n_estimators=80, learning_rate=0.05, max_depth=4, random_state=42)
+    if HAS_XGB:
+        xgb_model = xgb.XGBRegressor(n_estimators=80, learning_rate=0.05, max_depth=4, random_state=42)
+    else:
+        xgb_model = HistGradientBoostingRegressor(max_iter=80, learning_rate=0.05, max_depth=4, random_state=42)
     xgb_model.fit(train_feats[CLIMATE_FEATS], residuals)
 
     # ---- Recursive forward simulation over the held-out weeks ----

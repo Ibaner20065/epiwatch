@@ -75,6 +75,32 @@
       "size_bytes": 1603,
       "modified": "2026-08-09T04:14:47.038729",
       "sha256": "e8542bda4f2b99d13130d84dba872c9ca88bc665d3b10f09d958dd8c02daf5b8"
+    },
+    "data\\raw\\dataful\\metadata.csv": {
+      "size_bytes": 508,
+      "modified": "2026-09-02T13:34:03.158295",
+      "sha256": "07d3035094685633a5242af7f8762c9e682cbd46dae1a48111c06e091caa783a"
+    },
+    "data\\raw\\dataful\\state-wise-incidence-of-livestock-diseases-in-india.csv": {
+      "size_bytes": 71431,
+      "modified": "2026-09-02T13:34:03.181296",
+      "sha256": "a04ab2a55aeb66c964a82957a42c5fc356133bc38d71d15bc294608fdea138d6"
+    },
+    "data\\raw\\healthcare\\symptom_disease_dataset.csv": {
+      "size_bytes": 65570,
+      "modified": "2026-08-09T05:16:48.159392",
+      "sha256": "9669a594d46a805f45d61cd093fc912a8a0808e22f87d1f0d637199c5cdb7bd1"
+    },
+    "data\\processed\\dataful_livestock_annual.csv": {
+      "size_bytes": 37266,
+      "modified": "2026-09-02T14:06:13.440101",
+      "sha256": "39192f6115fe72ea8d3d8186ff39e7bca52423a05287853c6215d8d01fc29f66"
+    },
+    "data\\processed\\dataful_disease_summary.json": {
+      "size_bytes": 23697,
+      "modified": "2026-09-02T14:06:13.470436",
+      "sha256": "293ea8a3fc90d193aa66780e655483351264c7c546f43ce8440dc711e781f5fd"
     }
-  }
+  },
+  "last_updated": "2026-09-02T08:36:13.529226"
 }

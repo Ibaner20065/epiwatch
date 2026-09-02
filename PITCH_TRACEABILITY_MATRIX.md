@@ -75,6 +75,20 @@ to file path, run the verification command, and confirm independently.
 
 ---
 
+## OA Early-Detection Screening Claims (SIH26004)
+
+| # | Spoken Claim | Artifact Pointer | Verification |
+|---|-------------|------------------|--------------|
+| O1 | "ML classifier for OA risk with AUC 0.96" | `ml/oa/results/oa_metrics.json` | `type ml\oa\results\oa_metrics.json` → `"roc_auc": 0.9605` |
+| O2 | "Synthetic OA screening dataset of 5,000 patients" | `data/processed/oa/oa_screening_synthetic.csv` | `python -c "import pandas as pd; print(pd.read_csv('data/processed/oa/oa_screening_synthetic.csv').shape)"` → `(5000, 25)` |
+| O3 | "SHAP-grounded top risk factors surfaced per screening" | `ml/oa/results/oa_feature_importance.json` | Morning stiffness, WOMAC stiffness, crepitus, WOMAC pain, age are top drivers |
+| O4 | "Screening API with offline clinical-rules fallback" | `backend/app/routers/oa.py`, `frontend/lib/oa-api.ts` | POST `/oa/screening` returns tier even when DB unreachable (`UNSAVED-OFFLINE`) |
+| O5 | "GRADIENT DESCENT: four risk tiers (Low/Medium/High/Critical)" | `ml/oa/results/oa_tier_thresholds.json` | Probability/tier thresholds persisted & used by `oa_engine._tier_from_probability()` |
+| O6 | "Multilingual screening UI (English, Hindi, Bengali, Assamese)" | `frontend/lib/oa-i18n.ts`, `frontend/app/oa/page.tsx` | Language toggle re-renders all labels for NER languages |
+| O7 | "Assistant explains OA risk with model + clinical grounding" | `backend/app/routers/assistant.py` (OA tools) | OA intent query returns AUC, top SHAP drivers, and clinical rule citations |
+
+---
+
 ## Quick Reference: File Inventory
 
 ```
@@ -112,4 +126,16 @@ epiwatch/
     app/methodology/                         # Model methodology page
     app/world/                               # World context page
     public/data/*.json                       # 6 static fallback files
+  ml/oa/
+    synthesize_oa_data.py                    # Synthetic OA screening data generator
+    train_oa_model.py                        # OA classifier training (GB + LogReg)
+    models/oa_gb.pkl                         # OA GradientBoosting classifier
+    results/oa_metrics.json                  # OA classifier metrics (AUC 0.96)
+    results/oa_tier_thresholds.json          # Risk tier cutoffs
+  backend/app/oa_engine.py                   # OA risk-scoring engine
+  backend/app/routers/oa.py                  # OA screening endpoints
+  frontend/app/oa/page.tsx                   # OA screening dashboard
+  frontend/lib/oa-api.ts                     # OA API client + offline fallback
+  frontend/lib/oa-i18n.ts                    # Multilingual labels (en/hi/bn/as)
+  frontend/public/data/oa_static.json        # OA offline static data
 ```

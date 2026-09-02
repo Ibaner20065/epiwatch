@@ -1,0 +1,79 @@
+{
+  "total_training_samples": 517,
+  "total_disease_classes": 649,
+  "severity_classes": [
+    "Mild",
+    "Moderate",
+    "Severe"
+  ],
+  "severity_test_accuracy": 0.5,
+  "severity_test_f1": 0.404,
+  "sample_inferences": [
+    {
+      "symptom_input": "Fever and skin rash with joint pain",
+      "predicted_severity": "Moderate",
+      "top_suspected_diseases": [
+        {
+          "disease": "Chikungunya",
+          "confidence": 0.24
+        },
+        {
+          "disease": "Dengue",
+          "confidence": 0.22
+        },
+        {
+          "disease": "Measles",
+          "confidence": 0.2
+        },
+        {
+          "disease": "Allergic dermatitis",
+          "confidence": 0.2
+        }
+      ]
+    },
+    {
+      "symptom_input": "Difficulty breathing and chest pain",
+      "predicted_severity": "Moderate",
+      "top_suspected_diseases": [
+        {
+          "disease": "Pneumonia",
+          "confidence": 0.34
+        },
+        {
+          "disease": "Angina",
+          "confidence": 0.19
+        },
+        {
+          "disease": "Pericarditis",
+          "confidence": 0.16
+        },
+        {
+          "disease": "Pleurisy",
+          "confidence": 0.16
+        }
+      ]
+    },
+    {
+      "symptom_input": "Persistent cough and fatigue",
+      "predicted_severity": "Moderate",
+      "top_suspected_diseases": [
+        {
+          "disease": "Bronchitis",
+          "confidence": 0.54
+        },
+        {
+          "disease": "Tuberculosis",
+          "confidence": 0.51
+        },
+        {
+          "disease": "COVID-19",
+          "confidence": 0.48
+        },
+        {
+          "disease": "Hypothyroidism",
+          "confidence": 0.09
+        }
+      ]
+    }
+  ]
+}

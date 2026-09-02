@@ -1,0 +1,31 @@
+{
+  "regions": [
+    { "code": "AS-KAMRUP", "name": "Kamrup (Metro)", "state": "Assam", "language": "as" },
+    { "code": "AS-GOLAGHAT", "name": "Golaghat", "state": "Assam", "language": "as" },
+    { "code": "AS-DIBRUGARH", "name": "Dibrugarh", "state": "Assam", "language": "as" },
+    { "code": "AS-SONITPUR", "name": "Sonitpur", "state": "Assam", "language": "as" },
+    { "code": "TL-AGARTALA", "name": "Agartala", "state": "Tripura", "language": "bn" },
+    { "code": "MZ-AIZAWL", "name": "Aizawl", "state": "Mizoram", "language": "hi" },
+    { "code": "NL-MOKOKCHUNG", "name": "Mokokchung", "state": "Nagaland", "language": "en" },
+    { "code": "MN-UKHRUL", "name": "Ukhrul", "state": "Manipur", "language": "en" }
+  ],
+  "languages": [
+    { "code": "as", "name": "অসমীয়া", "name_en": "Assamese" },
+    { "code": "bn", "name": "বাংলা", "name_en": "Bengali" },
+    { "code": "hi", "name": "हिन्दी", "name_en": "Hindi" },
+    { "code": "en", "name": "English", "name_en": "English" }
+  ],
+  "model": {
+    "available": true,
+    "metrics": {
+      "gradient_boosting": { "roc_auc": 0.9605, "accuracy": 0.9592, "precision": 0.8868, "recall": 0.7068, "f1": 0.7866 },
+      "logistic_baseline": { "roc_auc": 0.9801, "accuracy": 0.964, "precision": 0.8729, "recall": 0.7744, "f1": 0.8207 }
+    }
+  },
+  "clinical_rules": [
+    { "tier": "Critical", "hint": "score >= 10", "example": "Age>=60 + obesity + high-load occupation + prior injury + severe symptoms" },
+    { "tier": "High", "hint": "score 7-9", "example": "Age>=50 + overweight + female + morning stiffness >= 30 min" },
+    { "tier": "Medium", "hint": "score 4-6", "example": "Overweight + family history + moderate WOMAC" },
+    { "tier": "Low", "hint": "score < 4", "example": "Younger, normal BMI, low symptom burden" }
+  ]
+}

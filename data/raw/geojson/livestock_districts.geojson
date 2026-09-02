@@ -1,0 +1,158 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "PUNE",
+        "district_name": "Pune",
+        "state": "Maharashtra",
+        "division": "Pune",
+        "cattle": 412000,
+        "buffalo": 298000,
+        "goat": 185000,
+        "poultry": 2100000
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.3, 18.1], [74.3, 18.0], [74.5, 18.8], [73.9, 19.2], [73.4, 18.8], [73.3, 18.1]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "AHMEDNAGAR",
+        "district_name": "Ahmednagar",
+        "state": "Maharashtra",
+        "division": "Nashik",
+        "cattle": 685000,
+        "buffalo": 520000,
+        "goat": 310000,
+        "poultry": 890000
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[74.0, 18.7], [75.3, 18.8], [75.5, 19.5], [74.5, 19.9], [73.8, 19.4], [74.0, 18.7]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "NASHIK",
+        "district_name": "Nashik",
+        "state": "Maharashtra",
+        "division": "Nashik",
+        "cattle": 498000,
+        "buffalo": 380000,
+        "goat": 270000,
+        "poultry": 1500000
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.3, 19.5], [74.6, 19.7], [74.8, 20.6], [73.7, 20.7], [73.3, 19.5]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "KOLHAPUR",
+        "district_name": "Kolhapur",
+        "state": "Maharashtra",
+        "division": "Kolhapur",
+        "cattle": 520000,
+        "buffalo": 445000,
+        "goat": 195000,
+        "poultry": 3200000
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.7, 16.2], [74.6, 16.3], [74.7, 17.1], [73.9, 17.0], [73.7, 16.2]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "SANGLI",
+        "district_name": "Sangli",
+        "state": "Maharashtra",
+        "division": "Kolhapur",
+        "cattle": 390000,
+        "buffalo": 310000,
+        "goat": 260000,
+        "poultry": 980000
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[74.0, 16.8], [75.4, 16.8], [75.3, 17.4], [74.1, 17.3], [74.0, 16.8]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "SOLAPUR",
+        "district_name": "Solapur",
+        "state": "Maharashtra",
+        "division": "Pune",
+        "cattle": 445000,
+        "buffalo": 285000,
+        "goat": 380000,
+        "poultry": 750000
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[75.0, 17.2], [76.4, 17.4], [76.3, 18.2], [74.8, 18.0], [75.0, 17.2]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "NAGPUR",
+        "district_name": "Nagpur",
+        "state": "Maharashtra",
+        "division": "Nagpur",
+        "cattle": 365000,
+        "buffalo": 270000,
+        "goat": 190000,
+        "poultry": 1200000
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[78.5, 20.6], [79.6, 20.7], [79.7, 21.6], [78.6, 21.5], [78.5, 20.6]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "LATUR",
+        "district_name": "Latur",
+        "state": "Maharashtra",
+        "division": "Aurangabad",
+        "cattle": 410000,
+        "buffalo": 340000,
+        "goat": 290000,
+        "poultry": 620000
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[76.2, 17.9], [77.1, 18.0], [77.2, 18.9], [76.1, 18.8], [76.2, 17.9]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "JALGAON",
+        "district_name": "Jalgaon",
+        "state": "Maharashtra",
+        "division": "Nashik",
+        "cattle": 470000,
+        "buffalo": 350000,
+        "goat": 240000,
+        "poultry": 950000
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[74.8, 20.5], [76.1, 20.6], [76.2, 21.4], [74.9, 21.3], [74.8, 20.5]]]
+      }
+    }
+  ]
+}

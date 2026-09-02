@@ -102,3 +102,98 @@ class ForecastRunSchema(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+# ── SwasthSandhi OA Screening Schemas (SIH26004) ──────────────
+
+class OAPatientCreateSchema(BaseModel):
+    patient_id: Optional[str] = None
+    age: int
+    sex: str
+    bmi: float
+    occupation: str
+    occupation_detail: Optional[str] = None
+    activity_level: Optional[int] = 1
+    prior_joint_injury: Optional[bool] = False
+    family_history_oa: Optional[bool] = False
+    diabetes: Optional[bool] = False
+    terrain_factor: Optional[float] = 1.0
+    ner_district: str
+    language: Optional[str] = "en"
+    recorded_by: Optional[str] = None
+
+    class Config:
+        from_attributes = True
+
+class OAPatientSchema(BaseModel):
+    id: int
+    patient_id: str
+    age: int
+    sex: str
+    bmi: float
+    occupation: str
+    occupation_detail: Optional[str] = None
+    activity_level: Optional[int] = 1
+    prior_joint_injury: Optional[bool] = False
+    family_history_oa: Optional[bool] = False
+    diabetes: Optional[bool] = False
+    terrain_factor: Optional[float] = 1.0
+    ner_district: str
+    language: Optional[str] = "en"
+    recorded_by: Optional[str] = None
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+class OAScreeningCreateSchema(BaseModel):
+    womac_pain: float
+    womac_stiffness: float
+    womac_function: float
+    joint_knee: Optional[bool] = False
+    joint_hip: Optional[bool] = False
+    joint_hand: Optional[bool] = False
+    joint_spine: Optional[bool] = False
+    crepitus: Optional[bool] = False
+    joint_swelling: Optional[bool] = False
+    morning_stiffness_min: Optional[int] = 0
+    offline_synced: Optional[bool] = False
+
+    class Config:
+        from_attributes = True
+
+class OAScreeningSchema(BaseModel):
+    id: int
+    patient_id: str
+    screened_at: datetime
+    womac_pain: float
+    womac_stiffness: float
+    womac_function: float
+    womac_total: float
+    joint_knee: Optional[bool] = False
+    joint_hip: Optional[bool] = False
+    joint_hand: Optional[bool] = False
+    joint_spine: Optional[bool] = False
+    crepitus: Optional[bool] = False
+    joint_swelling: Optional[bool] = False
+    morning_stiffness_min: Optional[int] = 0
+    risk_probability: float
+    risk_tier: str
+    risk_source: str
+    severity_note: Optional[str] = None
+    referral_required: Optional[bool] = False
+    report_pdf_ref: Optional[str] = None
+    offline_synced: Optional[bool] = False
+
+    class Config:
+        from_attributes = True
+
+class OARiskResponseSchema(BaseModel):
+    patient_id: str
+    risk_probability: float
+    risk_tier: str
+    risk_source: str
+    top_factors: List[Dict[str, Any]]
+    severity_note: Optional[str] = None
+    referral_required: bool
+    disclaimer: str

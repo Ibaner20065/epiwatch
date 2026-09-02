@@ -1,0 +1,22 @@
+{
+  "logistic_baseline": {
+    "model": "logistic_baseline",
+    "accuracy": 0.964,
+    "precision": 0.8729,
+    "recall": 0.7744,
+    "f1": 0.8207,
+    "roc_auc": 0.9801,
+    "n_test": 1250,
+    "n_pos_test": 133
+  },
+  "gradient_boosting": {
+    "model": "gradient_boosting",
+    "accuracy": 0.9592,
+    "precision": 0.8868,
+    "recall": 0.7068,
+    "f1": 0.7866,
+    "roc_auc": 0.9605,
+    "n_test": 1250,
+    "n_pos_test": 133
+  }
+}

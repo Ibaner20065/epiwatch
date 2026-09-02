@@ -1,0 +1,9 @@
+{
+  "total_models_trained": 44,
+  "failed_models": 0,
+  "avg_mae": 0.003,
+  "avg_rmse": 0.003,
+  "districts_count": 9,
+  "diseases_count": 5,
+  "cross_dataset_enhancement": "Integrated Dataful national priors (CFR + incidence scaling)"
+}

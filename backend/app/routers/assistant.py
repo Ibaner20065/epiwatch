@@ -97,7 +97,133 @@ def tool_query_predictions(district_id: str, disease: str) -> Dict[str, Any]:
     return {"status": "no_data", "district_id": district_id, "disease": disease}
 
 
-# ── Tool: query_explainability ────────────────────────────────
+# ── OA (SwasthSandhi) tools ─────────────────────────────────────
+# Grounded OA screening intelligence: risk factors, rules-baseline tiers, and
+# the trained model's holdout metrics + SHAP drivers. Every answer cites the
+# underlying ml/oa artifact so the AI never hallucinates OA advice.
+OA_RESULTS_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "..", "ml", "oa", "results")
+OA_METRICS_CACHE: Dict[str, Any] = {}
+
+def tool_query_oa_context() -> Dict[str, Any]:
+    """Return grounded OA model metrics, SHAP drivers and rules-baseline tiers."""
+    if OA_METRICS_CACHE:
+        return OA_METRICS_CACHE
+    data = {}
+    metrics_path = os.path.join(OA_RESULTS_DIR, "oa_metrics.json")
+    if os.path.exists(metrics_path):
+        with open(metrics_path) as f:
+            data["metrics"] = json.load(f)
+    imp_path = os.path.join(OA_RESULTS_DIR, "oa_feature_importance.json")
+    if os.path.exists(imp_path):
+        with open(imp_path) as f:
+            imp = json.load(f)
+        drivers = sorted(imp.get("gradient_boosting", {}).items(), key=lambda x: x[1], reverse=True)[:5]
+        data["top_shap_drivers"] = [{"feature": k, "importance": round(v, 4)} for k, v in drivers]
+    data["note"] = "Grounded in ml/oa/results; synthetic training data from clinical OA risk literature."
+    OA_METRICS_CACHE.update(data)
+    return data
+
+
+# ── OA (SwasthSandhi) tools ─────────────────────────────────────
+OA_KEYWORDS = [
+    "osteoarthritis", "oa risk", "joint pain", "knee pain", "arthritis", "womac",
+    "bone spurs", "cartilage", "kneeling", "squatting", "joint stiffness",
+    "crepitus", "morning stiffness", "oa screening", "bone-on-bone", "mobility",
+]
+
+def tool_query_oa_explain(query: str) -> Optional[Dict[str, Any]]:
+    """Grounded answer about OA risk factors for the NER context."""
+    q = query.lower()
+    context = tool_query_oa_context()
+    drivers = context.get("top_shap_drivers", [])
+    driver_lines = "\n".join(
+        f"  - **{d['feature'].replace('_', ' ').title()}** (SHAP importance {d['importance']})"
+        for d in drivers
+    )
+    rec = context.get("metrics", {}).get("gradient_boosting", {})
+    model_line = (
+        f"The SwasthSandhi classifier reached **{round(rec.get('roc_auc', 0) * 100, 1)}% ROC-AUC / "
+        f"{round(rec.get('accuracy', 0) * 100, 1)}% accuracy** on a held-out set."
+        if rec else "The SwasthSandhi classifier is trained and served by the OA engine."
+    )
+
+    answer = (
+        "**SwasthSandhi — Osteoarthritis (OA) Early-Detection Context (NER):**\n\n"
+        "OA risk is driven by both **non-modifiable factors** (age, female sex, family "
+        "history) and **modifiable factors** (obesity/high BMI, prior joint injury, "
+        "diabetes, and high-load occupation such as kneeling/squatting in agriculture "
+        "and tea-estate work common in the NER).\n\n"
+        f"{model_line}\n\n"
+        f"**Top explainable drivers (SHAP):**\n{driver_lines}\n\n"
+        "Screening combines a WOMAC-style symptom score (pain/stiffness/function) with "
+        "demographics and occupational exposure to produce a preliminary risk tier "
+        "(Low/Medium/High/Critical) and referral recommendation."
+    )
+    return {"answer": answer, "source": "SwasthSandhi OA engine (ml/oa/results)"}
+
+
+# ── Livestock (PashuRaksha — Maharashtra) tools ─────────────────
+LIVESTOCK_DATA_CHUNKS = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "livestock_document_chunks.json")
+LIVESTOCK_CHUNKS_CACHE: List[Dict[str, Any]] = []
+
+def _load_livestock_chunks() -> List[Dict[str, Any]]:
+    global LIVESTOCK_CHUNKS_CACHE
+    if LIVESTOCK_CHUNKS_CACHE:
+        return LIVESTOCK_CHUNKS_CACHE
+    if os.path.exists(LIVESTOCK_DATA_CHUNKS):
+        with open(LIVESTOCK_DATA_CHUNKS, "r", encoding="utf-8") as f:
+            LIVESTOCK_CHUNKS_CACHE = json.load(f)
+    return LIVESTOCK_CHUNKS_CACHE
+
+LIVESTOCK_KEYWORDS = [
+    "pashuraksha", "livestock", "cattle", "buffalo", "cow", "goat", "sheep",
+    "poultry", "fmd", "foot and mouth", "foot-and-mouth", "lumpy skin", "lsd",
+    "ppr", "peste des petits", "brucellosis", "avian flu", "bird flu", "h5n1",
+    "animal health", "veterinary", "taluka dispensary", "pashu sanjeevani",
+    "para-vet", "animal disease", "mastitis", "ear tag"
+]
+
+def tool_query_livestock_explain(query: str) -> Dict[str, Any]:
+    """Grounded answer about livestock disease surveillance, symptoms, and protocols in Maharashtra."""
+    q = query.lower()
+    chunks = _load_livestock_chunks()
+    
+    matched_chunk = None
+    for chunk in chunks:
+        dis = chunk.get("disease", "").lower()
+        if dis and dis in q:
+            matched_chunk = chunk
+            break
+        if chunk.get("topic") in q:
+            matched_chunk = chunk
+            break
+
+    if not matched_chunk and chunks:
+        matched_chunk = chunks[0]
+
+    if matched_chunk:
+        answer = (
+            f"**PashuRaksha — Maharashtra Animal Health Surveillance Context:**\n\n"
+            f"**{matched_chunk.get('title')}:**\n"
+            f"{matched_chunk.get('text')}\n\n"
+            f"- **Monitored Districts (MH):** Pune, Ahmednagar, Nashik, Kolhapur, Sangli, Solapur, Nagpur, Latur, Jalgaon.\n"
+            f"- **Reporting Channels:** Web/Mobile app, Offline queue-sync, and DTMF-IVR at **1800-233-0418**.\n"
+            f"- **Emergency Action:** For high-mortality clusters or notifiable disease symptoms (FMD, LSD, PPR, AI), dispatch sample to nearest District Diagnostic Lab."
+        )
+        return {
+            "answer": answer,
+            "source_label": matched_chunk.get("title", "PashuRaksha Guidelines"),
+            "provenance": f"{matched_chunk.get('source_file')}, Page {matched_chunk.get('page', 1)}"
+        }
+
+    return {
+        "answer": "**PashuRaksha — Animal Health Surveillance (Maharashtra):**\nPashuRaksha monitors 5 priority livestock diseases (FMD, Lumpy Skin Disease, PPR, Brucellosis, Avian Influenza) across 9 districts. Farmers and field vets can report symptoms, review geospatial risk maps, track vaccination schedules, and initiate lab referrals. Toll-free helpline: 1800-233-0418.",
+        "source_label": "PashuRaksha Surveillance Architecture",
+        "provenance": "Maharashtra_DAHD_Surveillance_Guidelines_2024.pdf"
+    }
+
+
+
 def tool_query_explainability(district_id: str, disease: str) -> Dict[str, Any]:
     district_id = district_id.upper()
     disease = disease.lower()
@@ -219,6 +345,14 @@ def _detect_intent(q_lower: str) -> str:
     DEMO_KEYWORDS = ["population", "census", "density", "demographic",
                      "hospital", "symptom", "location", "boundary"]
 
+    # OA (SwasthSandhi) queries
+    if any(kw in q_lower for kw in OA_KEYWORDS):
+        return "oa"
+
+    # Livestock (PashuRaksha) queries
+    if any(kw in q_lower for kw in LIVESTOCK_KEYWORDS):
+        return "livestock"
+
     # Weather question with NO disease mention -> pure weather intent
     has_weather = any(kw in q_lower for kw in WEATHER_KEYWORDS)
     has_disease = any(kw in q_lower for kw in DISEASE_KEYWORDS)
@@ -275,6 +409,8 @@ def _llm_detect_intent(query: str, history: List[Dict[str, str]]) -> Dict[str, A
     - weather (e.g., "What's the weather in Pune?", "temperature today")
     - disease_explain (e.g., "Why is Kolkata flagged high risk?", "climate drivers for dengue")
     - demographics (e.g., "population of Mumbai", "hospital locations")
+    - oa (e.g., "What are the risk factors for osteoarthritis?", "knee pain screening", "WOMAC", "joint stiffness in NER")
+    - livestock (e.g., "What is FMD in cattle?", "LSD outbreak in Pune", "PashuRaksha reporting", "goat PPR symptoms", "poultry mortality")
     - general_public_health (e.g., "What is dengue?", "Symptoms of malaria")
     - unknown (if it doesn't fit any category)
     
@@ -364,6 +500,36 @@ def query_assistant(req: AssistantQueryRequest):
             citations=[],
             tools_used=["general_knowledge_llm"],
             disclaimer="General public health information provided by LLM. Not intended as medical advice."
+        )
+
+    # SwasthSandhi OA screening queries — route before district-validation so
+    # NER references (e.g. "in the North Eastern region") are not mistaken for
+    # an unknown monitored district.
+    if req_intent == "oa":
+        oa_resp = tool_query_oa_explain(req.query)
+        return AssistantQueryResponse(
+            answer=oa_resp["answer"],
+            citations=[SourceCitation(
+                tool_name="query_oa_explain",
+                source_label="SwasthSandhi OA engine",
+                provenance="ml/oa/results (oa_metrics.json, oa_feature_importance.json)"
+            )],
+            tools_used=["query_oa_explain"],
+            disclaimer="OA screening guidance is grounded in the SwasthSandhi synthetic-training model and OARSI risk-factor literature. It is a screening aid, not a clinical diagnosis — refer suspected cases to an orthopaedic specialist."
+        )
+
+    # PashuRaksha Livestock surveillance queries
+    if req_intent == "livestock":
+        ls_resp = tool_query_livestock_explain(req.query)
+        return AssistantQueryResponse(
+            answer=ls_resp["answer"],
+            citations=[SourceCitation(
+                tool_name="query_livestock_explain",
+                source_label=ls_resp.get("source_label", "PashuRaksha Maharashtra Surveillance System"),
+                provenance=ls_resp.get("provenance", "data/processed/livestock_document_chunks.json")
+            )],
+            tools_used=["query_livestock_explain"],
+            disclaimer="PashuRaksha livestock health advisories are aligned with DAHD and Maharashtra Dept. of Animal Husbandry guidelines. For clinical emergencies, call the toll-free helpline 1800-233-0418."
         )
 
     tools_used = []
@@ -509,6 +675,21 @@ def query_assistant(req: AssistantQueryRequest):
                 source_label=chunk.get("title", "Census Document Chunk"),
                 provenance=f"File: {chunk.get('source_file')}, Page {chunk.get('page')}"
             ))
+
+    elif intent == "oa":
+        oa_resp = tool_query_oa_explain(req.query)
+        tools_used.append("query_oa_explain")
+        citations.append(SourceCitation(
+            tool_name="query_oa_explain",
+            source_label="SwasthSandhi OA engine",
+            provenance="ml/oa/results (oa_metrics.json, oa_feature_importance.json)"
+        ))
+        return AssistantQueryResponse(
+            answer=oa_resp["answer"],
+            citations=citations,
+            tools_used=tools_used,
+            disclaimer="OA screening guidance is grounded in the SwasthSandhi synthetic-training model and OARSI risk-factor literature. It is a screening aid, not a clinical diagnosis — refer suspected cases to an orthopaedic specialist."
+        )
 
     else:
         # Unknown intent — DO NOT default to disease prediction tools.

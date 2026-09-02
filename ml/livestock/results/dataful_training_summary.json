@@ -1,0 +1,22 @@
+{
+  "total_diseases": 37,
+  "total_models_saved": 111,
+  "average_holdout_mae": 64685.73,
+  "average_holdout_rmse": 67067.39,
+  "forecast_horizons": "2016 - 2026 (11 years)",
+  "features_used": [
+    "year_idx",
+    "lag_1",
+    "lag_2",
+    "lag_3",
+    "rolling_mean_3",
+    "rolling_std_3",
+    "rolling_max_3",
+    "aux_lag_1"
+  ],
+  "ensemble_components": [
+    "HistGradientBoostingRegressor",
+    "None"
+  ],
+  "generated_at": "2026-09-02T14:06:59.459774"
+}

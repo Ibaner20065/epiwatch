@@ -1,0 +1,272 @@
+[
+  {
+    "id": "PUNE",
+    "name": "Pune",
+    "state": "Maharashtra",
+    "division": "Pune",
+    "lat": 18.5204,
+    "lon": 73.8567,
+    "livestock_census": {
+      "cattle": 412000,
+      "buffalo": 298000,
+      "goat": 185000,
+      "sheep": 62000,
+      "poultry": 2100000,
+      "total": 3057000
+    },
+    "veterinary_infrastructure": {
+      "district_vet_hospital": 1,
+      "taluka_vet_dispensaries": 12,
+      "mobile_vet_clinics": 8,
+      "ai_centres": 33,
+      "disease_diagnostic_lab": true
+    },
+    "govt_schemes": [
+      "Rashtriya Gokul Mission",
+      "National Animal Disease Control Programme (NADCP)",
+      "Livestock Health & Disease Control (LH&DC)",
+      "Maharashtra Pashu Sanjeevani",
+      "National Digital Livestock Mission"
+    ]
+  },
+  {
+    "id": "AHMEDNAGAR",
+    "name": "Ahmednagar",
+    "state": "Maharashtra",
+    "division": "Nashik",
+    "lat": 19.0948,
+    "lon": 74.748,
+    "livestock_census": {
+      "cattle": 685000,
+      "buffalo": 520000,
+      "goat": 310000,
+      "sheep": 145000,
+      "poultry": 890000,
+      "total": 2550000
+    },
+    "veterinary_infrastructure": {
+      "district_vet_hospital": 1,
+      "taluka_vet_dispensaries": 10,
+      "mobile_vet_clinics": 6,
+      "ai_centres": 22,
+      "disease_diagnostic_lab": true
+    },
+    "govt_schemes": [
+      "Rashtriya Gokul Mission",
+      "National Animal Disease Control Programme (NADCP)",
+      "Livestock Health & Disease Control (LH&DC)",
+      "Maharashtra Pashu Sanjeevani",
+      "National Digital Livestock Mission"
+    ]
+  },
+  {
+    "id": "NASHIK",
+    "name": "Nashik",
+    "state": "Maharashtra",
+    "division": "Nashik",
+    "lat": 20.0063,
+    "lon": 73.79,
+    "livestock_census": {
+      "cattle": 498000,
+      "buffalo": 380000,
+      "goat": 270000,
+      "sheep": 98000,
+      "poultry": 1500000,
+      "total": 2746000
+    },
+    "veterinary_infrastructure": {
+      "district_vet_hospital": 1,
+      "taluka_vet_dispensaries": 11,
+      "mobile_vet_clinics": 5,
+      "ai_centres": 15,
+      "disease_diagnostic_lab": true
+    },
+    "govt_schemes": [
+      "Rashtriya Gokul Mission",
+      "National Animal Disease Control Programme (NADCP)",
+      "Livestock Health & Disease Control (LH&DC)",
+      "Maharashtra Pashu Sanjeevani",
+      "National Digital Livestock Mission"
+    ]
+  },
+  {
+    "id": "KOLHAPUR",
+    "name": "Kolhapur",
+    "state": "Maharashtra",
+    "division": "Kolhapur",
+    "lat": 16.705,
+    "lon": 74.2433,
+    "livestock_census": {
+      "cattle": 520000,
+      "buffalo": 445000,
+      "goat": 195000,
+      "sheep": 55000,
+      "poultry": 3200000,
+      "total": 4415000
+    },
+    "veterinary_infrastructure": {
+      "district_vet_hospital": 1,
+      "taluka_vet_dispensaries": 10,
+      "mobile_vet_clinics": 5,
+      "ai_centres": 28,
+      "disease_diagnostic_lab": false
+    },
+    "govt_schemes": [
+      "Rashtriya Gokul Mission",
+      "National Animal Disease Control Programme (NADCP)",
+      "Livestock Health & Disease Control (LH&DC)",
+      "Maharashtra Pashu Sanjeevani",
+      "National Digital Livestock Mission"
+    ]
+  },
+  {
+    "id": "SANGLI",
+    "name": "Sangli",
+    "state": "Maharashtra",
+    "division": "Kolhapur",
+    "lat": 16.8524,
+    "lon": 74.5815,
+    "livestock_census": {
+      "cattle": 390000,
+      "buffalo": 310000,
+      "goat": 260000,
+      "sheep": 120000,
+      "poultry": 980000,
+      "total": 2060000
+    },
+    "veterinary_infrastructure": {
+      "district_vet_hospital": 1,
+      "taluka_vet_dispensaries": 10,
+      "mobile_vet_clinics": 5,
+      "ai_centres": 39,
+      "disease_diagnostic_lab": true
+    },
+    "govt_schemes": [
+      "Rashtriya Gokul Mission",
+      "National Animal Disease Control Programme (NADCP)",
+      "Livestock Health & Disease Control (LH&DC)",
+      "Maharashtra Pashu Sanjeevani",
+      "National Digital Livestock Mission"
+    ]
+  },
+  {
+    "id": "SOLAPUR",
+    "name": "Solapur",
+    "state": "Maharashtra",
+    "division": "Pune",
+    "lat": 17.6599,
+    "lon": 75.9064,
+    "livestock_census": {
+      "cattle": 445000,
+      "buffalo": 285000,
+      "goat": 380000,
+      "sheep": 210000,
+      "poultry": 750000,
+      "total": 2070000
+    },
+    "veterinary_infrastructure": {
+      "district_vet_hospital": 1,
+      "taluka_vet_dispensaries": 6,
+      "mobile_vet_clinics": 8,
+      "ai_centres": 29,
+      "disease_diagnostic_lab": false
+    },
+    "govt_schemes": [
+      "Rashtriya Gokul Mission",
+      "National Animal Disease Control Programme (NADCP)",
+      "Livestock Health & Disease Control (LH&DC)",
+      "Maharashtra Pashu Sanjeevani",
+      "National Digital Livestock Mission"
+    ]
+  },
+  {
+    "id": "NAGPUR",
+    "name": "Nagpur",
+    "state": "Maharashtra",
+    "division": "Nagpur",
+    "lat": 21.1458,
+    "lon": 79.0882,
+    "livestock_census": {
+      "cattle": 365000,
+      "buffalo": 270000,
+      "goat": 190000,
+      "sheep": 45000,
+      "poultry": 1200000,
+      "total": 2070000
+    },
+    "veterinary_infrastructure": {
+      "district_vet_hospital": 1,
+      "taluka_vet_dispensaries": 13,
+      "mobile_vet_clinics": 6,
+      "ai_centres": 20,
+      "disease_diagnostic_lab": true
+    },
+    "govt_schemes": [
+      "Rashtriya Gokul Mission",
+      "National Animal Disease Control Programme (NADCP)",
+      "Livestock Health & Disease Control (LH&DC)",
+      "Maharashtra Pashu Sanjeevani",
+      "National Digital Livestock Mission"
+    ]
+  },
+  {
+    "id": "LATUR",
+    "name": "Latur",
+    "state": "Maharashtra",
+    "division": "Aurangabad",
+    "lat": 18.4088,
+    "lon": 76.5604,
+    "livestock_census": {
+      "cattle": 410000,
+      "buffalo": 340000,
+      "goat": 290000,
+      "sheep": 175000,
+      "poultry": 620000,
+      "total": 1835000
+    },
+    "veterinary_infrastructure": {
+      "district_vet_hospital": 1,
+      "taluka_vet_dispensaries": 7,
+      "mobile_vet_clinics": 3,
+      "ai_centres": 37,
+      "disease_diagnostic_lab": false
+    },
+    "govt_schemes": [
+      "Rashtriya Gokul Mission",
+      "National Animal Disease Control Programme (NADCP)",
+      "Livestock Health & Disease Control (LH&DC)",
+      "Maharashtra Pashu Sanjeevani",
+      "National Digital Livestock Mission"
+    ]
+  },
+  {
+    "id": "JALGAON",
+    "name": "Jalgaon",
+    "state": "Maharashtra",
+    "division": "Nashik",
+    "lat": 21.0077,
+    "lon": 75.5626,
+    "livestock_census": {
+      "cattle": 470000,
+      "buffalo": 350000,
+      "goat": 240000,
+      "sheep": 80000,
+      "poultry": 950000,
+      "total": 2090000
+    },
+    "veterinary_infrastructure": {
+      "district_vet_hospital": 1,
+      "taluka_vet_dispensaries": 15,
+      "mobile_vet_clinics": 5,
+      "ai_centres": 22,
+      "disease_diagnostic_lab": true
+    },
+    "govt_schemes": [
+      "Rashtriya Gokul Mission",
+      "National Animal Disease Control Programme (NADCP)",
+      "Livestock Health & Disease Control (LH&DC)",
+      "Maharashtra Pashu Sanjeevani",
+      "National Digital Livestock Mission"
+    ]
+  }
+]

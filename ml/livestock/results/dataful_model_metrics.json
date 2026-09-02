@@ -1,0 +1,2000 @@
+{
+  "amphistomiasis": {
+    "name": "Amphistomiasis",
+    "slug": "amphistomiasis",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 4011.72,
+        "holdout_rmse": 4329.73,
+        "holdout_mape_pct": 29.84,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "amphistomiasis_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          16760.0,
+          9153.0
+        ],
+        "holdout_predictions": [
+          11119.59,
+          11536.03
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 37.88,
+        "holdout_rmse": 38.01,
+        "holdout_mape_pct": 31.6,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "amphistomiasis_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          154.0,
+          95.0
+        ],
+        "holdout_predictions": [
+          112.97,
+          129.73
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 21.14,
+        "holdout_rmse": 22.2,
+        "holdout_mape_pct": 60.11,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "amphistomiasis_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          26.0,
+          43.0
+        ],
+        "holdout_predictions": [
+          11.62,
+          15.1
+        ]
+      }
+    }
+  },
+  "anaplasmosis": {
+    "name": "Anaplasmosis",
+    "slug": "anaplasmosis",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 846.0,
+        "holdout_rmse": 1051.58,
+        "holdout_mape_pct": 85.05,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "anaplasmosis_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          1928.0,
+          236.0
+        ],
+        "holdout_predictions": [
+          457.42,
+          457.42
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 44.5,
+        "holdout_rmse": 52.52,
+        "holdout_mape_pct": 77.2,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "anaplasmosis_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          108.0,
+          19.0
+        ],
+        "holdout_predictions": [
+          35.6,
+          35.6
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 21.43,
+        "holdout_rmse": 26.74,
+        "holdout_mape_pct": 71.69,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "anaplasmosis_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          42.0,
+          10.0
+        ],
+        "holdout_predictions": [
+          4.57,
+          4.57
+        ]
+      }
+    }
+  },
+  "anthrax": {
+    "name": "Anthrax",
+    "slug": "anthrax",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 330.13,
+        "holdout_rmse": 406.9,
+        "holdout_mape_pct": 31.19,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "anthrax_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          2180.0,
+          254.0
+        ],
+        "holdout_predictions": [
+          1612.01,
+          346.27
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 21.56,
+        "holdout_rmse": 21.76,
+        "holdout_mape_pct": 41.26,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "anthrax_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          55.0,
+          49.0
+        ],
+        "holdout_predictions": [
+          30.44,
+          30.44
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 1026.05,
+        "holdout_rmse": 1422.51,
+        "holdout_mape_pct": 54.16,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "anthrax_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          2180.0,
+          254.0
+        ],
+        "holdout_predictions": [
+          168.69,
+          213.22
+        ]
+      }
+    }
+  },
+  "ai_h5n1": {
+    "name": "Avian Influenza",
+    "slug": "ai_h5n1",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 13179.86,
+        "holdout_rmse": 14981.6,
+        "holdout_mape_pct": 151440.17,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "ai_h5n1_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          2.0,
+          43982.0
+        ],
+        "holdout_predictions": [
+          6058.68,
+          23678.97
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 15.42,
+        "holdout_rmse": 15.62,
+        "holdout_mape_pct": 870.59,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "ai_h5n1_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          1.0,
+          4.0
+        ],
+        "holdout_predictions": [
+          13.93,
+          21.91
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 89862.66,
+        "holdout_rmse": 124395.47,
+        "holdout_mape_pct": 96184.36,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "ai_h5n1_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          2.0,
+          197400.0
+        ],
+        "holdout_predictions": [
+          3847.59,
+          21520.28
+        ]
+      }
+    }
+  },
+  "babesiosis": {
+    "name": "Babesiosis",
+    "slug": "babesiosis",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 8163.48,
+        "holdout_rmse": 11332.61,
+        "holdout_mape_pct": 469.73,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "babesiosis_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          7520.0,
+          1713.0
+        ],
+        "holdout_predictions": [
+          7216.9,
+          17736.86
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 97.5,
+        "holdout_rmse": 97.88,
+        "holdout_mape_pct": 83.39,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "babesiosis_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          274.0,
+          79.0
+        ],
+        "holdout_predictions": [
+          185.14,
+          185.14
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 1.31,
+        "holdout_rmse": 1.43,
+        "holdout_mape_pct": 16.73,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "babesiosis_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          9.0,
+          6.0
+        ],
+        "holdout_predictions": [
+          7.13,
+          6.76
+        ]
+      }
+    }
+  },
+  "black_quarter": {
+    "name": "Black Quarter",
+    "slug": "black_quarter",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 1459.82,
+        "holdout_rmse": 1862.33,
+        "holdout_mape_pct": 48.36,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "black_quarter_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          4285.0,
+          851.0
+        ],
+        "holdout_predictions": [
+          1668.81,
+          1154.45
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 203.41,
+        "holdout_rmse": 204.33,
+        "holdout_mape_pct": 191.65,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "black_quarter_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          118.0,
+          98.0
+        ],
+        "holdout_predictions": [
+          302.05,
+          320.77
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 246.87,
+        "holdout_rmse": 248.26,
+        "holdout_mape_pct": 82.63,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "black_quarter_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          297.0,
+          301.0
+        ],
+        "holdout_predictions": [
+          570.15,
+          521.59
+        ]
+      }
+    }
+  },
+  "blue_tongue": {
+    "name": "Blue Tongue",
+    "slug": "blue_tongue",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 27807.83,
+        "holdout_rmse": 30541.65,
+        "holdout_mape_pct": 1184.8,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "blue_tongue_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          659.0,
+          60867.0
+        ],
+        "holdout_predictions": [
+          15836.83,
+          20429.17
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 151.54,
+        "holdout_rmse": 153.52,
+        "holdout_mape_pct": 836.29,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "blue_tongue_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          14.0,
+          23.0
+        ],
+        "holdout_predictions": [
+          -112.96,
+          199.11
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 12953.16,
+        "holdout_rmse": 13108.53,
+        "holdout_mape_pct": 5247.54,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "blue_tongue_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          145.0,
+          6285.0
+        ],
+        "holdout_predictions": [
+          -14820.45,
+          17225.86
+        ]
+      }
+    }
+  },
+  "brucellosis": {
+    "name": "Brucellosis",
+    "slug": "brucellosis",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 218.26,
+        "holdout_rmse": 271.91,
+        "holdout_mape_pct": 97.92,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "brucellosis_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          206.0,
+          502.0
+        ],
+        "holdout_predictions": [
+          586.42,
+          558.09
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 1.13,
+        "holdout_rmse": 1.35,
+        "holdout_mape_pct": 18.31,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "brucellosis_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          7.0,
+          6.0
+        ],
+        "holdout_predictions": [
+          7.38,
+          4.13
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 7.36,
+        "holdout_rmse": 7.38,
+        "holdout_mape_pct": 735.58,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "brucellosis_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          0.0,
+          1.0
+        ],
+        "holdout_predictions": [
+          6.8,
+          8.91
+        ]
+      }
+    }
+  },
+  "buffalo_pox": {
+    "name": "Buffalo Pox",
+    "slug": "buffalo_pox",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 0.57,
+        "holdout_rmse": 0.59,
+        "holdout_mape_pct": 56.7,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "buffalo_pox_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          0.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          -0.41,
+          0.73
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 0.31,
+        "holdout_rmse": 0.31,
+        "holdout_mape_pct": 30.6,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "buffalo_pox_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          0.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          0.29,
+          0.32
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 0.0,
+        "holdout_rmse": 0.0,
+        "holdout_mape_pct": 0.0,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "buffalo_pox_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          0.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "ccpp": {
+    "name": "C.C.P.P.",
+    "slug": "ccpp",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 200.42,
+        "holdout_rmse": 232.73,
+        "holdout_mape_pct": 179.89,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "ccpp_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          29.0,
+          416.0
+        ],
+        "holdout_predictions": [
+          111.12,
+          734.73
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 5.04,
+        "holdout_rmse": 7.03,
+        "holdout_mape_pct": 39.14,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "ccpp_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          2.0,
+          14.0
+        ],
+        "holdout_predictions": [
+          1.85,
+          4.06
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 105.14,
+        "holdout_rmse": 143.66,
+        "holdout_mape_pct": 283.88,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "ccpp_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          5.0,
+          48.0
+        ],
+        "holdout_predictions": [
+          12.24,
+          251.04
+        ]
+      }
+    }
+  },
+  "canine_distemper": {
+    "name": "Canine Distemper",
+    "slug": "canine_distemper",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 262.58,
+        "holdout_rmse": 357.38,
+        "holdout_mape_pct": 21.15,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "canine_distemper_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          1293.0,
+          622.0
+        ],
+        "holdout_predictions": [
+          787.99,
+          601.84
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 33.76,
+        "holdout_rmse": 36.59,
+        "holdout_mape_pct": 78.52,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "canine_distemper_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          71.0,
+          37.0
+        ],
+        "holdout_predictions": [
+          90.64,
+          84.87
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 67.09,
+        "holdout_rmse": 67.1,
+        "holdout_mape_pct": 3466.41,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "canine_distemper_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          88.0,
+          1.0
+        ],
+        "holdout_predictions": [
+          22.41,
+          69.58
+        ]
+      }
+    }
+  },
+  "crd": {
+    "name": "Chronic Respiratory Disease",
+    "slug": "crd",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 2818290.73,
+        "holdout_rmse": 2856693.87,
+        "holdout_mape_pct": 90.36,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "crd_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          3578408.0,
+          2644733.0
+        ],
+        "holdout_predictions": [
+          293279.77,
+          293279.77
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 44.37,
+        "holdout_rmse": 44.89,
+        "holdout_mape_pct": 10.09,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "crd_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          461.0,
+          414.0
+        ],
+        "holdout_predictions": [
+          409.87,
+          376.39
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 30515.88,
+        "holdout_rmse": 31702.93,
+        "holdout_mape_pct": 134.49,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "crd_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          35985.0,
+          18797.0
+        ],
+        "holdout_predictions": [
+          57906.88,
+          57906.88
+        ]
+      }
+    }
+  },
+  "coccidiosis": {
+    "name": "Coccidiosis",
+    "slug": "coccidiosis",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 74620.83,
+        "holdout_rmse": 74886.67,
+        "holdout_mape_pct": 39.86,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "coccidiosis_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          283219.0,
+          133544.0
+        ],
+        "holdout_predictions": [
+          202293.74,
+          201860.39
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 110.9,
+        "holdout_rmse": 150.34,
+        "holdout_mape_pct": 49.61,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "coccidiosis_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          422.0,
+          219.0
+        ],
+        "holdout_predictions": [
+          431.4,
+          431.4
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 20579.8,
+        "holdout_rmse": 20674.93,
+        "holdout_mape_pct": 328.58,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "coccidiosis_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          8976.0,
+          5014.0
+        ],
+        "holdout_predictions": [
+          27574.8,
+          27574.8
+        ]
+      }
+    }
+  },
+  "coryza": {
+    "name": "Coryza",
+    "slug": "coryza",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 321202.53,
+        "holdout_rmse": 348986.91,
+        "holdout_mape_pct": 72.61,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "coryza_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          573828.0,
+          282180.0
+        ],
+        "holdout_predictions": [
+          116167.44,
+          97435.5
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 31.49,
+        "holdout_rmse": 32.77,
+        "holdout_mape_pct": 79.12,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "coryza_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          46.0,
+          32.0
+        ],
+        "holdout_predictions": [
+          5.44,
+          9.58
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 1735.57,
+        "holdout_rmse": 1796.27,
+        "holdout_mape_pct": 79.83,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "coryza_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          2612.0,
+          1686.0
+        ],
+        "holdout_predictions": [
+          413.43,
+          413.43
+        ]
+      }
+    }
+  },
+  "cow_pox": {
+    "name": "Cow Pox",
+    "slug": "cow_pox",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 26.61,
+        "holdout_rmse": 28.02,
+        "holdout_mape_pct": 2660.92,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "cow_pox_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          0.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          17.82,
+          35.4
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 1.21,
+        "holdout_rmse": 1.58,
+        "holdout_mape_pct": 121.41,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "cow_pox_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          0.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          0.2,
+          2.23
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 3.52,
+        "holdout_rmse": 4.05,
+        "holdout_mape_pct": 352.11,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "cow_pox_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          0.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          1.52,
+          5.52
+        ]
+      }
+    }
+  },
+  "duck_plague": {
+    "name": "Duck Plague",
+    "slug": "duck_plague",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 17076.71,
+        "holdout_rmse": 21090.24,
+        "holdout_mape_pct": 767.24,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "duck_plague_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          24788.0,
+          332.0
+        ],
+        "holdout_predictions": [
+          -4665.47,
+          -4367.95
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 28.03,
+        "holdout_rmse": 31.56,
+        "holdout_mape_pct": 147.95,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "duck_plague_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          45.0,
+          16.0
+        ],
+        "holdout_predictions": [
+          58.53,
+          58.53
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 1163.48,
+        "holdout_rmse": 1164.94,
+        "holdout_mape_pct": 1083.49,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "duck_plague_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          184.0,
+          78.0
+        ],
+        "holdout_predictions": [
+          1289.26,
+          1299.7
+        ]
+      }
+    }
+  },
+  "enterotoxaemia": {
+    "name": "Enterotoxaemia",
+    "slug": "enterotoxaemia",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 431.18,
+        "holdout_rmse": 578.66,
+        "holdout_mape_pct": 53.67,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "enterotoxaemia_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          1388.0,
+          785.0
+        ],
+        "holdout_predictions": [
+          1342.74,
+          1602.1
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 7.28,
+        "holdout_rmse": 8.83,
+        "holdout_mape_pct": 15.07,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "enterotoxaemia_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          50.0,
+          48.0
+        ],
+        "holdout_predictions": [
+          47.71,
+          35.73
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 139.9,
+        "holdout_rmse": 194.16,
+        "holdout_mape_pct": 75.46,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "enterotoxaemia_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          308.0,
+          184.0
+        ],
+        "holdout_predictions": [
+          302.73,
+          -90.53
+        ]
+      }
+    }
+  },
+  "equine_influenza": {
+    "name": "Equine Influenza",
+    "slug": "equine_influenza",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 1630.21,
+        "holdout_rmse": 1630.21,
+        "holdout_mape_pct": 163020.53,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "equine_influenza_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          0.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          1630.21,
+          1630.21
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 0.76,
+        "holdout_rmse": 0.76,
+        "holdout_mape_pct": 75.72,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "equine_influenza_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          0.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          0.76,
+          0.76
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 0.99,
+        "holdout_rmse": 0.99,
+        "holdout_mape_pct": 99.4,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "equine_influenza_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          0.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          0.99,
+          0.99
+        ]
+      }
+    }
+  },
+  "fascioliasis": {
+    "name": "Fascioliasis",
+    "slug": "fascioliasis",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 653812.11,
+        "holdout_rmse": 653822.63,
+        "holdout_mape_pct": 17295.48,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "fascioliasis_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          6009.0,
+          2749.0
+        ],
+        "holdout_predictions": [
+          663531.12,
+          652851.09
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 76.84,
+        "holdout_rmse": 86.66,
+        "holdout_mape_pct": 82.65,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "fascioliasis_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          192.0,
+          80.0
+        ],
+        "holdout_predictions": [
+          155.23,
+          196.91
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 38.12,
+        "holdout_rmse": 50.51,
+        "holdout_mape_pct": 3568.04,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "fascioliasis_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          52.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          47.02,
+          71.27
+        ]
+      }
+    }
+  },
+  "fmd": {
+    "name": "Foot & Mouth Disease",
+    "slug": "fmd",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 11416.94,
+        "holdout_rmse": 12090.88,
+        "holdout_mape_pct": 282.62,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "fmd_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          26216.0,
+          2868.0
+        ],
+        "holdout_predictions": [
+          18779.37,
+          18265.25
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 518.06,
+        "holdout_rmse": 520.44,
+        "holdout_mape_pct": 358.82,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "fmd_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          238.0,
+          109.0
+        ],
+        "holdout_predictions": [
+          706.42,
+          676.7
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 1997.65,
+        "holdout_rmse": 2000.94,
+        "holdout_mape_pct": 1081.39,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "fmd_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          1822.0,
+          92.0
+        ],
+        "holdout_predictions": [
+          3934.2,
+          1975.1
+        ]
+      }
+    }
+  },
+  "fowl_cholera": {
+    "name": "Fowl Cholera",
+    "slug": "fowl_cholera",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 72393.5,
+        "holdout_rmse": 76794.91,
+        "holdout_mape_pct": 243.4,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "fowl_cholera_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          155820.0,
+          11033.0
+        ],
+        "holdout_predictions": [
+          57801.52,
+          57801.52
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 99.38,
+        "holdout_rmse": 102.72,
+        "holdout_mape_pct": 472.69,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "fowl_cholera_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          67.0,
+          15.0
+        ],
+        "holdout_predictions": [
+          140.38,
+          140.38
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 20596.54,
+        "holdout_rmse": 20686.17,
+        "holdout_mape_pct": 534.02,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "fowl_cholera_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          2853.0,
+          6700.0
+        ],
+        "holdout_predictions": [
+          25373.04,
+          25373.04
+        ]
+      }
+    }
+  },
+  "fowl_pox": {
+    "name": "Fowl Pox",
+    "slug": "fowl_pox",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 147287.0,
+        "holdout_rmse": 190860.55,
+        "holdout_mape_pct": 87.62,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "fowl_pox_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          322734.0,
+          28160.0
+        ],
+        "holdout_predictions": [
+          54062.11,
+          54062.11
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 48.64,
+        "holdout_rmse": 60.81,
+        "holdout_mape_pct": 33.03,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "fowl_pox_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          214.0,
+          141.0
+        ],
+        "holdout_predictions": [
+          226.14,
+          226.14
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 334.53,
+        "holdout_rmse": 339.44,
+        "holdout_mape_pct": 28.55,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "fowl_pox_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          1264.0,
+          1114.0
+        ],
+        "holdout_predictions": [
+          1541.0,
+          1506.06
+        ]
+      }
+    }
+  },
+  "glanders": {
+    "name": "Glander Disease",
+    "slug": "glanders",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 29974.84,
+        "holdout_rmse": 36162.73,
+        "holdout_mape_pct": 612754.8,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "glanders_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          0.0,
+          20.0
+        ],
+        "holdout_predictions": [
+          9744.85,
+          50224.82
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 19.51,
+        "holdout_rmse": 19.67,
+        "holdout_mape_pct": 1270.52,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "glanders_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          0.0,
+          5.0
+        ],
+        "holdout_predictions": [
+          22.01,
+          22.01
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 13360.18,
+        "holdout_rmse": 16116.9,
+        "holdout_mape_pct": 303344.07,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "glanders_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          0.0,
+          13.0
+        ],
+        "holdout_predictions": [
+          4345.76,
+          22387.61
+        ]
+      }
+    }
+  },
+  "haemorrhagic_septicaemia": {
+    "name": "Haemorrhagic Septicaemia",
+    "slug": "haemorrhagic_septicaemia",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 674.69,
+        "holdout_rmse": 686.07,
+        "holdout_mape_pct": 18.75,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "haemorrhagic_septicaemia_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          6816.0,
+          2135.0
+        ],
+        "holdout_predictions": [
+          7615.13,
+          2685.25
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 50.45,
+        "holdout_rmse": 54.07,
+        "holdout_mape_pct": 51.1,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "haemorrhagic_septicaemia_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          131.0,
+          89.0
+        ],
+        "holdout_predictions": [
+          161.98,
+          158.91
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 1244.08,
+        "holdout_rmse": 1264.64,
+        "holdout_mape_pct": 222.74,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "haemorrhagic_septicaemia_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          541.0,
+          586.0
+        ],
+        "holdout_predictions": [
+          2012.19,
+          1602.96
+        ]
+      }
+    }
+  },
+  "hpai_avian_influenza": {
+    "name": "Highly Pathogenic Avian Influenza",
+    "slug": "hpai_avian_influenza",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 11695.09,
+        "holdout_rmse": 15164.0,
+        "holdout_mape_pct": 102184.92,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "hpai_avian_influenza_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          18576.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          -2771.64,
+          -2042.55
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 5.64,
+        "holdout_rmse": 5.68,
+        "holdout_mape_pct": 366.84,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "hpai_avian_influenza_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          5.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          0.08,
+          6.35
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 9295.4,
+        "holdout_rmse": 13069.62,
+        "holdout_mape_pct": 5443.92,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "hpai_avian_influenza_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          18576.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          93.09,
+          107.88
+        ]
+      }
+    }
+  },
+  "ibd": {
+    "name": "I.B.D.",
+    "slug": "ibd",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 810206.46,
+        "holdout_rmse": 834374.53,
+        "holdout_mape_pct": 96.04,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "ibd_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          1040807.0,
+          642444.0
+        ],
+        "holdout_predictions": [
+          31235.68,
+          31602.41
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 60.17,
+        "holdout_rmse": 83.42,
+        "holdout_mape_pct": 51.49,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "ibd_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          183.0,
+          116.0
+        ],
+        "holdout_predictions": [
+          180.61,
+          233.95
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 7036.36,
+        "holdout_rmse": 7809.45,
+        "holdout_mape_pct": 41.85,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "ibd_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          22127.0,
+          9974.0
+        ],
+        "holdout_predictions": [
+          11702.86,
+          13622.58
+        ]
+      }
+    }
+  },
+  "mange": {
+    "name": "Mange",
+    "slug": "mange",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 519.64,
+        "holdout_rmse": 546.43,
+        "holdout_mape_pct": 40.57,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "mange_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          1523.0,
+          1185.0
+        ],
+        "holdout_predictions": [
+          1873.64,
+          1873.64
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 7.02,
+        "holdout_rmse": 7.09,
+        "holdout_mape_pct": 16.01,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "mange_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          45.0,
+          43.0
+        ],
+        "holdout_predictions": [
+          51.02,
+          51.02
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 0.45,
+        "holdout_rmse": 0.45,
+        "holdout_mape_pct": 45.33,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "mange_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          0.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          0.45,
+          0.45
+        ]
+      }
+    }
+  },
+  "mareks_disease": {
+    "name": "Mareks Disease",
+    "slug": "mareks_disease",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 1144349.28,
+        "holdout_rmse": 1165496.47,
+        "holdout_mape_pct": 99.27,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "mareks_disease_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          1372548.0,
+          932000.0
+        ],
+        "holdout_predictions": [
+          7185.74,
+          8663.71
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 30.42,
+        "holdout_rmse": 34.76,
+        "holdout_mape_pct": 97.82,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "mareks_disease_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          48.0,
+          14.0
+        ],
+        "holdout_predictions": [
+          0.77,
+          0.39
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 3110.88,
+        "holdout_rmse": 3505.2,
+        "holdout_mape_pct": 98.45,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "mareks_disease_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          4767.0,
+          1530.0
+        ],
+        "holdout_predictions": [
+          40.92,
+          34.31
+        ]
+      }
+    }
+  },
+  "mastitis": {
+    "name": "Mastitis",
+    "slug": "mastitis",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 34032.67,
+        "holdout_rmse": 40272.48,
+        "holdout_mape_pct": 93.78,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "mastitis_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          58303.0,
+          13548.0
+        ],
+        "holdout_predictions": [
+          2737.79,
+          1047.87
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 128.45,
+        "holdout_rmse": 159.68,
+        "holdout_mape_pct": 41.03,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "mastitis_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          354.0,
+          177.0
+        ],
+        "holdout_predictions": [
+          130.69,
+          143.4
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 12.93,
+        "holdout_rmse": 16.3,
+        "holdout_mape_pct": 220.47,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "mastitis_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          5.0,
+          6.0
+        ],
+        "holdout_predictions": [
+          2.0,
+          28.85
+        ]
+      }
+    }
+  },
+  "ppr": {
+    "name": "Peste Des Petits Ruminant",
+    "slug": "ppr",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 1577.91,
+        "holdout_rmse": 2078.8,
+        "holdout_mape_pct": 20.13,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "ppr_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          8216.0,
+          4905.0
+        ],
+        "holdout_predictions": [
+          5284.72,
+          4680.45
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 112.43,
+        "holdout_rmse": 139.31,
+        "holdout_mape_pct": 131.71,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "ppr_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          82.0,
+          116.0
+        ],
+        "holdout_predictions": [
+          276.68,
+          85.83
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 986.09,
+        "holdout_rmse": 1003.23,
+        "holdout_mape_pct": 63.6,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "ppr_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          2419.0,
+          1017.0
+        ],
+        "holdout_predictions": [
+          3589.73,
+          1818.46
+        ]
+      }
+    }
+  },
+  "rabies": {
+    "name": "Rabies",
+    "slug": "rabies",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 4331.78,
+        "holdout_rmse": 5429.34,
+        "holdout_mape_pct": 598.4,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "rabies_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          8086.0,
+          96.0
+        ],
+        "holdout_predictions": [
+          481.08,
+          1154.63
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 137.14,
+        "holdout_rmse": 144.39,
+        "holdout_mape_pct": 229.09,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "rabies_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          243.0,
+          24.0
+        ],
+        "holdout_predictions": [
+          60.68,
+          115.96
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 3990.04,
+        "holdout_rmse": 5382.38,
+        "holdout_mape_pct": 243.69,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "rabies_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          8086.0,
+          96.0
+        ],
+        "holdout_predictions": [
+          483.54,
+          473.63
+        ]
+      }
+    }
+  },
+  "ranikhet_disease": {
+    "name": "Ranikhet (New Castle) Disease",
+    "slug": "ranikhet_disease",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 677453.7,
+        "holdout_rmse": 700804.27,
+        "holdout_mape_pct": 76.59,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "ranikhet_disease_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          1052633.0,
+          693840.0
+        ],
+        "holdout_predictions": [
+          195782.8,
+          195782.8
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 287.28,
+        "holdout_rmse": 305.24,
+        "holdout_mape_pct": 128.2,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "ranikhet_disease_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          311.0,
+          198.0
+        ],
+        "holdout_predictions": [
+          495.11,
+          588.45
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 7992.11,
+        "holdout_rmse": 8595.62,
+        "holdout_mape_pct": 56.96,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "ranikhet_disease_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          18943.0,
+          12615.0
+        ],
+        "holdout_predictions": [
+          23771.11,
+          23771.11
+        ]
+      }
+    }
+  },
+  "salmonellosis": {
+    "name": "Salmonellosis",
+    "slug": "salmonellosis",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 41718.02,
+        "holdout_rmse": 42536.55,
+        "holdout_mape_pct": 84.51,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "salmonellosis_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          43942.0,
+          60551.0
+        ],
+        "holdout_predictions": [
+          93964.52,
+          93964.52
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 36.52,
+        "holdout_rmse": 36.53,
+        "holdout_mape_pct": 73.72,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "salmonellosis_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          60.0,
+          42.0
+        ],
+        "holdout_predictions": [
+          22.91,
+          77.96
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 2795.0,
+        "holdout_rmse": 3249.94,
+        "holdout_mape_pct": 157.09,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "salmonellosis_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          1614.0,
+          1827.0
+        ],
+        "holdout_predictions": [
+          2750.67,
+          6280.34
+        ]
+      }
+    }
+  },
+  "schistosomiasis": {
+    "name": "Schistosomiasis",
+    "slug": "schistosomiasis",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 467.99,
+        "holdout_rmse": 655.51,
+        "holdout_mape_pct": 499.22,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "schistosomiasis_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          935.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          8.02,
+          8.99
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 28.48,
+        "holdout_rmse": 39.5,
+        "holdout_mape_pct": 105.87,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "schistosomiasis_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          56.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          0.15,
+          1.12
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 0.0,
+        "holdout_rmse": 0.0,
+        "holdout_mape_pct": 0.0,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "schistosomiasis_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          0.0,
+          0.0
+        ],
+        "holdout_predictions": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "sheep_goat_pox": {
+    "name": "Sheep & Goat Pox",
+    "slug": "sheep_goat_pox",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 1196.88,
+        "holdout_rmse": 1197.1,
+        "holdout_mape_pct": 51.6,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "sheep_goat_pox_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          2650.0,
+          2071.0
+        ],
+        "holdout_predictions": [
+          3824.02,
+          3290.74
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 84.74,
+        "holdout_rmse": 97.57,
+        "holdout_mape_pct": 91.58,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "sheep_goat_pox_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          88.0,
+          114.0
+        ],
+        "holdout_predictions": [
+          221.11,
+          150.36
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 179.5,
+        "holdout_rmse": 188.92,
+        "holdout_mape_pct": 58.15,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "sheep_goat_pox_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          503.0,
+          175.0
+        ],
+        "holdout_predictions": [
+          741.42,
+          295.58
+        ]
+      }
+    }
+  },
+  "swine_fever": {
+    "name": "Swine Fever",
+    "slug": "swine_fever",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 8905.1,
+        "holdout_rmse": 10760.97,
+        "holdout_mape_pct": 617.03,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "swine_fever_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          1726.0,
+          778.0
+        ],
+        "holdout_predictions": [
+          16672.42,
+          3641.78
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 188.6,
+        "holdout_rmse": 202.39,
+        "holdout_mape_pct": 359.26,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "swine_fever_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          69.0,
+          34.0
+        ],
+        "holdout_predictions": [
+          331.02,
+          149.18
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 2820.62,
+        "holdout_rmse": 2824.34,
+        "holdout_mape_pct": 1035.42,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "swine_fever_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          289.0,
+          259.0
+        ],
+        "holdout_predictions": [
+          2964.67,
+          3224.57
+        ]
+      }
+    }
+  },
+  "trypanosomiasis": {
+    "name": "Trypanismiasis",
+    "slug": "trypanosomiasis",
+    "targets": {
+      "attacks": {
+        "holdout_mae": 1309.14,
+        "holdout_rmse": 1358.66,
+        "holdout_mape_pct": 282.85,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "trypanosomiasis_attacks_ensemble.pkl",
+        "holdout_actuals": [
+          1077.0,
+          350.0
+        ],
+        "holdout_predictions": [
+          2022.64,
+          2022.64
+        ]
+      },
+      "outbreaks": {
+        "holdout_mae": 27.5,
+        "holdout_rmse": 28.48,
+        "holdout_mape_pct": 44.48,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "trypanosomiasis_outbreaks_ensemble.pkl",
+        "holdout_actuals": [
+          105.0,
+          50.0
+        ],
+        "holdout_predictions": [
+          84.91,
+          84.91
+        ]
+      },
+      "deaths": {
+        "holdout_mae": 8.84,
+        "holdout_rmse": 9.95,
+        "holdout_mape_pct": 73.15,
+        "train_samples": 9,
+        "test_samples": 2,
+        "model_binary": "trypanosomiasis_deaths_ensemble.pkl",
+        "holdout_actuals": [
+          22.0,
+          5.0
+        ],
+        "holdout_predictions": [
+          8.6,
+          9.27
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "districts": [
+    {"id": "PUNE", "name": "Pune", "state": "Maharashtra", "division": "Pune", "lat": 18.5204, "lon": 73.8567, "cattle_population": 412000, "buffalo_population": 298000, "goat_population": 185000, "sheep_population": 62000, "poultry_population": 2100000, "total_livestock": 3057000, "taluka_vet_dispensaries": 10, "mobile_vet_clinics": 5, "disease_diagnostic_lab": true},
+    {"id": "AHMEDNAGAR", "name": "Ahmednagar", "state": "Maharashtra", "division": "Nashik", "lat": 19.0948, "lon": 74.748, "cattle_population": 685000, "buffalo_population": 520000, "goat_population": 310000, "sheep_population": 145000, "poultry_population": 890000, "total_livestock": 2550000, "taluka_vet_dispensaries": 12, "mobile_vet_clinics": 6, "disease_diagnostic_lab": true},
+    {"id": "NASHIK", "name": "Nashik", "state": "Maharashtra", "division": "Nashik", "lat": 20.0063, "lon": 73.79, "cattle_population": 498000, "buffalo_population": 380000, "goat_population": 270000, "sheep_population": 98000, "poultry_population": 1500000, "total_livestock": 2746000, "taluka_vet_dispensaries": 11, "mobile_vet_clinics": 4, "disease_diagnostic_lab": false},
+    {"id": "KOLHAPUR", "name": "Kolhapur", "state": "Maharashtra", "division": "Kolhapur", "lat": 16.705, "lon": 74.2433, "cattle_population": 520000, "buffalo_population": 445000, "goat_population": 195000, "sheep_population": 55000, "poultry_population": 3200000, "total_livestock": 4415000, "taluka_vet_dispensaries": 9, "mobile_vet_clinics": 4, "disease_diagnostic_lab": true},
+    {"id": "SANGLI", "name": "Sangli", "state": "Maharashtra", "division": "Kolhapur", "lat": 16.8524, "lon": 74.5815, "cattle_population": 390000, "buffalo_population": 310000, "goat_population": 260000, "sheep_population": 120000, "poultry_population": 980000, "total_livestock": 2060000, "taluka_vet_dispensaries": 8, "mobile_vet_clinics": 3, "disease_diagnostic_lab": false},
+    {"id": "SOLAPUR", "name": "Solapur", "state": "Maharashtra", "division": "Pune", "lat": 17.6599, "lon": 75.9064, "cattle_population": 445000, "buffalo_population": 285000, "goat_population": 380000, "sheep_population": 210000, "poultry_population": 750000, "total_livestock": 2070000, "taluka_vet_dispensaries": 10, "mobile_vet_clinics": 5, "disease_diagnostic_lab": false},
+    {"id": "NAGPUR", "name": "Nagpur", "state": "Maharashtra", "division": "Nagpur", "lat": 21.1458, "lon": 79.0882, "cattle_population": 365000, "buffalo_population": 270000, "goat_population": 190000, "sheep_population": 45000, "poultry_population": 1200000, "total_livestock": 2070000, "taluka_vet_dispensaries": 9, "mobile_vet_clinics": 4, "disease_diagnostic_lab": true},
+    {"id": "LATUR", "name": "Latur", "state": "Maharashtra", "division": "Aurangabad", "lat": 18.4088, "lon": 76.5604, "cattle_population": 410000, "buffalo_population": 340000, "goat_population": 290000, "sheep_population": 175000, "poultry_population": 620000, "total_livestock": 1835000, "taluka_vet_dispensaries": 8, "mobile_vet_clinics": 3, "disease_diagnostic_lab": false},
+    {"id": "JALGAON", "name": "Jalgaon", "state": "Maharashtra", "division": "Nashik", "lat": 21.0077, "lon": 75.5626, "cattle_population": 470000, "buffalo_population": 350000, "goat_population": 240000, "sheep_population": 80000, "poultry_population": 950000, "total_livestock": 2090000, "taluka_vet_dispensaries": 10, "mobile_vet_clinics": 4, "disease_diagnostic_lab": false}
+  ],
+  "diseases": [
+    {"id": "fmd", "name": "Foot-and-Mouth Disease", "species": ["cattle","buffalo","goat","sheep"]},
+    {"id": "lsd", "name": "Lumpy Skin Disease", "species": ["cattle","buffalo"]},
+    {"id": "ppr", "name": "PPR", "species": ["goat","sheep"]},
+    {"id": "brucellosis", "name": "Brucellosis", "species": ["cattle","buffalo","goat"]},
+    {"id": "ai_h5n1", "name": "Avian Influenza", "species": ["poultry"]}
+  ],
+  "helpline": "1800-233-0418",
+  "govt_dept": "Dept. of Animal Husbandry, Dairy Development & Fisheries, Govt. of Maharashtra"
+}

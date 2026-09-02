@@ -1,0 +1,69 @@
+{
+  "gradient_boosting": {
+    "type": "GradientBoostingClassifier",
+    "features": [
+      "age",
+      "sex",
+      "bmi",
+      "activity_level",
+      "prior_joint_injury",
+      "family_history_oa",
+      "diabetes",
+      "terrain_factor",
+      "womac_pain",
+      "womac_stiffness",
+      "womac_function",
+      "joint_knee",
+      "joint_hip",
+      "joint_hand",
+      "joint_spine",
+      "crepitus",
+      "joint_swelling",
+      "morning_stiffness_min",
+      "occ_agriculture",
+      "occ_domestic",
+      "occ_retired",
+      "occ_service",
+      "occ_trade"
+    ],
+    "n_estimators": 250,
+    "learning_rate": 0.08,
+    "max_depth": 4,
+    "trained_at": "2026-08-29T20:02:45.385555",
+    "classification_report_positive": {
+      "precision": 0.8867924528301887,
+      "recall": 0.706766917293233,
+      "f1-score": 0.7866108786610879,
+      "support": 133.0
+    }
+  },
+  "logistic_baseline": {
+    "type": "LogisticRegression",
+    "features": [
+      "age",
+      "sex",
+      "bmi",
+      "activity_level",
+      "prior_joint_injury",
+      "family_history_oa",
+      "diabetes",
+      "terrain_factor",
+      "womac_pain",
+      "womac_stiffness",
+      "womac_function",
+      "joint_knee",
+      "joint_hip",
+      "joint_hand",
+      "joint_spine",
+      "crepitus",
+      "joint_swelling",
+      "morning_stiffness_min",
+      "occ_agriculture",
+      "occ_domestic",
+      "occ_retired",
+      "occ_service",
+      "occ_trade"
+    ],
+    "interpretability": "Direct log-odds coefficients; coefficients in feature_importance"
+  }
+}

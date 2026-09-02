@@ -163,3 +163,83 @@ class ForecastRun(Base):
     rmse = Column(Float, nullable=True)
     notes = Column(String, nullable=True)
     computed_at = Column(DateTime, nullable=False)
+
+
+# ────────────────────────────────────────────────────────────────
+# SwasthSandhi — OA (Osteoarthritis) Screening Module (SIH26004)
+# ────────────────────────────────────────────────────────────────
+
+class OAPatient(Base):
+    """An individual screened for early Osteoarthritis risk.
+
+    Stores core demographic + non-modifiable risk factors recorded by a
+    healthcare worker in a PHC / rural health camp. Patient-level, aligns with
+    the SIH26004 'digital patient record' requirement.
+    """
+    __tablename__ = "oa_patients"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    patient_id = Column(String, unique=True, index=True, nullable=False)
+    age = Column(Integer, nullable=False)
+    sex = Column(String, nullable=False)            # male | female
+    bmi = Column(Float, nullable=False)
+    occupation = Column(String, nullable=False)     # agriculture | domestic | service | trade | retired
+    occupation_detail = Column(String, nullable=True)
+    activity_level = Column(Integer, default=1)     # 0 sedentary | 1 light | 2 heavy
+    prior_joint_injury = Column(Boolean, default=False)
+    family_history_oa = Column(Boolean, default=False)
+    diabetes = Column(Boolean, default=False)
+    terrain_factor = Column(Float, default=1.0)
+    ner_district = Column(String, nullable=False)   # NER district string
+    language = Column(String, default="en")         # as | bn | hi | en
+    recorded_by = Column(String, nullable=True)     # healthcare worker id
+    created_at = Column(DateTime, nullable=False)
+
+
+class OAScreening(Base):
+    """A single screening encounter for an OAPatient.
+
+    Stores the WOMAC-style subjective scores, clinical signs and the computed
+    ML risk result (probability + severity tier). model_allowed flag records if
+    the ML classifier was applied or the result came from the clinical
+    rules-baseline fallback.
+    """
+    __tablename__ = "oa_screenings"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    patient_id = Column(String, ForeignKey("oa_patients.patient_id"), nullable=False)
+    screened_at = Column(DateTime, nullable=False)
+    womac_pain = Column(Float, nullable=False)
+    womac_stiffness = Column(Float, nullable=False)
+    womac_function = Column(Float, nullable=False)
+    womac_total = Column(Float, nullable=False)
+    joint_knee = Column(Boolean, default=False)
+    joint_hip = Column(Boolean, default=False)
+    joint_hand = Column(Boolean, default=False)
+    joint_spine = Column(Boolean, default=False)
+    crepitus = Column(Boolean, default=False)
+    joint_swelling = Column(Boolean, default=False)
+    morning_stiffness_min = Column(Integer, default=0)
+    risk_probability = Column(Float, nullable=False)    # model p(high-risk)
+    risk_tier = Column(String, nullable=False)          # Low | Medium | High | Critical
+    risk_source = Column(String, nullable=False)        # ml_classifier | clinical_rules
+    severity_note = Column(String, nullable=True)
+    referral_required = Column(Boolean, default=False)
+    report_pdf_ref = Column(String, nullable=True)
+    offline_synced = Column(Boolean, default=False)
+
+
+class OAClinicalRule(Base):
+    """Transparent clinical rules-baseline tier used when ML is unavailable,
+    or shown alongside ML for auditability. Mirrors the 'rules-of-engagement'
+    documented in ml/oa/results/oa_models.json.
+    """
+    __tablename__ = "oa_clinical_rules"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    rule_name = Column(String, nullable=False)
+    description = Column(String, nullable=True)
+    condition_json = Column(JSON, nullable=True)
+    tier = Column(String, nullable=False)
+    source = Column(String, nullable=True)   # OARSI guideline / WOMAC / etc
+

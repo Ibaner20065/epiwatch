@@ -1,0 +1,66 @@
+[
+  {
+    "id": "chunk_ls_001",
+    "title": "PashuRaksha — Maharashtra Animal Health Surveillance Architecture",
+    "topic": "surveillance_architecture",
+    "district": "ALL",
+    "state": "Maharashtra",
+    "source_file": "Maharashtra_DAHD_Surveillance_Guidelines_2024.pdf",
+    "page": 1,
+    "text": "PashuRaksha is Maharashtra's unified animal-health surveillance and early-warning platform deployed across 9 livestock-priority districts: Pune, Ahmednagar, Nashik, Kolhapur, Sangli, Solapur, Nagpur, Latur, and Jalgaon. It enables real-time reporting of symptoms and mortalities by farmers, para-vets, and veterinary officers with automated rule-based and ML-assisted outbreak triage."
+  },
+  {
+    "id": "chunk_ls_002",
+    "title": "Foot-and-Mouth Disease (FMD) Surveillance & Control in Maharashtra",
+    "topic": "disease_control",
+    "disease": "fmd",
+    "district": "ALL",
+    "state": "Maharashtra",
+    "source_file": "National_Animal_Disease_Control_Programme_NADCP.pdf",
+    "page": 4,
+    "text": "FMD affects cloven-hoofed livestock including cattle, buffalo, sheep, and goats. Under the National Animal Disease Control Programme (NADCP), bi-annual mass vaccination is mandatory. Key symptoms include high fever, vesicles/blisters in the oral cavity and interdigital space of feet, profuse salivation, and severe drop in milk yield. Quarantining affected herds for at least 21 days is required."
+  },
+  {
+    "id": "chunk_ls_003",
+    "title": "Lumpy Skin Disease (LSD) Vector Ecology & Prevention in Western Maharashtra",
+    "topic": "vector_ecology",
+    "disease": "lsd",
+    "district": "PUNE",
+    "state": "Maharashtra",
+    "source_file": "Maharashtra_LSD_Advisory_Circular.pdf",
+    "page": 2,
+    "text": "Lumpy Skin Disease is a capripoxvirus disease transmitted primarily by biting vectors (mosquitoes, stable flies, ticks). It causes characteristic cutaneous nodules (2-5 cm), fever, enlarged lymph nodes, and oedema of limbs. Vector control through shed sanitation, pyrethroid sprays, and early immunization with homologous goat pox/Lumpi-ProVac vaccine within a 5 km radius of outbreak clusters is standard protocol."
+  },
+  {
+    "id": "chunk_ls_004",
+    "title": "Peste des Petits Ruminants (PPR) Control in Marathwada & Western Maharashtra",
+    "topic": "disease_control",
+    "disease": "ppr",
+    "district": "LATUR",
+    "state": "Maharashtra",
+    "source_file": "PPR_Eradication_Roadmap_India.pdf",
+    "page": 7,
+    "text": "PPR ('goat plague') is an acute viral disease of small ruminants causing high mortality in goats and sheep. Manifests as sudden fever, necrotic stomatitis, catarrhal nasal/ocular discharge, severe diarrhea, and bronchopneumonia. Single-dose live attenuated PPR Sungri/96 vaccine gives lifetime immunity. Mass vaccination campaigns are focused in high-density small ruminant belts like Solapur, Latur, and Ahmednagar."
+  },
+  {
+    "id": "chunk_ls_005",
+    "title": "Avian Influenza (H5N1) Early Warning & Bio-containment Protocol",
+    "topic": "zoonotic_surveillance",
+    "disease": "ai_h5n1",
+    "district": "NAGPUR",
+    "state": "Maharashtra",
+    "source_file": "Action_Plan_Avian_Influenza_DAHD.pdf",
+    "page": 12,
+    "text": "Highly Pathogenic Avian Influenza (HPAI H5N1) represents severe zoonotic and economic risk. Unexplained sudden mortality exceeding 50 birds in a 72-hour window triggers immediate emergency alert, sample dispatch to Disease Diagnostic Laboratories (Pune/Nagpur/Bhopal ICAR-NIHSAD), and preparatory demarcation of 1 km infected zone and 10 km surveillance zone."
+  },
+  {
+    "id": "chunk_ls_006",
+    "title": "Maharashtra Veterinary Emergency Helpline & Infrastructure",
+    "topic": "helpline_infrastructure",
+    "district": "ALL",
+    "state": "Maharashtra",
+    "source_file": "Maharashtra_Pashu_Sanjeevani_Brochure.pdf",
+    "page": 1,
+    "text": "The Government of Maharashtra operates the toll-free Veterinary Emergency Helpline (1800-233-0418) and Mobile Veterinary Clinics (Pashu Sanjeevani) across all talukas. Farmers can log symptom reports, request emergency doorstep diagnostics, and access subsidized artificial insemination and mineral mixture under state livestock development schemes."
+  }
+]

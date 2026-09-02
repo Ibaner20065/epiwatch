@@ -32,6 +32,8 @@ data/processed/*.csv
 
 # ── Logs & temp ─────────────────────────────────────
 *.log
+*.db
+backend/epiwatch.db
 backend/scripts/e2e_results.json
 
 # ── OS artifacts ────────────────────────────────────

@@ -99,6 +99,12 @@ export default function Dashboard() {
             <Link href="/world" className="bp-btn">
               🌐 WORLD CONTEXT
             </Link>
+            <Link href="/oa" className="bp-btn bp-btn-active">
+              🦵 SWASTH SANDHI OA
+            </Link>
+            <Link href="/livestock" className="bp-btn bp-btn-active" style={{ borderColor: '#d4af37', color: '#d4af37' }}>
+              🐄 PASHURAKSHA (MH)
+            </Link>
           </nav>
         </div>
       </header>
