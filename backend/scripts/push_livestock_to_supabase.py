@@ -195,22 +195,6 @@ def create_supabase_livestock_tables():
 
         # 8. MOSPI / Dataful Tables
         conn.execute(text("""
-            CREATE TABLE IF NOT EXISTS dataful_livestock_annual (
-                id SERIAL PRIMARY KEY,
-                fiscal_year INTEGER NOT NULL,
-                disease VARCHAR NOT NULL,
-                disease_slug VARCHAR NOT NULL,
-                outbreaks FLOAT DEFAULT 0.0,
-                attacks FLOAT DEFAULT 0.0,
-                deaths FLOAT DEFAULT 0.0,
-                case_fatality_rate FLOAT DEFAULT 0.0,
-                attack_rate_per_outbreak FLOAT DEFAULT 0.0,
-                mortality_per_outbreak FLOAT DEFAULT 0.0,
-                source VARCHAR DEFAULT 'MOSPI Statistical Year Book India'
-            );
-        """))
-
-        conn.execute(text("""
             CREATE TABLE IF NOT EXISTS dataful_disease_summaries (
                 slug VARCHAR PRIMARY KEY,
                 name VARCHAR NOT NULL,
@@ -229,9 +213,25 @@ def create_supabase_livestock_tables():
         """))
 
         conn.execute(text("""
+            CREATE TABLE IF NOT EXISTS dataful_livestock_annual (
+                id SERIAL PRIMARY KEY,
+                fiscal_year INTEGER NOT NULL,
+                disease VARCHAR NOT NULL,
+                disease_slug VARCHAR NOT NULL REFERENCES dataful_disease_summaries(slug) ON DELETE CASCADE,
+                outbreaks FLOAT DEFAULT 0.0,
+                attacks FLOAT DEFAULT 0.0,
+                deaths FLOAT DEFAULT 0.0,
+                case_fatality_rate FLOAT DEFAULT 0.0,
+                attack_rate_per_outbreak FLOAT DEFAULT 0.0,
+                mortality_per_outbreak FLOAT DEFAULT 0.0,
+                source VARCHAR DEFAULT 'MOSPI Statistical Year Book India'
+            );
+        """))
+
+        conn.execute(text("""
             CREATE TABLE IF NOT EXISTS dataful_disease_forecasts (
                 id SERIAL PRIMARY KEY,
-                disease_slug VARCHAR NOT NULL,
+                disease_slug VARCHAR NOT NULL REFERENCES dataful_disease_summaries(slug) ON DELETE CASCADE,
                 target_metric VARCHAR NOT NULL,
                 fiscal_year INTEGER NOT NULL,
                 predicted_value FLOAT NOT NULL,
