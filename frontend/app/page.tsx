@@ -68,19 +68,19 @@ export default function Dashboard() {
         <div className="max-w-[1400px] mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 border border-dashed border-[var(--bp-cyan)] flex items-center justify-center text-xl" style={{ color: 'var(--bp-cyan)' }}>
-              🦠
+              🌾
             </div>
             <div>
               <h1 className="text-xl font-bold tracking-widest uppercase" style={{ color: 'var(--bp-cyan)' }}>
-                EpiWatch India
+                EpiWatch GramRaksha
               </h1>
               <p className="text-[10px] tracking-wider" style={{ color: 'var(--bp-white-muted)' }}>
-                <span className="bp-serial">[SYS-001]</span> District Outbreak Prediction Engine
+                <span className="bp-serial">[SYS-001]</span> Rural One-Health &amp; Outbreak Prediction Engine
               </p>
             </div>
           </div>
 
-          <nav className="flex items-center gap-2">
+          <nav className="flex items-center gap-2 flex-wrap">
             <button
               onClick={() => setShowAssistant(true)}
               className="bp-btn bp-btn-active"
@@ -88,22 +88,22 @@ export default function Dashboard() {
               💬 ASK AI ASSISTANT
             </button>
             <Link href="/" className="bp-btn bp-btn-active">
-              🇮🇳 INDIA ENGINE
+              🇮🇳 RURAL HEALTH
+            </Link>
+            <Link href="/livestock" className="bp-btn bp-btn-active" style={{ borderColor: '#d4af37', color: '#d4af37' }}>
+              🐄 PASHURAKSHA (356 TEHSILS)
+            </Link>
+            <Link href="/livestock/report" className="bp-btn" style={{ borderColor: '#00d4aa', color: '#00d4aa' }}>
+              📝 VILLAGE FIELD REPORT
+            </Link>
+            <Link href="/oa" className="bp-btn" style={{ borderColor: '#4fc3f7', color: '#4fc3f7' }}>
+              🦵 FARMER OA SCREENING
             </Link>
             <Link href={`/proof?district_id=${selectedDistrictId || "PUNE"}&disease=${selectedDisease}`} className="bp-btn">
               🎯 PROOF &amp; BACKTEST
             </Link>
             <Link href="/methodology" className="bp-btn">
               📊 METHODOLOGY
-            </Link>
-            <Link href="/world" className="bp-btn">
-              🌐 WORLD CONTEXT
-            </Link>
-            <Link href="/oa" className="bp-btn bp-btn-active">
-              🦵 SWASTH SANDHI OA
-            </Link>
-            <Link href="/livestock" className="bp-btn bp-btn-active" style={{ borderColor: '#d4af37', color: '#d4af37' }}>
-              🐄 PASHURAKSHA (MH)
             </Link>
           </nav>
         </div>
@@ -123,26 +123,29 @@ export default function Dashboard() {
               <div className="flex flex-wrap items-center gap-2 mb-3">
                 <span className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-bold uppercase tracking-widest border border-[var(--bp-cyan)] border-dashed" style={{ color: 'var(--bp-cyan)' }}>
                   <span className="w-2 h-2 bg-[var(--bp-cyan)]" style={{ animation: 'bp-pulse 2s ease-in-out infinite' }} />
-                  LIVE AI OUTBREAK ENGINE V2.0
+                  RURAL ONE-HEALTH DEFENSE SHIELD V2.0
                 </span>
                 <span className="bp-serial">[SEC-001]</span>
+                <span className="px-2 py-0.5 text-[10px] uppercase font-bold border border-[#d4af37]" style={{ color: '#d4af37' }}>
+                  356 MAHARASHTRA TEHSILS TRACKED
+                </span>
               </div>
 
               <h2 className="text-2xl sm:text-3xl font-bold tracking-wider uppercase" style={{ color: 'var(--bp-white-soft)' }}>
-                District Outbreak Early Warning System
+                Rural Epidemic Early Warning &amp; Livestock Livelihood Shield
               </h2>
-              <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--bp-white-muted)' }}>
-                Integrating IDSP surveillance records, NASA POWER climate satellite feeds, Census demographics, and hospital diagnoses to forecast disease spikes 6–8 weeks in advance.
+              <p className="text-xs mt-1 leading-relaxed max-w-4xl" style={{ color: 'var(--bp-white-muted)' }}>
+                Empowering Gram Panchayats, Primary Health Centres (PHCs), and smallholder farmers by fusing IDSP epidemiological data, 19th Livestock Census block figures, and NASA POWER climate satellite telemetry to forecast waterborne surges and animal epidemics 6–8 weeks in advance.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
               <button
                 onClick={() => setShowSimulation(true)}
-                className="bp-btn bp-btn-danger px-5 py-3 text-xs font-extrabold"
+                className="bp-btn bp-btn-active flex items-center justify-center gap-2 py-3 px-4"
               >
-                <span className="text-base" style={{ animation: 'bp-spin 4s linear infinite', display: 'inline-block' }}>⚡</span>
-                EXECUTE PREDICTOR SIMULATION
+                <span className="text-base">⚡</span>
+                <span className="tracking-wider">RUN PREDICTOR SIMULATION</span>
               </button>
 
               <div className="flex items-center gap-1 p-1 border border-[var(--bp-line-faint)]">
@@ -161,6 +164,49 @@ export default function Dashboard() {
                 ))}
               </div>
             </div>
+          </div>
+
+          {/* ── Rural Quick-Action Command Strip ── */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6 pt-6 border-t border-[var(--border)] border-dashed">
+            <Link href="/livestock" className="p-3 border border-[#d4af37]/40 hover:border-[#d4af37] bg-[#d4af37]/5 transition-colors group">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-[#d4af37] tracking-wider">🐄 PASHURAKSHA SURVEILLANCE</span>
+                <span className="text-[10px] text-[var(--bp-white-muted)]">37 Diseases →</span>
+              </div>
+              <p className="text-[11px] text-[var(--bp-white-muted)] mt-1">
+                National MOSPI ML forecasts &amp; 34 Maharashtra district cattle/poultry trends.
+              </p>
+            </Link>
+
+            <Link href="/livestock/report" className="p-3 border border-[#00d4aa]/40 hover:border-[#00d4aa] bg-[#00d4aa]/5 transition-colors group">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-[#00d4aa] tracking-wider">📍 PASHU SAKHI FIELD INTAKE</span>
+                <span className="text-[10px] text-[var(--bp-white-muted)]">Instant AI →</span>
+              </div>
+              <p className="text-[11px] text-[var(--bp-white-muted)] mt-1">
+                Village symptom reporting with NLP triage &amp; Marathi/Hindi voice intake.
+              </p>
+            </Link>
+
+            <Link href="/livestock/lab" className="p-3 border border-[#ff6b6b]/40 hover:border-[#ff6b6b] bg-[#ff6b6b]/5 transition-colors group">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-[#ff6b6b] tracking-wider">🔬 5-STAGE LAB PIPELINE</span>
+                <span className="text-[10px] text-[var(--bp-white-muted)]">Track →</span>
+              </div>
+              <p className="text-[11px] text-[var(--bp-white-muted)] mt-1">
+                Sample transport, cold-chain monitoring &amp; automated outbreak alerts.
+              </p>
+            </Link>
+
+            <Link href="/oa" className="p-3 border border-[#4fc3f7]/40 hover:border-[#4fc3f7] bg-[#4fc3f7]/5 transition-colors group">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-[#4fc3f7] tracking-wider">🦵 FARMER OA SCREENING</span>
+                <span className="text-[10px] text-[var(--bp-white-muted)]">AUC 0.96 →</span>
+              </div>
+              <p className="text-[11px] text-[var(--bp-white-muted)] mt-1">
+                WOMAC joint disability screening for rural agricultural workers.
+              </p>
+            </Link>
           </div>
 
           {/* Dimension marker */}

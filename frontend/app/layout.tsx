@@ -16,10 +16,10 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "EpiWatch — Global Disease Intelligence",
+  title: "EpiWatch GramRaksha — Rural One-Health Disease & Livestock Outbreak Intelligence",
   description:
-    "Real-time disease surveillance dashboard with live global outbreak data, demographic insights, and predictive analytics for epidemic preparedness.",
-  keywords: ["disease surveillance", "epidemic", "outbreak", "health data", "demographics"],
+    "AI-powered rural epidemiological intelligence platform bridging village health surveillance, 356-tehsil livestock economics, and climate-driven outbreak forecasting.",
+  keywords: ["rural health", "livestock surveillance", "one health", "pashuraksha", "tehsil census", "epidemic prediction"],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
