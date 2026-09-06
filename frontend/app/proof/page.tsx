@@ -14,7 +14,16 @@ const DISEASE_LABELS: Record<string, string> = {
 
 export default function ProofPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center font-mono text-[10px]" style={{ background: 'var(--bp-blue)', color: 'var(--bp-white-faint)' }}>Loading backtest...</div>}>
+    <Suspense
+      fallback={
+        <div
+          className="min-h-screen flex items-center justify-center text-xs font-semibold text-gray-600"
+          style={{ background: "var(--surface-muted)" }}
+        >
+          Loading backtest verification...
+        </div>
+      }
+    >
       <ProofContent />
     </Suspense>
   );
@@ -81,20 +90,31 @@ function ProofContent() {
   const predictedPeak = event?.metrics_json?.predicted_peak_week;
 
   return (
-    <div className="flex flex-col min-h-screen text-[var(--bp-white-soft)] font-mono">
-      {/* Header */}
-      <header className="sticky top-0 z-50 glass-panel border-b border-[var(--bp-line-faint)] px-6 py-4 backdrop-blur-md" style={{ background: 'rgba(0, 30, 60, 0.9)' }}>
-        <div className="max-w-[1400px] mx-auto flex items-center justify-between gap-4">
+    <div className="flex flex-col min-h-screen" style={{ fontFamily: "var(--font-sans)", background: "var(--surface-muted)" }}>
+      {/* ── Header ── */}
+      <header
+        className="sticky top-0 z-50 px-6 py-4"
+        style={{
+          background: "var(--surface)",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.04), 0 0 0 1px var(--border)",
+        }}
+      >
+        <div className="max-w-[1400px] mx-auto flex items-center justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3 min-w-0">
-            <Link href="/" className="w-10 h-10 border border-[var(--bp-line-faint)] flex items-center justify-center text-lg hover:border-[var(--bp-cyan)] transition shrink-0" style={{ color: 'var(--bp-white-soft)' }}>
+            <Link
+              href="/"
+              className="ew-btn-secondary text-sm no-underline flex items-center justify-center shrink-0"
+              style={{ width: 36, height: 36, padding: 0, borderRadius: "var(--radius-md)" }}
+            >
               ←
             </Link>
             <div className="min-w-0">
-              <h1 className="text-sm font-bold tracking-widest uppercase truncate" style={{ color: 'var(--bp-white-soft)' }}>
-                <span className="bp-serial">[PRF-01]</span> Backtest Proof &amp; Lead Time Verification
+              <h1 className="text-base font-bold tracking-tight text-gray-900 truncate">
+                <span className="font-mono text-blue-600 mr-1.5">[PRF-01]</span>
+                Backtest Proof &amp; Lead Time Verification
               </h1>
-              <p className="text-[10px]" style={{ color: 'var(--bp-white-faint)' }}>
-                {districtName} {diseaseLabel} — Live Model Evaluation against Historical Outbreaks
+              <p className="text-xs text-gray-500 font-medium">
+                {districtName} · {diseaseLabel} — Live Model Evaluation against Historical Outbreaks
               </p>
             </div>
           </div>
@@ -103,117 +123,178 @@ function ProofContent() {
             <select
               value={districtId}
               onChange={(e) => changeDistrict(e.target.value)}
-              className="px-3 py-1.5 text-[10px] font-bold border border-[var(--bp-line-faint)] font-mono cursor-pointer focus:outline-none focus:border-[var(--bp-cyan)]"
-              style={{ background: 'rgba(0,20,40,0.8)', color: 'var(--bp-white-soft)' }}
+              className="px-3 py-1.5 text-xs font-semibold bg-white border border-gray-300 rounded text-gray-900 cursor-pointer focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+              style={{ borderRadius: "var(--radius-sm)" }}
             >
               {districts.map((d) => (
-                <option key={d.id} value={d.id.toUpperCase()} style={{ background: '#002244' }}>
+                <option key={d.id} value={d.id.toUpperCase()}>
                   {d.name}
                 </option>
               ))}
               {!districts.find((d) => d.id.toUpperCase() === districtId) && (
-                <option value={districtId} style={{ background: '#002244' }}>{districtName}</option>
+                <option value={districtId}>{districtName}</option>
               )}
             </select>
-            {["dengue", "malaria", "add"].map((dis) => (
-              <button
-                key={dis}
-                onClick={() => changeDisease(dis)}
-                className={`px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest transition border font-mono ${
-                  disease === dis
-                    ? "border-[var(--bp-cyan)] text-[var(--bp-cyan)] bg-[rgba(0,255,255,0.08)]"
-                    : "border-[var(--bp-line-faint)] text-[var(--bp-white-faint)] hover:text-[var(--bp-white-muted)]"
-                }`}
-              >
-                {DISEASE_LABELS[dis].split(" ")[0]}
-              </button>
-            ))}
+            <div className="flex items-center gap-1 bg-gray-100 p-1 rounded border border-gray-200" style={{ borderRadius: "var(--radius-sm)" }}>
+              {["dengue", "malaria", "add"].map((dis) => (
+                <button
+                  key={dis}
+                  onClick={() => changeDisease(dis)}
+                  className={`px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded transition ${
+                    disease === dis
+                      ? "bg-white text-blue-600 shadow-sm font-bold"
+                      : "text-gray-600 hover:text-gray-900"
+                  }`}
+                  style={{ borderRadius: "var(--radius-sm)" }}
+                >
+                  {DISEASE_LABELS[dis].split(" ")[0]}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
+      {/* ── Main Content ── */}
       <main className="flex-1 max-w-[1400px] mx-auto w-full px-4 sm:px-6 py-8 space-y-8">
-
         {/* Callout Header */}
-        <section className="blueprint-card p-6">
-          <div className="bp-corners">
-            <span className="corner-tr">+</span>
-            <span className="corner-bl">+</span>
+        <section
+          className="ew-card p-6"
+          style={{
+            background: "#FFFFFF",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.08)",
+            borderRadius: "var(--radius-lg)",
+          }}
+        >
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold uppercase tracking-wider rounded mb-3" style={{ background: "rgba(37, 99, 235, 0.08)", color: "var(--accent)" }}>
+            <span>🎯</span> PROOF OF FORECAST ACCURACY
           </div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-bold border border-[var(--bp-cyan)] border-dashed mb-3" style={{ color: 'var(--bp-cyan)' }}>
-            🎯 PROOF OF FORECAST ACCURACY
-          </div>
-          <h2 className="text-xl font-bold uppercase tracking-wider" style={{ color: 'var(--bp-white-soft)' }}>
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
             {event?.event_name || `${districtName} ${diseaseLabel} Outbreak Backtest`}
           </h2>
-          <p className="text-[10px] mt-1 max-w-3xl" style={{ color: 'var(--bp-white-faint)' }}>
+          <p className="text-xs sm:text-sm mt-2 max-w-3xl leading-relaxed text-gray-600">
             To prove forecast reliability, the model is trained exclusively on historical data up to the cutoff
             {cutoffDate ? ` (${cutoffDate})` : ""} and its forward projections are then evaluated against actual
-            recorded case counts. MAE, RMSE and peak timing are computed live from the comparison — nothing is pre-baked.
+            recorded case counts. MAE, RMSE, and outbreak peak timing are computed live from the empirical comparison.
           </p>
         </section>
 
         {/* Metrics Grid */}
         <section className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="stat-card">
-            <p className="bp-serial mb-1">[MET-01] OUTBREAK LEAD TIME</p>
-            <p className="text-3xl font-bold font-mono" style={{ color: 'var(--bp-cyan)' }}>
-              {loading ? "Loading..." : leadTime !== undefined ? `${leadTime} Wks` : "N/A"}
+          <div
+            className="ew-card p-5"
+            style={{
+              background: "#FFFFFF",
+              boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.08)",
+              borderRadius: "var(--radius-md)",
+            }}
+          >
+            <p className="font-mono text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-1">
+              [MET-01] OUTBREAK LEAD TIME
             </p>
-            <p className="text-[9px] mt-1" style={{ color: 'var(--bp-white-faint)' }}>Model peak vs actual peak gap</p>
+            <p className="text-3xl font-extrabold font-mono text-blue-600">
+              {loading ? "..." : leadTime !== undefined ? `${leadTime} Wks` : "N/A"}
+            </p>
+            <p className="text-xs text-gray-500 mt-1">Model peak vs actual peak lead time</p>
             {predictedPeak && event && (
-              <p className="text-[9px] font-mono mt-0.5" style={{ color: 'var(--bp-white-faint)' }}>
-                Predicted peak {predictedPeak}
+              <p className="text-xs font-mono font-medium text-gray-600 mt-0.5">
+                Predicted peak: {predictedPeak}
               </p>
             )}
           </div>
 
-          <div className="stat-card">
-            <p className="bp-serial mb-1">[MET-02] ACTUAL OUTBREAK PEAK</p>
-            <p className="text-2xl font-bold font-mono" style={{ color: 'var(--bp-white-soft)' }}>
-              {loading ? "Loading..." : event?.actual_peak_week || "N/A"}
+          <div
+            className="ew-card p-5"
+            style={{
+              background: "#FFFFFF",
+              boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.08)",
+              borderRadius: "var(--radius-md)",
+            }}
+          >
+            <p className="font-mono text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-1">
+              [MET-02] ACTUAL OUTBREAK PEAK
             </p>
-            <p className="text-[9px] mt-1" style={{ color: 'var(--bp-white-faint)' }}>Recorded peak week</p>
+            <p className="text-3xl font-extrabold font-mono text-gray-900">
+              {loading ? "..." : event?.actual_peak_week || "N/A"}
+            </p>
+            <p className="text-xs text-gray-500 mt-1">Recorded peak week from IDSP data</p>
           </div>
 
-          <div className="stat-card">
-            <p className="bp-serial mb-1">[MET-03] MAE</p>
-            <p className="text-3xl font-bold font-mono" style={{ color: 'var(--bp-white-muted)' }}>
-              {loading ? "Loading..." : event?.metrics_json?.mae !== undefined ? event.metrics_json.mae : "N/A"}
+          <div
+            className="ew-card p-5"
+            style={{
+              background: "#FFFFFF",
+              boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.08)",
+              borderRadius: "var(--radius-md)",
+            }}
+          >
+            <p className="font-mono text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-1">
+              [MET-03] MAE ACCURACY
             </p>
-            <p className="text-[9px] mt-1" style={{ color: 'var(--bp-white-faint)' }}>Average case deviation (cases)</p>
+            <p className="text-3xl font-extrabold font-mono text-amber-600">
+              {loading ? "..." : event?.metrics_json?.mae !== undefined ? event.metrics_json.mae : "N/A"}
+            </p>
+            <p className="text-xs text-gray-500 mt-1">Mean Absolute Error (cases)</p>
           </div>
 
-          <div className="stat-card">
-            <p className="bp-serial mb-1">[MET-04] RMSE</p>
-            <p className="text-3xl font-bold font-mono" style={{ color: 'var(--bp-cyan-dim)' }}>
-              {loading ? "Loading..." : event?.metrics_json?.rmse !== undefined ? event.metrics_json.rmse : "N/A"}
+          <div
+            className="ew-card p-5"
+            style={{
+              background: "#FFFFFF",
+              boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.08)",
+              borderRadius: "var(--radius-md)",
+            }}
+          >
+            <p className="font-mono text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-1">
+              [MET-04] RMSE STABILITY
             </p>
-            <p className="text-[9px] mt-1" style={{ color: 'var(--bp-white-faint)' }}>Root Mean Square Error (cases)</p>
+            <p className="text-3xl font-extrabold font-mono text-purple-600">
+              {loading ? "..." : event?.metrics_json?.rmse !== undefined ? event.metrics_json.rmse : "N/A"}
+            </p>
+            <p className="text-xs text-gray-500 mt-1">Root Mean Square Error (cases)</p>
           </div>
         </section>
 
         {/* Chart View */}
-        <section className="blueprint-card p-6">
-          <div className="bp-corners">
-            <span className="corner-tr">+</span>
-            <span className="corner-bl">+</span>
-          </div>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-            <h3 className="text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--bp-white-soft)' }}>
-              <span className="bp-serial">[CHT-01]</span> Predicted Outbreak Curve vs Actual Recorded Outcome
-            </h3>
-            <span className="bp-coord">Cyan = Model Forecast • Redline = Actual Recorded</span>
+        <section
+          className="ew-card p-6"
+          style={{
+            background: "#FFFFFF",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.08)",
+            borderRadius: "var(--radius-lg)",
+          }}
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5">
+            <div>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-gray-900">
+                <span className="font-mono text-blue-600 mr-1.5">[CHT-01]</span>
+                Predicted Outbreak Curve vs Actual Recorded Outcome
+              </h3>
+              <p className="text-xs text-gray-500 mt-0.5">
+                Evaluation of forward projections vs actual recorded surveillance counts
+              </p>
+            </div>
+            <div className="flex items-center gap-4 text-xs font-medium">
+              <span className="flex items-center gap-1.5 text-gray-700">
+                <span className="inline-block w-3 h-0.5 bg-blue-600 border-t-2 border-dashed border-blue-600" />
+                Model Forecast (Dashed)
+              </span>
+              <span className="flex items-center gap-1.5 text-gray-700">
+                <span className="inline-block w-3 h-0.5 bg-red-600" />
+                Actual Recorded (Solid)
+              </span>
+            </div>
           </div>
 
           {loading ? (
-            <div className="h-[360px] flex items-center justify-center text-[10px]" style={{ color: 'var(--bp-white-faint)' }}>Running live backtest for {districtName} ({diseaseLabel})...</div>
+            <div className="h-[360px] flex items-center justify-center text-xs font-semibold text-gray-500">
+              Running live backtest evaluation for {districtName} ({diseaseLabel})...
+            </div>
           ) : !event ? (
-            <div className="h-[360px] flex flex-col items-center justify-center text-[10px] gap-2" style={{ color: 'var(--bp-white-faint)' }}>
-              <span className="text-2xl">⚠️</span>
-              <p className="font-bold">No backtest available for this selection</p>
-              <p className="text-center max-w-md">
+            <div className="h-[360px] flex flex-col items-center justify-center text-xs text-gray-500 gap-2">
+              <span className="text-3xl">⚠️</span>
+              <p className="font-bold text-gray-800">No backtest available for this selection</p>
+              <p className="text-center max-w-md text-gray-500">
                 {error
                   ? `Backend returned an error: ${error}`
                   : "Ensure the backend API is running so the backtest can be computed live from the surveillance data."}
@@ -228,64 +309,82 @@ function ProofContent() {
           )}
 
           {event && cutoffDate && (
-            <div className="mt-3 pt-3 border-t border-[var(--bp-line-faint)] flex flex-wrap gap-4 text-[9px] font-mono" style={{ color: 'var(--bp-white-faint)' }}>
-              <span>Training cutoff: <span style={{ color: 'var(--bp-cyan)' }}>{cutoffDate}</span></span>
-              <span>Actual peak: <span style={{ color: 'var(--bp-white-soft)' }}>{event.actual_peak_week}</span></span>
-              {predictedPeak && <span>Predicted peak: <span style={{ color: 'var(--bp-cyan)' }}>{predictedPeak}</span></span>}
-              <span>Held-out weeks: <span style={{ color: 'var(--bp-white-muted)' }}>{event.metrics_json.weeks.length}</span></span>
+            <div className="mt-4 pt-3 border-t border-gray-100 flex flex-wrap gap-5 text-xs text-gray-600 font-mono">
+              <span>Training Cutoff: <strong className="text-blue-600">{cutoffDate}</strong></span>
+              <span>Actual Peak: <strong className="text-gray-900">{event.actual_peak_week}</strong></span>
+              {predictedPeak && <span>Predicted Peak: <strong className="text-blue-600">{predictedPeak}</strong></span>}
+              <span>Held-out Weeks: <strong className="text-gray-900">{event.metrics_json.weeks.length}</strong></span>
             </div>
           )}
         </section>
 
         {/* Source Traceability Table */}
-        <section className="blueprint-card p-6">
-          <div className="bp-corners">
-            <span className="corner-tr">+</span>
-            <span className="corner-bl">+</span>
-          </div>
-          <h3 className="text-[11px] font-bold uppercase tracking-widest mb-3" style={{ color: 'var(--bp-white-soft)' }}>
-            <span className="bp-serial">[TBL-01]</span> Pitch Claim Traceability
+        <section
+          className="ew-card p-6"
+          style={{
+            background: "#FFFFFF",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.08)",
+            borderRadius: "var(--radius-lg)",
+          }}
+        >
+          <h3 className="text-sm font-bold uppercase tracking-wider mb-4 text-gray-900">
+            <span className="font-mono text-blue-600 mr-1.5">[TBL-01]</span>
+            Pitch Claim Traceability
           </h3>
           <div className="overflow-x-auto">
-            <table className="w-full text-[10px] font-mono">
+            <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-[var(--bp-line-faint)] text-left" style={{ color: 'var(--bp-white-muted)' }}>
-                  <th className="py-2">CLAIM</th>
-                  <th className="py-2">PROVEN VALUE</th>
-                  <th className="py-2">SOURCE ARTIFACT POINTER</th>
+                <tr className="border-b border-gray-200 text-left text-gray-500 font-semibold">
+                  <th className="py-2.5 px-3">CLAIM</th>
+                  <th className="py-2.5 px-3">PROVEN VALUE</th>
+                  <th className="py-2.5 px-3">SOURCE ARTIFACT POINTER</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[var(--bp-line-faint)]">
-                <tr>
-                  <td className="py-2.5" style={{ color: 'var(--bp-white-muted)' }}>&quot;Backtested forecast accuracy&quot;</td>
-                  <td className="py-2.5" style={{ color: 'var(--bp-cyan)' }}>
+              <tbody className="divide-y divide-gray-100">
+                <tr className="hover:bg-gray-50 transition">
+                  <td className="py-3 px-3 font-medium text-gray-800">&quot;Backtested forecast accuracy&quot;</td>
+                  <td className="py-3 px-3 font-mono font-bold text-blue-600">
                     {event ? `MAE ${event.metrics_json.mae} • RMSE ${event.metrics_json.rmse}` : "N/A"}
                   </td>
-                  <td className="py-2.5" style={{ color: 'var(--bp-white-faint)' }}>Supabase `backtest_runs` (live HGB+XGBoost backtest)</td>
+                  <td className="py-3 px-3 text-gray-500 font-mono">Supabase `backtest_runs` (live HGB+XGBoost backtest)</td>
                 </tr>
-                <tr>
-                  <td className="py-2.5" style={{ color: 'var(--bp-white-muted)' }}>&quot;Model pins outbreak peak timing&quot;</td>
-                  <td className="py-2.5" style={{ color: 'var(--bp-cyan)' }}>
+                <tr className="hover:bg-gray-50 transition">
+                  <td className="py-3 px-3 font-medium text-gray-800">&quot;Model pins outbreak peak timing&quot;</td>
+                  <td className="py-3 px-3 font-mono font-bold text-blue-600">
                     {event ? `Predicted peak within ${leadTime} wks of actual (${event.actual_peak_week})` : "N/A"}
                   </td>
-                  <td className="py-2.5" style={{ color: 'var(--bp-white-faint)' }}>Computed from `case_data` vs model forward projection</td>
+                  <td className="py-3 px-3 text-gray-500 font-mono">Computed from `case_data` vs model forward projection</td>
                 </tr>
-                <tr>
-                  <td className="py-2.5" style={{ color: 'var(--bp-white-muted)' }}>&quot;Climate-aware residual predictions&quot;</td>
-                  <td className="py-2.5" style={{ color: 'var(--bp-cyan)' }}>Rainfall &amp; Temp Lags</td>
-                  <td className="py-2.5" style={{ color: 'var(--bp-white-faint)' }}>ml/results/shap_importance.json</td>
+                <tr className="hover:bg-gray-50 transition">
+                  <td className="py-3 px-3 font-medium text-gray-800">&quot;Climate-aware residual predictions&quot;</td>
+                  <td className="py-3 px-3 font-mono font-bold text-blue-600">Rainfall &amp; Temp Lags</td>
+                  <td className="py-3 px-3 text-gray-500 font-mono">ml/results/shap_importance.json</td>
                 </tr>
-                <tr>
-                  <td className="py-2.5" style={{ color: 'var(--bp-white-muted)' }}>&quot;Verified IDSP surveillance data&quot;</td>
-                  <td className="py-2.5" style={{ color: 'var(--bp-cyan)' }}>IDSP Baseline Surveillance DB</td>
-                  <td className="py-2.5" style={{ color: 'var(--bp-white-faint)' }}>data/data_manifest.json</td>
+                <tr className="hover:bg-gray-50 transition">
+                  <td className="py-3 px-3 font-medium text-gray-800">&quot;Verified IDSP surveillance data&quot;</td>
+                  <td className="py-3 px-3 font-mono font-bold text-blue-600">IDSP Baseline Surveillance DB</td>
+                  <td className="py-3 px-3 text-gray-500 font-mono">data/data_manifest.json</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </section>
-
       </main>
+
+      {/* ── Footer ── */}
+      <footer
+        className="px-6 py-6 border-t border-gray-200 mt-8"
+        style={{ background: "var(--surface)" }}
+      >
+        <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+          <p className="font-semibold text-gray-900">
+            EpiWatch Live Model Evaluation Engine
+          </p>
+          <p className="font-mono text-gray-500">
+            BACKTEST PROTOCOL • EMPIRICAL RESIDUAL TESTING • SIH26004
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

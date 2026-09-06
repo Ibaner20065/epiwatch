@@ -63,33 +63,46 @@ export default function DiseasePage({ params }: PageProps) {
   const sortedPredictions = [...predictions].sort((a, b) => b.predicted_cases - a.predicted_cases);
 
   return (
-    <div className="flex flex-col min-h-screen text-[var(--bp-white-soft)] font-mono">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-[var(--bp-line-faint)] px-6 py-4 backdrop-blur-md" style={{ background: 'rgba(0, 30, 60, 0.9)' }}>
-        <div className="max-w-[1400px] mx-auto flex items-center justify-between">
+    <div className="flex flex-col min-h-screen" style={{ fontFamily: "var(--font-sans)", background: "var(--surface-muted)" }}>
+      {/* ── Header ── */}
+      <header
+        className="sticky top-0 z-50 px-6 py-4"
+        style={{
+          background: "var(--surface)",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.04), 0 0 0 1px var(--border)",
+        }}
+      >
+        <div className="max-w-[1400px] mx-auto flex items-center justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3">
-            <Link href="/" className="w-10 h-10 border border-[var(--bp-line-faint)] flex items-center justify-center text-lg hover:border-[var(--bp-cyan)] transition" style={{ color: 'var(--bp-white-soft)' }}>
+            <Link
+              href="/"
+              className="ew-btn-secondary text-sm no-underline flex items-center justify-center shrink-0"
+              style={{ width: 36, height: 36, padding: 0, borderRadius: "var(--radius-md)" }}
+            >
               ←
             </Link>
             <div>
-              <h1 className="text-sm font-bold tracking-widest uppercase flex items-center gap-2" style={{ color: 'var(--bp-white-soft)' }}>
-                <span className="bp-serial">[DIS-01]</span>
+              <h1 className="text-base font-bold tracking-tight text-gray-900 flex items-center gap-2">
+                <span className="font-mono text-blue-600 mr-1">[DIS-01]</span>
                 <span>{meta.icon}</span> {meta.title}
               </h1>
-              <p className="text-[10px]" style={{ color: 'var(--bp-white-faint)' }}>Targeted Multi-District Outbreak &amp; Environmental Vector Analysis</p>
+              <p className="text-xs text-gray-500 font-medium">
+                Targeted Multi-District Outbreak &amp; Environmental Vector Analysis
+              </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 bg-gray-100 p-1 rounded border border-gray-200" style={{ borderRadius: "var(--radius-sm)" }}>
             {["dengue", "malaria", "add"].map((d) => (
               <Link
                 key={d}
                 href={`/disease/${d}`}
-                className={`px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest transition border font-mono ${
+                className={`px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded transition no-underline ${
                   diseaseName === d
-                    ? "border-[var(--bp-cyan)] text-[var(--bp-cyan)] bg-[rgba(0,255,255,0.08)]"
-                    : "border-[var(--bp-line-faint)] text-[var(--bp-white-faint)] hover:text-[var(--bp-white-muted)]"
+                    ? "bg-white text-blue-600 shadow-sm font-bold"
+                    : "text-gray-600 hover:text-gray-900"
                 }`}
+                style={{ borderRadius: "var(--radius-sm)" }}
               >
                 {d}
               </Link>
@@ -98,53 +111,72 @@ export default function DiseasePage({ params }: PageProps) {
         </div>
       </header>
 
-      {/* Main Content */}
+      {/* ── Main Content ── */}
       <main className="flex-1 max-w-[1400px] mx-auto w-full px-4 sm:px-6 py-8 space-y-8">
         
         {/* Overview Banner */}
-        <section className="blueprint-card p-6">
-          <div className="bp-corners">
-            <span className="corner-tr">+</span>
-            <span className="corner-bl">+</span>
-          </div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-bold border border-[var(--bp-cyan)] border-dashed mb-3" style={{ color: 'var(--bp-cyan)' }}>
+        <section
+          className="ew-card p-6"
+          style={{
+            background: "#FFFFFF",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.08)",
+            borderRadius: "var(--radius-lg)",
+          }}
+        >
+          <div
+            className="inline-flex items-center gap-2 px-3 py-1 text-xs font-bold uppercase tracking-wider rounded mb-3"
+            style={{ background: "rgba(37, 99, 235, 0.08)", color: "var(--accent)" }}
+          >
             {meta.category}
           </div>
-          <h2 className="text-xl font-bold uppercase tracking-wider" style={{ color: 'var(--bp-white-soft)' }}>
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
             National Surveillance Status: {diseaseName.toUpperCase()}
           </h2>
-          <div className="grid md:grid-cols-2 gap-4 mt-4 text-[10px] font-mono">
-            <div className="p-3.5 border border-[var(--bp-line-faint)]">
-              <span className="block mb-1 font-bold" style={{ color: 'var(--bp-white-muted)' }}>Primary Environmental Driver</span>
-              <span style={{ color: 'var(--bp-cyan)' }}>{meta.driver}</span>
+          <div className="grid md:grid-cols-2 gap-4 mt-5 text-xs">
+            <div
+              className="p-4 bg-gray-50 border border-gray-200 rounded"
+              style={{ borderRadius: "var(--radius-sm)" }}
+            >
+              <span className="block mb-1 text-gray-500 font-semibold uppercase tracking-wider text-[10px]">
+                Primary Environmental Driver
+              </span>
+              <span className="font-bold text-gray-900 text-sm">{meta.driver}</span>
             </div>
-            <div className="p-3.5 border border-[var(--bp-line-faint)]">
-              <span className="block mb-1 font-bold" style={{ color: 'var(--bp-white-muted)' }}>Dominant Transmission Pathway</span>
-              <span style={{ color: 'var(--bp-white-soft)' }}>{meta.pathway}</span>
+            <div
+              className="p-4 bg-gray-50 border border-gray-200 rounded"
+              style={{ borderRadius: "var(--radius-sm)" }}
+            >
+              <span className="block mb-1 text-gray-500 font-semibold uppercase tracking-wider text-[10px]">
+                Dominant Transmission Pathway
+              </span>
+              <span className="font-bold text-gray-900 text-sm">{meta.pathway}</span>
             </div>
-          </div>
-          <div className="bp-divider mt-4">
-            <span>&lt;── {diseaseName.toUpperCase()} SURVEILLANCE ──&gt;</span>
           </div>
         </section>
 
         {/* Affected District Rankings */}
-        <section className="blueprint-card p-6">
-          <div className="bp-corners">
-            <span className="corner-tr">+</span>
-            <span className="corner-bl">+</span>
-          </div>
-          <h3 className="text-[11px] font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--bp-white-soft)' }}>
-            <span className="bp-serial">[TBL-01]</span> Districts Ranked by Predicted {diseaseName.toUpperCase()} Peak Burden
+        <section
+          className="ew-card p-6"
+          style={{
+            background: "#FFFFFF",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.08)",
+            borderRadius: "var(--radius-lg)",
+          }}
+        >
+          <h3 className="text-xs font-bold uppercase tracking-wider mb-4 text-gray-900">
+            <span className="font-mono text-blue-600 mr-1.5">[TBL-01]</span>
+            Districts Ranked by Predicted {diseaseName.toUpperCase()} Peak Burden
           </h3>
 
           {loading ? (
-            <div className="text-[10px] font-mono py-8 text-center" style={{ color: 'var(--bp-white-faint)' }}>Loading disease predictions...</div>
+            <div className="text-xs font-mono py-8 text-center text-gray-500">
+              Loading disease predictions across monitored districts...
+            </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-[10px] font-mono">
+              <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-[var(--bp-line-faint)] text-left" style={{ color: 'var(--bp-white-muted)' }}>
+                  <tr className="border-b border-gray-200 text-left text-gray-500 font-semibold">
                     <th className="py-2.5 px-3">DISTRICT</th>
                     <th className="py-2.5 px-3">STATE</th>
                     <th className="py-2.5 px-3">RISK TIER</th>
@@ -153,25 +185,25 @@ export default function DiseasePage({ params }: PageProps) {
                     <th className="py-2.5 px-3">MODEL SOURCE</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[var(--bp-line-faint)]">
+                <tbody className="divide-y divide-gray-100">
                   {sortedPredictions.map((p) => {
                     const dist = districts.find((d) => d.id === p.district_id);
                     return (
-                      <tr key={`${p.district_id}_${p.week_start}`} className="hover:bg-[rgba(0,255,255,0.03)] transition">
-                        <td className="py-3 px-3 font-bold" style={{ color: 'var(--bp-white-soft)' }}>
-                          <Link href={`/district/${p.district_id}`} className="hover:text-[var(--bp-cyan)] border-b border-dashed border-[var(--bp-line-faint)]">
+                      <tr key={`${p.district_id}_${p.week_start}`} className="hover:bg-gray-50 transition">
+                        <td className="py-3 px-3 font-bold text-gray-900">
+                          <Link href={`/district/${p.district_id}`} className="hover:text-blue-600 no-underline">
                             {dist?.name || p.district_id}
                           </Link>
                         </td>
-                        <td className="py-3 px-3" style={{ color: 'var(--bp-white-faint)' }}>{dist?.state || "N/A"}</td>
+                        <td className="py-3 px-3 text-gray-600">{dist?.state || "N/A"}</td>
                         <td className="py-3 px-3">
                           <RiskBadge tier={p.risk_tier} size="sm" />
                         </td>
-                        <td className="py-3 px-3 font-bold text-sm" style={{ color: 'var(--bp-redline)' }}>
+                        <td className="py-3 px-3 font-bold font-mono text-red-600">
                           {p.predicted_cases.toLocaleString()} cases
                         </td>
-                        <td className="py-3 px-3" style={{ color: 'var(--bp-white-muted)' }}>{p.week_start}</td>
-                        <td className="py-3 px-3 text-[9px]" style={{ color: 'var(--bp-white-faint)' }}>{p.model_version || "v2.0-hgb-xgb"}</td>
+                        <td className="py-3 px-3 font-mono text-gray-700">{p.week_start}</td>
+                        <td className="py-3 px-3 font-mono text-gray-500 text-[11px]">{p.model_version || "v2.0-hgb-xgb"}</td>
                       </tr>
                     );
                   })}
@@ -182,6 +214,21 @@ export default function DiseasePage({ params }: PageProps) {
         </section>
 
       </main>
+
+      {/* ── Footer ── */}
+      <footer
+        className="px-6 py-6 border-t border-gray-200 mt-8"
+        style={{ background: "var(--surface)" }}
+      >
+        <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+          <p className="font-semibold text-gray-900">
+            EpiWatch Targeted Outbreak Surveillance Engine
+          </p>
+          <p className="font-mono text-gray-500">
+            IDSP SURVEILLANCE • MULTI-DISTRICT SENSOR • SIH26004
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

@@ -30,8 +30,8 @@ export default function WorldMap({ countries }: Props) {
       minZoom={2}
       maxZoom={6}
       scrollWheelZoom={true}
-      className="h-[380px] w-full border border-[var(--bp-line-faint)]"
-      style={{ background: "#002244" }}
+      className="h-[380px] w-full border border-gray-200 rounded-lg overflow-hidden"
+      style={{ background: "#0f172a" }}
     >
       {/* CartoDB dark basemap — no API key needed */}
       <TileLayer

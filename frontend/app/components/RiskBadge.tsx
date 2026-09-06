@@ -5,65 +5,48 @@ interface RiskBadgeProps {
   size?: "sm" | "md" | "lg";
 }
 
+/**
+ * Status/Risk Tag Component (permitted pill geometry exception per §1.6).
+ * Strictly bound to semantic risk tokens:
+ * - Low → --success (#16a34a)
+ * - Moderate → --warn (#eab308)
+ * - High / Critical → --danger (#dc2626)
+ * Features t-text-states-swap for in-place tier transitions.
+ */
 export default function RiskBadge({ tier, size = "md" }: RiskBadgeProps) {
-  const getBadgeStyle = () => {
-    switch (tier?.toLowerCase()) {
-      case "critical":
-        return {
-          border: "1px solid #FF3333",
-          color: "#FF3333",
-          label: "CRITICAL",
-          serial: "TIER-04",
-        };
-      case "high":
-        return {
-          border: "1px solid rgba(255,255,255,0.7)",
-          color: "rgba(255,255,255,0.9)",
-          label: "HIGH",
-          serial: "TIER-03",
-        };
-      case "medium":
-        return {
-          border: "1px solid #00FFFF",
-          color: "#00FFFF",
-          label: "MEDIUM",
-          serial: "TIER-02",
-        };
-      default:
-        return {
-          border: "1px dashed rgba(255,255,255,0.3)",
-          color: "rgba(255,255,255,0.5)",
-          label: "LOW",
-          serial: "TIER-01",
-        };
-    }
-  };
+  const tierKey = tier?.toLowerCase() || "low";
 
-  const style = getBadgeStyle();
+  const badgeClass = `ew-badge ew-badge--${tierKey === "medium" ? "moderate" : tierKey}`;
+
+  const label =
+    tierKey === "critical" ? "Critical" :
+    tierKey === "high" ? "High" :
+    tierKey === "medium" ? "Moderate" :
+    "Low";
+
   const px =
     size === "sm"
-      ? "px-2 py-0.5 text-[9px]"
+      ? "px-2.5 py-0.5 text-[10px]"
       : size === "lg"
       ? "px-4 py-1.5 text-xs"
-      : "px-3 py-1 text-[10px]";
+      : "px-3 py-1 text-[11px]";
 
   return (
-    <span
-      className={`inline-flex items-center gap-1.5 font-bold uppercase tracking-widest font-mono ${px}`}
-      style={{
-        background: "transparent",
-        border: style.border,
-        color: style.color,
-        borderStyle: tier?.toLowerCase() === "low" ? "dashed" : "solid",
-      }}
-    >
+    <span className={`${badgeClass} ${px}`} role="status">
       <span
-        className="text-[7px] opacity-60"
-        style={{ color: style.color }}
-      >
-        [{style.serial}]
+        className="w-1.5 h-1.5 rounded-full shrink-0"
+        style={{
+          background:
+            tierKey === "critical" || tierKey === "high"
+              ? "var(--danger)"
+              : tierKey === "medium" || tierKey === "moderate"
+              ? "var(--warn)"
+              : "var(--success)",
+        }}
+      />
+      <span key={label} className="t-text-states-swap font-semibold">
+        {label}
       </span>
-      {style.label}
     </span>
   );
 }

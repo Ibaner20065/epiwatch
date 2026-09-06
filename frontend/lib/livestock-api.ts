@@ -159,8 +159,9 @@ export interface TreatmentRecord {
 }
 
 export interface LabSampleRecord {
-  id: number;
+  id?: number;
   sample_id: string;
+  district_id?: string;
   sample_type: string;
   species?: string;
   suspected_disease?: string;

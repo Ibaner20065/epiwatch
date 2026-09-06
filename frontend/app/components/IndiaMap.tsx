@@ -12,25 +12,30 @@ interface IndiaMapProps {
   selectedDisease: string;
 }
 
+/* Risk-tier colors — strictly semantic */
 function getRiskColor(tier: string): string {
   switch (tier?.toLowerCase()) {
-    case "critical":
-      return "#FF3333";
-    case "high":
-      return "#FFFFFFdd";
-    case "medium":
-      return "#00FFFF";
-    default:
-      return "rgba(255,255,255,0.4)";
+    case "critical": return "var(--risk-critical)";
+    case "high": return "var(--risk-high)";
+    case "medium": return "var(--risk-moderate)";
+    default: return "var(--risk-low)";
   }
 }
 
-// Climate data color scale for district choropleth
+function getRiskHex(tier: string): string {
+  switch (tier?.toLowerCase()) {
+    case "critical": return "#DC2626";
+    case "high": return "#EA580C";
+    case "medium": return "#D97706";
+    default: return "#16A34A";
+  }
+}
+
 function getClimateColor(rainfall: number): string {
-  if (rainfall > 50) return "rgba(0, 255, 255, 0.25)";
-  if (rainfall > 20) return "rgba(0, 255, 255, 0.15)";
-  if (rainfall > 5)  return "rgba(255, 255, 255, 0.1)";
-  return "rgba(255, 255, 255, 0.05)";
+  if (rainfall > 50) return "rgba(79, 110, 247, 0.2)";
+  if (rainfall > 20) return "rgba(79, 110, 247, 0.12)";
+  if (rainfall > 5)  return "rgba(79, 110, 247, 0.06)";
+  return "rgba(79, 110, 247, 0.02)";
 }
 
 export default function IndiaMap({ districts, predictions, selectedDisease }: IndiaMapProps) {
@@ -61,22 +66,21 @@ export default function IndiaMap({ districts, predictions, selectedDisease }: In
   });
 
   return (
-    <div className="relative">
+    <div className="relative ew-card overflow-hidden">
       <MapContainer
         center={[20.5937, 78.9629]}
         zoom={5}
         minZoom={4}
         maxZoom={10}
         scrollWheelZoom={true}
-        className="h-[440px] w-full border border-[var(--bp-line-faint)] overflow-hidden z-0"
-        style={{ background: "var(--bp-blue-deep)" }}
+        className="h-[440px] w-full overflow-hidden z-0"
+        style={{ background: "var(--surface-muted)", borderRadius: 'var(--radius-card)' }}
       >
         <LayersControl position="topright">
-          {/* ── Base Layers ── */}
           <LayersControl.BaseLayer checked name="🌑 Dark Basemap">
             <TileLayer
               url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-              attribution='&copy; <a href="https://carto.com/">CARTO</a> & Dynamic EpiWatch AI Engine'
+              attribution='&copy; <a href="https://carto.com/">CARTO</a> & EpiWatch AI Engine'
             />
           </LayersControl.BaseLayer>
 
@@ -96,7 +100,6 @@ export default function IndiaMap({ districts, predictions, selectedDisease }: In
             />
           </LayersControl.BaseLayer>
 
-          {/* ── Overlay Layers (Free No-Key APIs) ── */}
           {rainViewerPath && (
             <LayersControl.Overlay name="🌧️ Live RainViewer Radar">
               <TileLayer
@@ -116,9 +119,8 @@ export default function IndiaMap({ districts, predictions, selectedDisease }: In
           </LayersControl.Overlay>
         </LayersControl>
 
-        {/* ── Climate Choropleth Circles (NASA POWER Data Overlay) ── */}
+        {/* Climate Choropleth */}
         {showClimateOverlay && districts.map((d) => {
-          // NASA POWER Telemetry Rainfall Intensity Proxy based on latitude/longitude climate zones
           const rainfallVal = Math.round(Math.abs(Math.sin(d.lat) * 45 + Math.cos(d.lon) * 35) + 12);
           return (
             <CircleMarker
@@ -135,22 +137,18 @@ export default function IndiaMap({ districts, predictions, selectedDisease }: In
           );
         })}
 
-        {/* ── Metric Markers ── */}
+        {/* Metric Markers */}
         {districts.map((d) => {
           const pred = predMap[d.id];
           const tier = pred ? pred.risk_tier : "Low";
           const cases = pred ? pred.predicted_cases : 0;
           const incidence = pred ? ((cases / (d.population || 1000000)) * 100000).toFixed(1) : "0";
-          const growthProxy = pred ? ((cases % 15) + 8).toFixed(0) : "0";
 
-          // Dynamic radius and color depending on selected metricMode
-          let color = getRiskColor(tier);
+          const color = getRiskHex(tier);
           let radius = Math.max(10, Math.min(28, Math.log10(cases + 10) * 8));
 
           if (metricMode === "cases") {
             radius = Math.max(12, Math.min(32, (cases / 25) * 10));
-          } else if (metricMode === "incidence") {
-            color = parseFloat(incidence) > 3 ? "#FF3333" : parseFloat(incidence) > 1 ? "#FFFFFFdd" : "#00FFFF";
           }
 
           return (
@@ -172,41 +170,50 @@ export default function IndiaMap({ districts, predictions, selectedDisease }: In
               <Tooltip direction="top" offset={[0, -10]} className="!bg-transparent !border-none !shadow-none !p-0">
                 <div
                   style={{
-                    background: "#002244",
-                    border: "1px solid rgba(255,255,255,0.2)",
-                    padding: "12px 16px",
-                    color: "rgba(255,255,255,0.85)",
-                    fontSize: 11,
+                    background: "var(--surface)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "12px",
+                    padding: "14px 18px",
+                    color: "var(--ink)",
+                    fontSize: 12,
                     lineHeight: 1.6,
                     minWidth: 220,
-                    fontFamily: "'Roboto Mono', monospace",
-                    boxShadow: "0 0 20px rgba(0,255,255,0.1)",
+                    fontFamily: "var(--font-sans)",
+                    boxShadow: "var(--shadow-card)",
                   }}
                 >
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 8 }}>
-                    <strong style={{ fontSize: 12, color: "#fff" }}>{d.name}</strong>
-                    <span style={{ fontSize: 9, fontWeight: 700, padding: "2px 6px", border: `1px solid ${color}`, color, textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                      {tier} RISK
+                    <strong style={{ fontSize: 13 }}>{d.name}</strong>
+                    <span
+                      className="ew-badge"
+                      style={{
+                        fontSize: 9,
+                        padding: '2px 8px',
+                        background: `${color}15`,
+                        color: color,
+                      }}
+                    >
+                      {tier} Risk
                     </span>
                   </div>
 
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "2px 12px", fontSize: 10, borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 6 }}>
-                    <span style={{ color: "rgba(255,255,255,0.4)" }}>State</span>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "2px 12px", fontSize: 11, borderTop: "1px solid var(--border)", paddingTop: 6 }}>
+                    <span style={{ color: "var(--body-text)" }}>State</span>
                     <span style={{ textAlign: "right" }}>{d.state}</span>
 
-                    <span style={{ color: "rgba(255,255,255,0.4)" }}>Disease</span>
-                    <span style={{ textAlign: "right", color: "#00FFFF", textTransform: "capitalize" }}>{selectedDisease}</span>
+                    <span style={{ color: "var(--body-text)" }}>Disease</span>
+                    <span style={{ textAlign: "right", color: "var(--brand-start)", textTransform: "capitalize" }}>{selectedDisease}</span>
 
-                    <span style={{ color: "rgba(255,255,255,0.4)" }}>Est. Peak Cases</span>
-                    <span style={{ textAlign: "right", fontWeight: 700, color: "#00FFFF" }}>{cases.toLocaleString()}</span>
+                    <span style={{ color: "var(--body-text)" }}>Est. Peak Cases</span>
+                    <span style={{ textAlign: "right", fontWeight: 600, fontFamily: "var(--font-mono)", color: "var(--ink)" }}>{cases.toLocaleString()}</span>
 
-                    <span style={{ color: "rgba(255,255,255,0.4)" }}>Incidence /100k</span>
-                    <span style={{ textAlign: "right" }}>{incidence}</span>
+                    <span style={{ color: "var(--body-text)" }}>Incidence /100k</span>
+                    <span style={{ textAlign: "right", fontFamily: "var(--font-mono)" }}>{incidence}</span>
 
-                    <span style={{ color: "rgba(255,255,255,0.4)" }}>Population</span>
-                    <span style={{ textAlign: "right", color: "rgba(255,255,255,0.5)" }}>{(d.population / 1000000).toFixed(1)}M</span>
+                    <span style={{ color: "var(--body-text)" }}>Population</span>
+                    <span style={{ textAlign: "right", fontFamily: "var(--font-mono)" }}>{(d.population / 1000000).toFixed(1)}M</span>
                   </div>
-                  <div style={{ marginTop: 8, fontSize: 9, textAlign: "center", color: "#00FFFF", borderTop: "1px dashed rgba(255,255,255,0.1)", paddingTop: 6 }}>
+                  <div style={{ marginTop: 8, fontSize: 10, textAlign: "center", color: "var(--brand-start)", borderTop: "1px solid var(--border)", paddingTop: 6 }}>
                     Click for Full Intelligence Panel →
                   </div>
                 </div>
@@ -216,49 +223,55 @@ export default function IndiaMap({ districts, predictions, selectedDisease }: In
         })}
       </MapContainer>
 
-      {/* ── Custom Layer & Metric Mode Control Bar ── */}
-      <div className="absolute bottom-3 left-3 right-3 z-[1000] flex flex-wrap items-center justify-between gap-2 p-2 border border-[var(--bp-line-faint)] backdrop-blur-md" style={{ background: 'rgba(0, 25, 50, 0.85)' }}>
+      {/* Map Control Bar */}
+      <div className="absolute bottom-3 left-3 right-3 z-[1000] flex flex-wrap items-center justify-between gap-2 p-2.5 rounded-xl" style={{ background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(12px)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' }}>
         <div className="flex items-center gap-1">
-          <span className="bp-serial mr-1">METRIC:</span>
+          <span className="ew-eyebrow mr-1.5" style={{ fontSize: 10 }}>Metric:</span>
           {(["risk", "cases", "incidence", "growth"] as const).map((m) => (
             <button
               key={m}
               onClick={() => setMetricMode(m)}
-              className={`px-2 py-1 text-[9px] font-bold uppercase tracking-wider transition font-mono border ${
-                metricMode === m
-                  ? "border-[var(--bp-cyan)] text-[var(--bp-cyan)] bg-[rgba(0,255,255,0.08)]"
-                  : "border-[var(--bp-line-faint)] text-[var(--bp-white-faint)] hover:text-[var(--bp-white-muted)]"
-              }`}
+              className="px-2.5 py-1 text-[11px] font-semibold rounded transition-all cursor-pointer"
+              style={{
+                borderRadius: "var(--radius-sm)",
+                background: metricMode === m ? "rgba(79, 110, 247, 0.1)" : "transparent",
+                color: metricMode === m ? "var(--brand-start)" : "var(--body-text)",
+                border: `1px solid ${metricMode === m ? "var(--brand-start)" : "var(--border)"}`,
+              }}
             >
-              {m === "risk" ? "TIER" : m === "cases" ? "CASES" : m === "incidence" ? "INCIDENCE" : "WoW GROWTH"}
+              {m === "risk" ? "Tier" : m === "cases" ? "Cases" : m === "incidence" ? "Incidence" : "Growth"}
             </button>
           ))}
         </div>
 
         <div className="flex items-center gap-1.5">
-          <span className="bp-serial">WINDOW:</span>
+          <span className="ew-eyebrow" style={{ fontSize: 10 }}>Window:</span>
           {(["7D", "30D", "90D"] as const).map((w) => (
             <button
               key={w}
               onClick={() => setTimeWindow(w)}
-              className={`px-2 py-1 text-[9px] font-mono transition border ${
-                timeWindow === w
-                  ? "border-[var(--bp-white-muted)] text-[var(--bp-white-soft)]"
-                  : "border-[var(--bp-line-faint)] text-[var(--bp-white-faint)] hover:text-[var(--bp-white-muted)]"
-              }`}
+              className="px-2.5 py-1 text-[11px] font-semibold rounded transition-all cursor-pointer"
+              style={{
+                borderRadius: "var(--radius-sm)",
+                background: timeWindow === w ? "var(--surface-muted)" : "transparent",
+                color: timeWindow === w ? "var(--ink)" : "var(--body-text)",
+                border: `1px solid ${timeWindow === w ? "var(--ink)" : "var(--border)"}`,
+              }}
             >
               {w}
             </button>
           ))}
           <button
             onClick={() => setShowClimateOverlay(!showClimateOverlay)}
-            className={`px-2 py-1 text-[9px] font-bold uppercase transition border font-mono ${
-              showClimateOverlay
-                ? "border-[var(--bp-cyan)] text-[var(--bp-cyan)] bg-[rgba(0,255,255,0.08)]"
-                : "border-[var(--bp-line-faint)] text-[var(--bp-white-faint)]"
-            }`}
+            className="px-2.5 py-1 text-[11px] font-semibold rounded transition-all cursor-pointer"
+            style={{
+              borderRadius: "var(--radius-sm)",
+              background: showClimateOverlay ? "rgba(79, 110, 247, 0.1)" : "transparent",
+              color: showClimateOverlay ? "var(--brand-start)" : "var(--body-text)",
+              border: `1px solid ${showClimateOverlay ? "var(--brand-start)" : "var(--border)"}`,
+            }}
           >
-            🌍 CLIMATE
+            🌍 Climate
           </button>
         </div>
       </div>

@@ -29,45 +29,58 @@ export default function ForecastChart({ data }: ForecastChartProps) {
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={formattedData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
           <defs>
-            <linearGradient id="gradPred" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#00FFFF" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="#00FFFF" stopOpacity={0} />
+            <linearGradient id="gradObserved" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="var(--observed-data)" stopOpacity={0.15} />
+              <stop offset="95%" stopColor="var(--observed-data)" stopOpacity={0} />
+            </linearGradient>
+            <linearGradient id="gradPredicted" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="var(--predicted-data)" stopOpacity={0.12} />
+              <stop offset="95%" stopColor="var(--predicted-data)" stopOpacity={0} />
             </linearGradient>
             <linearGradient id="gradCI" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="rgba(255,255,255,0.15)" stopOpacity={0.15} />
-              <stop offset="95%" stopColor="rgba(255,255,255,0.02)" stopOpacity={0.02} />
+              <stop offset="5%" stopColor="var(--border)" stopOpacity={0.2} />
+              <stop offset="95%" stopColor="var(--border)" stopOpacity={0.02} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
-          <XAxis dataKey="date" tick={{ fontSize: 10, fill: "rgba(255,255,255,0.4)", fontFamily: "'Roboto Mono', monospace" }} />
-          <YAxis tick={{ fontSize: 10, fill: "rgba(255,255,255,0.4)", fontFamily: "'Roboto Mono', monospace" }} />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+          <XAxis
+            dataKey="date"
+            tick={{ fontSize: 11, fill: "var(--body-text)", fontFamily: "var(--font-mono)" }}
+          />
+          <YAxis
+            tick={{ fontSize: 11, fill: "var(--body-text)", fontFamily: "var(--font-mono)" }}
+          />
           <Tooltip
             contentStyle={{
-              background: "#002244",
-              border: "1px solid rgba(255,255,255,0.15)",
-              borderRadius: "0px",
-              color: "rgba(255,255,255,0.85)",
-              fontSize: "11px",
-              fontFamily: "'Roboto Mono', monospace",
+              background: "var(--surface)",
+              border: "1px solid var(--border)",
+              borderRadius: "12px",
+              color: "var(--ink)",
+              fontSize: "12px",
+              fontFamily: "var(--font-mono)",
+              boxShadow: "var(--shadow-card)",
             }}
             formatter={(val: any, name: any) => [
               val ? Math.round(Number(val)).toLocaleString() + " cases" : "0 cases",
               name === "predicted" ? "Predicted Cases" : String(name),
             ]}
           />
+          {/* Confidence interval band */}
           <Area
             type="monotone"
             dataKey="ci_upper"
             stroke="none"
             fill="url(#gradCI)"
           />
+          {/* Predicted line — uses dashed stroke per PRD §7 */}
           <Area
             type="monotone"
             dataKey="predicted"
-            stroke="#00FFFF"
+            stroke="var(--predicted-data)"
             strokeWidth={2}
-            fill="url(#gradPred)"
-            dot={{ r: 3, fill: "#00FFFF", strokeWidth: 1, stroke: "#ffffff" }}
+            strokeDasharray="6 4"
+            fill="url(#gradPredicted)"
+            dot={{ r: 3, fill: "var(--predicted-data)", strokeWidth: 1, stroke: "var(--surface)" }}
           />
         </AreaChart>
       </ResponsiveContainer>

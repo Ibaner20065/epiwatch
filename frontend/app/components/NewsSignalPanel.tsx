@@ -11,11 +11,11 @@ interface NewsSignalPanelProps {
 function getRelevanceBadge(relevance: string) {
   switch (relevance) {
     case "high":
-      return { border: "var(--bp-redline)", color: "var(--bp-redline)", label: "HIGH RELEVANCE" };
+      return { bg: "rgba(234, 88, 12, 0.08)", color: "var(--risk-high)", label: "High Relevance" };
     case "medium":
-      return { border: "var(--bp-cyan)", color: "var(--bp-cyan)", label: "MEDIUM RELEVANCE" };
+      return { bg: "rgba(217, 119, 6, 0.08)", color: "var(--risk-moderate)", label: "Medium Relevance" };
     default:
-      return { border: "var(--bp-white-faint)", color: "var(--bp-white-faint)", label: "LOW RELEVANCE" };
+      return { bg: "var(--surface-muted)", color: "var(--body-text)", label: "Low Relevance" };
   }
 }
 
@@ -44,29 +44,23 @@ export default function NewsSignalPanel({ districtId, districtName }: NewsSignal
   }, [districtId]);
 
   return (
-    <div className="blueprint-card p-6">
-      <div className="bp-corners">
-        <span className="corner-tr">+</span>
-        <span className="corner-bl">+</span>
-      </div>
+    <div className="ew-card p-6">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 border border-[var(--bp-cyan-dim)] flex items-center justify-center text-base">
-            📡
-          </div>
+      <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center gap-3">
+          <div className="ew-icon-circle">📡</div>
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--bp-white-soft)' }}>
-              <span className="bp-serial">[SIG-01]</span> Regional Signals — {districtName || districtId}
+            <h3 className="text-base font-semibold" style={{ color: 'var(--ink)' }}>
+              Regional Signals — {districtName || districtId}
             </h3>
-            <p className="text-[9px] font-mono flex items-center gap-1" style={{ color: 'var(--bp-white-faint)' }}>
-              <span className="w-1.5 h-1.5" style={{ background: 'var(--bp-cyan-dim)' }} />
+            <p className="text-xs flex items-center gap-1.5" style={{ color: 'var(--body-text)' }}>
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--brand-start)' }} />
               Informational only — not a model input
             </p>
           </div>
         </div>
         {data && (
-          <span className="bp-coord">
+          <span className="ew-eyebrow">
             {data.signal_count} signal{data.signal_count !== 1 ? "s" : ""}
           </span>
         )}
@@ -74,20 +68,20 @@ export default function NewsSignalPanel({ districtId, districtName }: NewsSignal
 
       {/* Content */}
       {loading ? (
-        <div className="h-[200px] flex items-center justify-center text-[10px]" style={{ color: 'var(--bp-white-faint)' }}>
-          <span style={{ animation: 'bp-pulse 2s ease-in-out infinite' }}>Scanning regional signals...</span>
+        <div className="h-[200px] flex items-center justify-center">
+          <div className="skeleton w-48 h-3 rounded" />
         </div>
       ) : error || !data ? (
-        <div className="h-[200px] flex flex-col items-center justify-center text-[10px] gap-2" style={{ color: 'var(--bp-white-faint)' }}>
+        <div className="h-[200px] flex flex-col items-center justify-center gap-2" style={{ color: 'var(--body-text)' }}>
           <span className="text-2xl">⚠️</span>
-          <p className="font-bold">Could not load regional signals</p>
-          <p className="text-center">Ensure the backend is running to fetch regional health advisories.</p>
+          <p className="text-sm font-medium">Could not load regional signals</p>
+          <p className="text-xs text-center">Ensure the backend is running to fetch regional health advisories.</p>
         </div>
       ) : data.signals.length === 0 ? (
-        <div className="h-[200px] flex flex-col items-center justify-center text-[10px] gap-2" style={{ color: 'var(--bp-white-faint)' }}>
+        <div className="h-[200px] flex flex-col items-center justify-center gap-2" style={{ color: 'var(--body-text)' }}>
           <span className="text-2xl">✅</span>
-          <p className="font-bold">No recent regional signals</p>
-          <p className="text-center max-w-xs">
+          <p className="text-sm font-medium">No recent regional signals</p>
+          <p className="text-xs text-center max-w-xs">
             No active public health advisories or outbreak reports detected for the {data.state} region at this time.
           </p>
         </div>
@@ -98,25 +92,25 @@ export default function NewsSignalPanel({ districtId, districtName }: NewsSignal
             return (
               <div
                 key={i}
-                className="p-4 border space-y-2"
-                style={{ borderColor: badge.border }}
+                className="p-4 rounded-lg space-y-2"
+                style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex items-center gap-2">
                     <span className="text-base">{getTypeIcon(signal.type)}</span>
-                    <h4 className="text-[10px] font-bold leading-tight" style={{ color: 'var(--bp-white-soft)' }}>{signal.title}</h4>
+                    <h4 className="text-sm font-medium leading-tight" style={{ color: 'var(--ink)' }}>{signal.title}</h4>
                   </div>
-                  <span className="shrink-0 px-2 py-0.5 text-[8px] font-bold uppercase tracking-widest border" style={{ borderColor: badge.border, color: badge.color }}>
+                  <span className="shrink-0 px-2.5 py-1 text-[10px] font-medium rounded-full" style={{ background: badge.bg, color: badge.color }}>
                     {badge.label}
                   </span>
                 </div>
 
-                <p className="text-[10px] leading-relaxed" style={{ color: 'var(--bp-white-faint)' }}>{signal.summary}</p>
+                <p className="text-xs leading-relaxed" style={{ color: 'var(--body-text)' }}>{signal.summary}</p>
 
-                <div className="flex items-center justify-between text-[8px] font-mono" style={{ color: 'var(--bp-white-faint)' }}>
+                <div className="flex items-center justify-between text-[10px]" style={{ color: 'var(--body-text)' }}>
                   <span>Source: {signal.source}</span>
                   {signal.districts_mentioned.length > 0 && (
-                    <span style={{ color: 'var(--bp-cyan-dim)' }}>
+                    <span style={{ color: 'var(--brand-start)' }}>
                       Districts: {signal.districts_mentioned.join(", ")}
                     </span>
                   )}
@@ -127,9 +121,9 @@ export default function NewsSignalPanel({ districtId, districtName }: NewsSignal
         </div>
       )}
 
-      {/* Disclaimer Footer */}
-      <div className="mt-4 pt-3 border-t border-[var(--bp-line-faint)] flex items-center gap-2 text-[8px]" style={{ color: 'var(--bp-white-faint)' }}>
-        <span className="w-3 h-3 border flex items-center justify-center text-[6px]" style={{ borderColor: 'var(--bp-cyan-dim)', color: 'var(--bp-cyan-dim)' }}>ℹ</span>
+      {/* Disclaimer */}
+      <div className="mt-4 pt-3 flex items-center gap-2 text-[10px]" style={{ borderTop: '1px solid var(--border)', color: 'var(--body-text)' }}>
+        <span className="ew-icon-circle" style={{ width: 20, height: 20, fontSize: 10 }}>ℹ</span>
         <span>
           {data?.disclaimer || "Regional Signal — Informational only, not a model input. These are qualitative advisories, not quantitative predictions."}
         </span>

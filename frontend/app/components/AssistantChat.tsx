@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import MorphIcon from "@/app/components/MorphIcon";
 
 interface Citation {
   tool_name: string;
@@ -27,21 +28,29 @@ function renderFormattedMarkdown(text: string) {
     const formattedLine = parts.map((part, pIdx) => {
       if (part.startsWith("**") && part.endsWith("**") && part.length >= 4) {
         return (
-          <strong key={pIdx} className="font-bold" style={{ color: 'var(--bp-white)' }}>
+          <strong key={pIdx} className="font-semibold" style={{ color: "var(--fg)" }}>
             {part.slice(2, -2)}
           </strong>
         );
       }
       if (part.startsWith("`") && part.endsWith("`") && part.length >= 2) {
         return (
-          <code key={pIdx} className="px-1.5 py-0.5 font-mono text-[10px] border border-[var(--bp-line-faint)]" style={{ color: 'var(--bp-cyan)', background: 'rgba(0,20,40,0.5)' }}>
+          <code
+            key={pIdx}
+            className="px-1.5 py-0.5 text-xs rounded"
+            style={{
+              fontFamily: "var(--font-mono)",
+              color: "var(--accent)",
+              background: "var(--surface-muted)",
+            }}
+          >
             {part.slice(1, -1)}
           </code>
         );
       }
       if (part.startsWith("_") && part.endsWith("_") && part.length >= 2) {
         return (
-          <em key={pIdx} className="italic bp-note">
+          <em key={pIdx} className="italic" style={{ color: "var(--fg-2)" }}>
             {part.slice(1, -1)}
           </em>
         );
@@ -54,7 +63,9 @@ function renderFormattedMarkdown(text: string) {
     if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
       return (
         <div key={lineIdx} className="flex items-start gap-2 my-1 pl-1">
-          <span className="font-bold shrink-0" style={{ color: 'var(--bp-cyan)' }}>+</span>
+          <span className="font-bold shrink-0" style={{ color: "var(--accent)" }}>
+            •
+          </span>
           <div className="flex-1">{formattedLine}</div>
         </div>
       );
@@ -82,11 +93,12 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [assistantState, setAssistantState] = useState<"searching" | "answered">("answered");
 
   const samplePrompts = [
-    "What is the local district's dengue risk next month?",
+    "What is Pune's dengue risk next month?",
     "Why is Kolkata flagged high risk — what are the climate drivers?",
-    "What is the population density of Bengaluru Urban?",
+    "What is the livestock count of Nashik district?",
     "Compare Dengue vs Malaria in Mumbai.",
   ];
 
@@ -103,6 +115,7 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
     setMessages((prev) => [...prev, userMsg]);
     if (!queryText) setInput("");
     setLoading(true);
+    setAssistantState("searching");
 
     try {
       // Build history payload
@@ -135,81 +148,146 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
             tools_used: data.tools_used,
           },
         ]);
+        setAssistantState("answered");
       } else {
         throw new Error("Backend returned status " + res.status);
       }
-    } catch (e) {
-      // Show honest error — never fabricate data
+    } catch {
       setMessages((prev) => [
         ...prev,
         {
           id: (Date.now() + 1).toString(),
           sender: "assistant",
-          text: `⚠️ **Backend Unreachable** — The EpiWatch API server is not responding. I cannot provide predictions without a live connection to the database.\n\nPlease ensure the backend server is running at \`${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"}\` and try again.\n\n_EpiWatch does not generate approximate or estimated answers when the data source is unavailable._`,
-          citations: [],
-          tools_used: ["connection_error"],
+          text: "I was unable to complete the grounded query to the backend API. Please ensure the FastAPI server is running on port 8000.",
         },
       ]);
+      setAssistantState("answered");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="fixed inset-y-0 right-0 z-50 w-full sm:w-[460px] border-l border-[var(--bp-line-faint)] shadow-2xl backdrop-blur-xl flex flex-col font-mono" style={{ background: 'rgba(0, 25, 50, 0.95)', color: 'var(--bp-white-soft)' }}>
-      
-      {/* Header */}
-      <div className="p-4 border-b border-[var(--bp-line-faint)] flex items-center justify-between" style={{ background: 'rgba(0, 20, 40, 0.8)' }}>
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 border border-dashed border-[var(--bp-cyan)] flex items-center justify-center font-bold text-sm" style={{ color: 'var(--bp-cyan)' }}>
-            💬
+    <div
+      className="fixed inset-y-0 right-0 z-50 w-full sm:w-[460px] flex flex-col"
+      style={{
+        background: "var(--surface)",
+        boxShadow: "var(--shadow-modal)",
+        borderLeft: "1px solid var(--border)",
+      }}
+    >
+      {/* ── Chat Header ── */}
+      <div
+        className="px-5 py-3.5 flex items-center justify-between"
+        style={{
+          borderBottom: "1px solid var(--border)",
+          background: "var(--surface)",
+        }}
+      >
+        <div className="flex items-center gap-3">
+          <div
+            className="ew-icon-circle"
+            style={{
+              width: 36,
+              height: 36,
+              background: "rgba(79, 110, 247, 0.1)",
+              borderRadius: "var(--radius-md)",
+            }}
+          >
+            {/* FR-10 Grounding Indicator: MorphIcon searching ↔ answered */}
+            <MorphIcon
+              state={assistantState}
+              size={20}
+              color="var(--accent)"
+            />
           </div>
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--bp-white-soft)' }}>
-              <span className="bp-serial">[AI-01]</span> EpiWatch AI
+            <h3 className="text-sm font-semibold flex items-center gap-2" style={{ color: "var(--fg)" }}>
+              EpiWatch AI Grounded Assistant
             </h3>
-            <p className="text-[9px] font-mono flex items-center gap-1" style={{ color: 'var(--bp-cyan)' }}>
-              <span className="w-1.5 h-1.5 bg-[var(--bp-cyan)]" style={{ animation: 'bp-pulse 2s ease-in-out infinite' }} />
-              Grounded Anti-Hallucination Guardrails
+            <p className="text-[11px]" style={{ color: "var(--muted)" }}>
+              Grounded in official IDSP, NASA POWER &amp; DAHD Census
             </p>
           </div>
         </div>
-
         {onClose && (
           <button
             onClick={onClose}
-            className="bp-btn text-[9px] px-2 py-1"
+            className="ew-btn-compact"
+            style={{ height: 32, width: 32, padding: 0, borderRadius: "var(--radius-sm)" }}
           >
-            ✕ CLOSE
+            ✕
           </button>
         )}
       </div>
 
-      {/* Messages Scroll Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 text-[10px]">
+      {/* ── Messages Container ── */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-3.5">
         {messages.map((m) => (
           <div
             key={m.id}
-            className={`flex flex-col ${m.sender === "user" ? "items-end" : "items-start"}`}
+            className={`flex flex-col ${
+              m.sender === "user" ? "items-end" : "items-start"
+            }`}
           >
             <div
-              className={`max-w-[88%] p-3 leading-relaxed whitespace-pre-wrap ${
+              className={`max-w-[88%] p-3.5 text-xs leading-relaxed ${
                 m.sender === "user"
-                  ? "border border-[var(--bp-redline)] bg-[rgba(255,51,51,0.08)]"
-                  : "border border-[var(--bp-line-faint)] bg-[rgba(0,20,40,0.5)]"
+                  ? "rounded-xl text-white"
+                  : "t-texts-reveal rounded-xl text-gray-800"
               }`}
-              style={{ color: m.sender === "user" ? 'var(--bp-white-soft)' : 'var(--bp-white-muted)' }}
+              style={{
+                borderRadius: "var(--radius-md)",
+                background:
+                  m.sender === "user"
+                    ? "linear-gradient(135deg, var(--brand-start), var(--brand-end))"
+                    : "var(--surface-muted)",
+                color: m.sender === "user" ? "#FFFFFF" : "var(--fg)",
+                boxShadow: m.sender === "user" ? "none" : "var(--shadow-border)",
+              }}
             >
               {renderFormattedMarkdown(m.text)}
 
               {/* Citations & Provenance Tags */}
               {m.citations && m.citations.length > 0 && (
-                <div className="mt-3 pt-2 border-t border-[var(--bp-line-faint)] space-y-1 text-[9px] font-mono">
-                  <p className="font-bold uppercase tracking-widest" style={{ color: 'var(--bp-cyan)' }}>Source Provenance Citations:</p>
+                <div
+                  className="mt-3 pt-2 space-y-1.5 text-xs"
+                  style={{
+                    borderTop: `1px solid ${
+                      m.sender === "user" ? "rgba(255,255,255,0.2)" : "var(--border)"
+                    }`,
+                  }}
+                >
+                  <p
+                    className="ew-eyebrow font-semibold"
+                    style={{
+                      color: m.sender === "user" ? "rgba(255,255,255,0.7)" : "var(--accent)",
+                    }}
+                  >
+                    Source Citations
+                  </p>
                   {m.citations.map((c, idx) => (
-                    <div key={idx} className="p-1.5 border border-[var(--bp-line-faint)] flex flex-col" style={{ background: 'rgba(0,15,30,0.5)' }}>
-                      <span className="font-bold" style={{ color: 'var(--bp-white-muted)' }}>📌 {c.source_label}</span>
-                      <span className="text-[8px]" style={{ color: 'var(--bp-white-faint)' }}>{c.provenance}</span>
+                    <div
+                      key={idx}
+                      className="p-2 rounded-md"
+                      style={{
+                        background:
+                          m.sender === "user" ? "rgba(255,255,255,0.1)" : "var(--surface)",
+                        boxShadow: m.sender === "user" ? "none" : "var(--shadow-border)",
+                      }}
+                    >
+                      <span
+                        className="font-medium text-[11px]"
+                        style={{ color: m.sender === "user" ? "#fff" : "var(--fg)" }}
+                      >
+                        📌 {c.source_label}
+                      </span>
+                      <span
+                        className="block text-[10px] mt-0.5"
+                        style={{ color: m.sender === "user" ? "rgba(255,255,255,0.6)" : "var(--muted)" }}
+                      >
+                        {c.provenance}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -218,23 +296,37 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
           </div>
         ))}
 
+        {/* FR-10: t-shimmer-text while composing */}
         {loading && (
-          <div className="flex items-center gap-2 text-[10px] font-mono p-2" style={{ color: 'var(--bp-cyan)' }}>
-            <span className="text-base" style={{ animation: 'bp-spin 2s linear infinite', display: 'inline-block' }}>⚡</span>
-            Running grounded tool queries...
+          <div className="flex items-center gap-2 p-3 text-xs" style={{ background: "var(--surface-muted)", borderRadius: "var(--radius-md)" }}>
+            <MorphIcon state="searching" size={16} color="var(--accent)" />
+            <span className="t-shimmer-text font-medium text-xs">
+              Running grounded epidemiological tool queries...
+            </span>
           </div>
         )}
       </div>
 
-      {/* Sample Prompt Pills */}
-      <div className="p-3 border-t border-[var(--bp-line-faint)]" style={{ background: 'rgba(0,15,30,0.5)' }}>
-        <p className="text-[9px] uppercase font-bold tracking-widest mb-1.5" style={{ color: 'var(--bp-white-faint)' }}>Suggested Queries:</p>
+      {/* ── Suggested Prompts (8px radius, no pills) ── */}
+      <div
+        className="p-3"
+        style={{ borderTop: "1px solid var(--border)", background: "var(--surface-muted)" }}
+      >
+        <p className="ew-eyebrow mb-2" style={{ fontSize: 10 }}>
+          Suggested Queries
+        </p>
         <div className="flex flex-wrap gap-1.5">
           {samplePrompts.map((sp, i) => (
             <button
               key={i}
               onClick={() => handleSend(sp)}
-              className="px-2 py-1 text-[9px] border border-[var(--bp-line-faint)] hover:border-[var(--bp-cyan-dim)] transition text-left font-mono" style={{ color: 'var(--bp-white-muted)', background: 'transparent' }}
+              className="ew-btn-compact text-[11px]"
+              style={{
+                height: 28,
+                padding: "0 10px",
+                borderRadius: "var(--radius-sm)",
+                background: "var(--surface)",
+              }}
             >
               {sp}
             </button>
@@ -242,26 +334,36 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
         </div>
       </div>
 
-      {/* Input Box */}
-      <div className="p-3 border-t border-[var(--bp-line-faint)] flex items-center gap-2" style={{ background: 'rgba(0,20,40,0.8)' }}>
+      {/* ── Input Box (8px radius, explicitly NOT pill-shaped) ── */}
+      <div
+        className="p-3 flex items-center gap-2"
+        style={{ borderTop: "1px solid var(--border)", background: "var(--surface)" }}
+      >
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
-          placeholder="Query risk forecasts, climate drivers, demographics..."
-          className="flex-1 px-3 py-2 border border-[var(--bp-line-faint)] text-[10px] font-mono focus:outline-none focus:border-[var(--bp-cyan)]"
-          style={{ background: 'rgba(0,15,30,0.5)', color: 'var(--bp-white-soft)' }}
+          placeholder="Ask about risk forecasts, climate drivers..."
+          className="ew-input flex-1 text-xs"
+          style={{
+            height: 44,
+            borderRadius: "var(--radius-md)",
+          }}
         />
         <button
           onClick={() => handleSend()}
           disabled={loading}
-          className="bp-btn bp-btn-active px-4 py-2 text-[10px]"
+          className="ew-btn-primary"
+          style={{
+            height: 44,
+            padding: "0 18px",
+            borderRadius: "var(--radius-md)",
+          }}
         >
-          TRANSMIT
+          Send
         </button>
       </div>
-
     </div>
   );
 }
