@@ -1,4 +1,4 @@
-const API_BASE = process.env.NEXT_API_URL || "https://epiwatch-xrhv.onrender.com";
+import { getApiBaseUrl } from "./config";
 
 export interface District {
   id: string;
@@ -58,7 +58,7 @@ export interface BacktestEvent {
 
 export async function fetchDistricts(): Promise<District[]> {
   try {
-    const res = await fetch(`${API_BASE}/districts`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/districts`, { cache: "no-store" });
     if (res.ok) return await res.json();
   } catch (e) {
     console.warn("Backend API unreachable, using static fallback for districts:", e);
@@ -69,7 +69,7 @@ export async function fetchDistricts(): Promise<District[]> {
 
 export async function fetchForecast(districtId: string, disease: string = "dengue"): Promise<ForecastPoint[]> {
   try {
-    const res = await fetch(`${API_BASE}/districts/${districtId}/forecast?disease=${disease}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/districts/${districtId}/forecast?disease=${disease}`, { cache: "no-store" });
     if (res.ok) return await res.json();
   } catch (e) {
     console.warn(`Backend API unreachable, using static fallback for ${districtId} forecast:`, e);
@@ -83,7 +83,7 @@ export async function fetchForecast(districtId: string, disease: string = "dengu
 
 export async function fetchHistory(districtId: string, disease: string = "dengue"): Promise<HistoricalPoint[]> {
   try {
-    const res = await fetch(`${API_BASE}/districts/${districtId}/history?disease=${disease}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/districts/${districtId}/history?disease=${disease}`, { cache: "no-store" });
     if (res.ok) {
       const data = await res.json();
       return Array.isArray(data) ? data : data.series || [];
@@ -96,7 +96,7 @@ export async function fetchHistory(districtId: string, disease: string = "dengue
 
 export async function fetchRisk(districtId: string): Promise<RiskResponse> {
   try {
-    const res = await fetch(`${API_BASE}/districts/${districtId}/risk`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/districts/${districtId}/risk`, { cache: "no-store" });
     if (res.ok) return await res.json();
   } catch (e) {
     console.warn(`Backend API unreachable for risk:`, e);
@@ -106,7 +106,7 @@ export async function fetchRisk(districtId: string): Promise<RiskResponse> {
 
 export async function fetchBacktest(districtId: string = "PUNE", disease: string = "dengue"): Promise<BacktestEvent | null> {
   try {
-    const res = await fetch(`${API_BASE}/backtest?district_id=${districtId}&disease=${disease}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/backtest?district_id=${districtId}&disease=${disease}`, { cache: "no-store" });
     if (res.ok) return await res.json();
   } catch (e) {
     console.warn("Backend API unreachable, using static fallback for backtest:", e);
@@ -124,7 +124,7 @@ export async function fetchBacktest(districtId: string = "PUNE", disease: string
 
 export async function fetchMethodology(): Promise<any> {
   try {
-    const res = await fetch(`${API_BASE}/methodology`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/methodology`, { cache: "no-store" });
     if (res.ok) return await res.json();
   } catch (e) {
     console.warn("Backend API unreachable, using static fallback for methodology:", e);
@@ -148,7 +148,7 @@ export interface ShapResponse {
 
 export async function fetchShapFeatures(districtId: string, disease: string = "dengue"): Promise<ShapResponse | null> {
   try {
-    const res = await fetch(`${API_BASE}/districts/${districtId}/shap?disease=${disease}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/districts/${districtId}/shap?disease=${disease}`, { cache: "no-store" });
     if (res.ok) return await res.json();
   } catch (e) {
     console.warn(`Backend API unreachable for SHAP features:`, e);
@@ -176,7 +176,7 @@ export interface RegionalSignalResponse {
 
 export async function fetchRegionalSignals(districtId: string): Promise<RegionalSignalResponse | null> {
   try {
-    const res = await fetch(`${API_BASE}/news/regional-signal?district_id=${districtId}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/news/regional-signal?district_id=${districtId}`, { cache: "no-store" });
     if (res.ok) return await res.json();
   } catch (e) {
     console.warn(`Backend API unreachable for regional signals:`, e);
@@ -206,7 +206,7 @@ export interface GovtScheme {
 
 export async function fetchPrecautions(diseaseId: string): Promise<Precaution | null> {
   try {
-    const res = await fetch(`${API_BASE}/precautions/${diseaseId}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/precautions/${diseaseId}`, { cache: "no-store" });
     if (res.ok) return await res.json();
   } catch (e) {
     console.warn(`Backend API unreachable for precautions:`, e);
@@ -216,7 +216,7 @@ export async function fetchPrecautions(diseaseId: string): Promise<Precaution | 
 
 export async function fetchGovtBenefits(diseaseId: string): Promise<GovtScheme[]> {
   try {
-    const res = await fetch(`${API_BASE}/benefits/${diseaseId}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/benefits/${diseaseId}`, { cache: "no-store" });
     if (res.ok) return await res.json();
   } catch (e) {
     console.warn(`Backend API unreachable for benefits:`, e);

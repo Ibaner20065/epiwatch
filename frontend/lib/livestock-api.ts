@@ -5,7 +5,7 @@
  * Mirrors the existing api-client.ts pattern for offline resilience.
  */
 
-const API_BASE = process.env.NEXT_API_URL || "https://epiwatch-xrhv.onrender.com";
+import { getApiBaseUrl } from "./config";
 
 // ── Types ────────────────────────────────────────────────────────
 
@@ -206,7 +206,7 @@ export interface PipelineStats {
 
 export async function fetchLivestockDistricts(): Promise<LivestockDistrict[]> {
   try {
-    const res = await fetch(`${API_BASE}/livestock/districts`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/livestock/districts`, { cache: "no-store" });
     if (res.ok) return await res.json();
   } catch (e) {
     console.warn("Backend API unreachable for livestock districts:", e);
@@ -222,7 +222,7 @@ export async function fetchLivestockDistricts(): Promise<LivestockDistrict[]> {
 }
 
 export async function submitSymptomReport(report: SymptomReportCreate): Promise<SymptomReport> {
-  const res = await fetch(`${API_BASE}/livestock/reports/symptom`, {
+  const res = await fetch(`${getApiBaseUrl()}/livestock/reports/symptom`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(report),
@@ -233,7 +233,7 @@ export async function submitSymptomReport(report: SymptomReportCreate): Promise<
 
 export async function evaluateTriageOnly(report: SymptomReportCreate): Promise<TriageResult> {
   try {
-    const res = await fetch(`${API_BASE}/livestock/triage/evaluate`, {
+    const res = await fetch(`${getApiBaseUrl()}/livestock/triage/evaluate`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(report),
@@ -258,7 +258,7 @@ export async function fetchReports(
     if (params.species) qs.set("species", params.species);
     if (params.disease) qs.set("disease", params.disease);
     if (params.limit) qs.set("limit", String(params.limit));
-    const res = await fetch(`${API_BASE}/livestock/reports?${qs}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/livestock/reports?${qs}`, { cache: "no-store" });
     if (res.ok) return res.json();
   } catch (e) {
     console.warn("API unreachable for reports:", e);
@@ -274,7 +274,7 @@ export async function fetchAlerts(
     if (params.district_id) qs.set("district_id", params.district_id);
     if (params.severity) qs.set("severity", params.severity);
     if (params.status) qs.set("status", params.status);
-    const res = await fetch(`${API_BASE}/livestock/alerts?${qs}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/livestock/alerts?${qs}`, { cache: "no-store" });
     if (res.ok) return res.json();
   } catch (e) {
     console.warn("API unreachable for alerts:", e);
@@ -284,7 +284,7 @@ export async function fetchAlerts(
 
 export async function acknowledgeAlert(alertId: string, by: string): Promise<LivestockAlert | null> {
   try {
-    const res = await fetch(`${API_BASE}/livestock/alerts/${alertId}/acknowledge`, {
+    const res = await fetch(`${getApiBaseUrl()}/livestock/alerts/${alertId}/acknowledge`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ acknowledged_by: by }),
@@ -305,7 +305,7 @@ export async function fetchAnimals(
     if (params.species) qs.set("species", params.species);
     if (params.ear_tag) qs.set("ear_tag", params.ear_tag);
     if (params.limit) qs.set("limit", String(params.limit));
-    const res = await fetch(`${API_BASE}/livestock/animals?${qs}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/livestock/animals?${qs}`, { cache: "no-store" });
     if (res.ok) return res.json();
   } catch (e) {
     console.warn("API unreachable for animals:", e);
@@ -315,7 +315,7 @@ export async function fetchAnimals(
 
 export async function fetchAnimalProfile(animalId: string): Promise<AnimalProfile | null> {
   try {
-    const res = await fetch(`${API_BASE}/livestock/animals/${animalId}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/livestock/animals/${animalId}`, { cache: "no-store" });
     if (res.ok) return res.json();
   } catch (e) {
     console.warn("API unreachable for animal profile:", e);
@@ -326,7 +326,7 @@ export async function fetchAnimalProfile(animalId: string): Promise<AnimalProfil
 export async function fetchDashboardSummary(districtId?: string): Promise<DashboardSummary | null> {
   try {
     const qs = districtId ? `?district_id=${districtId}` : "";
-    const res = await fetch(`${API_BASE}/livestock/dashboard/summary${qs}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/livestock/dashboard/summary${qs}`, { cache: "no-store" });
     if (res.ok) return res.json();
   } catch (e) {
     console.warn("API unreachable for dashboard:", e);
@@ -342,7 +342,7 @@ export async function fetchDashboardTrends(
     if (params.district_id) qs.set("district_id", params.district_id);
     if (params.disease) qs.set("disease", params.disease);
     if (params.weeks) qs.set("weeks", String(params.weeks));
-    const res = await fetch(`${API_BASE}/livestock/dashboard/trends?${qs}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/livestock/dashboard/trends?${qs}`, { cache: "no-store" });
     if (res.ok) return res.json();
   } catch {
     // fallback
@@ -353,7 +353,7 @@ export async function fetchDashboardTrends(
 export async function fetchLabPipelineStats(districtId?: string): Promise<PipelineStats | null> {
   try {
     const qs = districtId ? `?district_id=${districtId}` : "";
-    const res = await fetch(`${API_BASE}/livestock/lab/pipeline-stats${qs}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/livestock/lab/pipeline-stats${qs}`, { cache: "no-store" });
     if (res.ok) return res.json();
   } catch {
     // fallback
@@ -368,7 +368,7 @@ export async function fetchLabSamples(
     const qs = new URLSearchParams();
     if (params.district_id) qs.set("district_id", params.district_id);
     if (params.status) qs.set("status", params.status);
-    const res = await fetch(`${API_BASE}/livestock/lab/samples?${qs}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/livestock/lab/samples?${qs}`, { cache: "no-store" });
     if (res.ok) return res.json();
   } catch {
     // fallback
@@ -378,7 +378,7 @@ export async function fetchLabSamples(
 
 export async function fetchDistrictLeaderboard(): Promise<{ leaderboard: Record<string, unknown>[] }> {
   try {
-    const res = await fetch(`${API_BASE}/livestock/dashboard/leaderboard`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/livestock/dashboard/leaderboard`, { cache: "no-store" });
     if (res.ok) return res.json();
   } catch {
     // fallback
@@ -389,7 +389,7 @@ export async function fetchDistrictLeaderboard(): Promise<{ leaderboard: Record<
 export async function batchSyncReports(reports: SymptomReportCreate[]): Promise<{
   synced: number; failed: number; report_ids: string[]; errors: string[];
 }> {
-  const res = await fetch(`${API_BASE}/livestock/reports/batch-sync`, {
+  const res = await fetch(`${getApiBaseUrl()}/livestock/reports/batch-sync`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ reports }),
@@ -405,7 +405,7 @@ export async function fetchVaccinationCoverage(
     const qs = new URLSearchParams();
     if (params.district_id) qs.set("district_id", params.district_id);
     if (params.disease_target) qs.set("disease_target", params.disease_target);
-    const res = await fetch(`${API_BASE}/livestock/animals/vaccination-coverage?${qs}`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/livestock/animals/vaccination-coverage?${qs}`, { cache: "no-store" });
     if (res.ok) return res.json();
   } catch {
     // fallback

@@ -1,7 +1,7 @@
 // SwasthSandhi OA API client — mirrors EpiWatch's api-client.ts resilience
 // pattern: try the FastAPI backend, fall back to static JSON offline.
 
-const API_BASE = process.env.NEXT_API_URL || "https://epiwatch-xrhv.onrender.com";
+import { getApiBaseUrl } from "./config";
 
 export interface OAScreeningInput {
   patient: {
@@ -75,7 +75,7 @@ export interface OAModelMetric {
 
 export async function submitOAScreening(input: OAScreeningInput): Promise<OARiskResult> {
   try {
-    const res = await fetch(`${API_BASE}/oa/screening`, {
+    const res = await fetch(`${getApiBaseUrl()}/oa/screening`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(input),
@@ -91,7 +91,7 @@ export async function submitOAScreening(input: OAScreeningInput): Promise<OARisk
 
 export async function fetchOAModelStatus(): Promise<OAModelStatus | null> {
   try {
-    const res = await fetch(`${API_BASE}/oa/model-status`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/oa/model-status`, { cache: "no-store" });
     if (res.ok) return await res.json();
   } catch (e) {
     console.warn("OA backend unreachable for model-status:", e);
@@ -107,7 +107,7 @@ export async function fetchOAModelStatus(): Promise<OAModelStatus | null> {
 
 export async function fetchOANerRegions(): Promise<OANerRegions | null> {
   try {
-    const res = await fetch(`${API_BASE}/oa/ner-regions`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/oa/ner-regions`, { cache: "no-store" });
     if (res.ok) return await res.json();
   } catch (e) {
     console.warn("OA backend unreachable for ner-regions:", e);

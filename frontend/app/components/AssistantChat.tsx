@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import MorphIcon from "@/app/components/MorphIcon";
+import { getApiBaseUrl } from "@/lib/config";
 
 interface Citation {
   tool_name: string;
@@ -124,11 +125,10 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
         content: m.text,
       }));
 
-      const apiBase = process.env.NEXT_API_URL || "https://epiwatch-xrhv.onrender.com";
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 15000);
 
-      const res = await fetch(`${apiBase}/assistant/query`, {
+      const res = await fetch(`${getApiBaseUrl()}/assistant/query`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query: textToSend, history: historyPayload }),

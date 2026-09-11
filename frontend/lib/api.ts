@@ -1,4 +1,4 @@
-export const API_BASE = process.env.NEXT_API_URL ?? "https://epiwatch-xrhv.onrender.com";
+import { getApiBaseUrl } from "./config";
 
 export type HealthResponse = {
   status: string;
@@ -7,7 +7,7 @@ export type HealthResponse = {
 };
 
 export async function fetchHealth(): Promise<HealthResponse> {
-  const res = await fetch(`${API_BASE}/health`, { cache: "no-store" });
+  const res = await fetch(`${getApiBaseUrl()}/health`, { cache: "no-store" });
   if (!res.ok) throw new Error(`Health check failed: HTTP ${res.status}`);
   return res.json();
 }
