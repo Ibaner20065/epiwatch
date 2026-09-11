@@ -3,6 +3,7 @@
 import { useEffect, useState, useMemo } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import Image from "next/image";
 import {
   fetchDistricts,
   fetchForecast,
@@ -162,7 +163,14 @@ export default function Dashboard() {
       {/* ── Main Content ── */}
       <main className="flex-1 max-w-[1400px] mx-auto w-full px-4 sm:px-6 py-8 space-y-8">
         {/* ── Hero / Overview ── */}
-        <section className="ew-card p-6">
+        <section className="ew-card relative overflow-hidden p-6">
+          <Image
+            src="/epiwatch-logo.png"
+            alt="EpiWatch"
+            className="ew-hero-logo"
+            width={104}
+            height={104}
+          />
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
               <div className="flex flex-wrap items-center gap-2 mb-3">

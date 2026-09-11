@@ -124,7 +124,7 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
         content: m.text,
       }));
 
-      const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+      const apiBase = process.env.NEXT_API_URL || "https://epiwatch-xrhv.onrender.com";
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 15000);
 
@@ -158,7 +158,7 @@ export default function AssistantChat({ onClose }: { onClose?: () => void }) {
         {
           id: (Date.now() + 1).toString(),
           sender: "assistant",
-          text: "I was unable to complete the grounded query to the backend API. Please ensure the FastAPI server is running on port 8000.",
+          text: "I was unable to reach the backend API. The server may be starting up — please try again in a moment.",
         },
       ]);
       setAssistantState("answered");

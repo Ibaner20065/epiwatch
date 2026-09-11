@@ -7,7 +7,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
 from sqlalchemy import text
-from app.db import engine
+from ..db import engine
 import google.generativeai as genai
 from dotenv import load_dotenv
 
@@ -783,4 +783,3 @@ def query_assistant(req: AssistantQueryRequest):
         tools_used=tools_used,
         disclaimer="Answers are strictly grounded in real Supabase database records, SHAP feature attributions, wttr.in weather data, and ingested Census 2011 provenance chunks."
     )
-

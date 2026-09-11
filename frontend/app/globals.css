@@ -146,6 +146,59 @@ body {
   font-feature-settings: "liga" 1;
 }
 
+.ew-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  animation: ew-preloader-out 350ms ease 1.05s forwards;
+  pointer-events: none;
+}
+
+.ew-preloader__content {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 220px;
+  height: 220px;
+}
+
+.ew-preloader__logo {
+  position: absolute;
+  z-index: 1;
+  width: 92px;
+  height: 92px;
+  object-fit: contain;
+}
+
+.ew-hero-logo {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  width: 104px;
+  height: 104px;
+  object-fit: contain;
+  opacity: 0.92;
+}
+
+@keyframes ew-preloader-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 640px) {
+  .ew-hero-logo {
+    top: 8px;
+    right: 8px;
+    width: 72px;
+    height: 72px;
+  }
+}
+
 /* ── Scrollbars ────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--surface-muted); }
